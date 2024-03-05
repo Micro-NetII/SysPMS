@@ -8,16 +8,18 @@ import { FaLaptopHouse, FaUser } from 'react-icons/fa';
 import { useSession } from 'next-auth/react';
 import { FaTruck } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
+import { IoSettings } from "react-icons/io5";
+import { FaHotel } from "react-icons/fa";
 
 const Sidebar = ({ showSidebar, setShowSidebar, children, name }) => {
 
-    const stocksEnabled = process.env.NEXT_PUBLIC_HOTEL_SETUP === "true";
+    const hotelSetup = process.env.NEXT_PUBLIC_HOTEL_SETUP === "true";
 
     const listItems = {
         //"Dashboard": [],
 
         "Settings": {
-            icon: <FaCalendarAlt size={20} />,
+            icon: <IoSettings  size={20} />,
             active: true,
             items: [
                 {
@@ -28,6 +30,19 @@ const Sidebar = ({ showSidebar, setShowSidebar, children, name }) => {
                 },
             ]
         },
+
+        "Hotel Setup":{
+            icon: <FaHotel  size={20} />,
+            active: true,
+            items: [
+                {
+                    ref: "/homepage/hotelSetup", label: "Hotel", active: true
+                },
+                {
+                    ref: "/homepage/false", label: "False", active: hotelSetup
+                },
+            ]
+        }
     }
     return (
         <>
