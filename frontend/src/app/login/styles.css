@@ -1,0 +1,77 @@
+.login-page {
+    background-image: url('../../../public/images/imagem-login.png');
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  @media (max-width: 768px) {
+    .login-page {
+      background-size: contain;
+    }
+  }
+  
+  .login-container {
+    position: absolute;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    width: 450px;
+    text-align: center;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login-container input {
+    margin: 10px auto; /* Adiciona 10px de margem superior e inferior */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 250px;
+    margin-bottom: 20px;
+    height: 40px;
+  }
+  
+  .login-container button {
+    width: 200px;
+    background-color: #2eb8a8;
+    border-radius: 10px;
+    border: 10px solid #2eb8a8; /* Define a grossura da borda como 5px */
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px;
+  }
+  
+  .input-field {
+    width: 250px;
+    height: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px; /* Adiciona uma margem inferior de 10px */
+  }
+  
+  .icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    color: #ccc;
+  }
+  
+  
+  .logo-container{
+    margin-bottom: 40px;
+  }
