@@ -36,7 +36,10 @@ const Sidebar = ({ showSidebar, setShowSidebar, children, name }) => {
             active: true,
             items: [
                 {
-                    ref: "/homepage/hotelSetup", label: "Hotel", active: true
+                    ref: "/homepage/hotelSetup", label: "Hotel" , active: true
+                },
+                {
+                    ref: "/homepage/hotelSetup/rooms", label: "rooms" , active: true
                 },
                 {
                     ref: "/homepage/false", label: "False", active: hotelSetup
