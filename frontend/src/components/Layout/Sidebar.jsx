@@ -52,6 +52,16 @@ const Sidebar = ({ showSidebar, setShowSidebar, children, name }) => {
                 },
             ]
         }
+
+        "Teste - SysWeb":{
+            icon: <IoSettings  size={20} />,
+            active: true,
+            items: [
+                {
+                    ref: "/homepage/movimentos_stock", label: "Movimentos Stock", active: true
+                }
+            ]
+        }
     }
     return (
         <>
