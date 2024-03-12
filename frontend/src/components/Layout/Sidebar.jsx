@@ -36,10 +36,19 @@ const Sidebar = ({ showSidebar, setShowSidebar, children, name }) => {
             active: true,
             items: [
                 {
-                    ref: "/homepage/hotelSetup", label: "Hotel", active: true
+                    ref: "/homepage/hotelSetup/tipologyGroup", label: "Grupo Tipologias", active: true
                 },
                 {
-                    ref: "/homepage/false", label: "False", active: hotelSetup
+                    ref: "/homepage/hotelSetup/tipologys", label: "Tipologias", active: true
+                },
+                {
+                    ref: "/homepage/hotelSetup/rooms", label: "Quartos", active: true
+                },
+                {
+                    ref: "/homepage/hotelSetup/characteristics", label: "Caracteristicas", active: true
+                },
+                {
+                    ref: "/homepage/5", label: "Manutenção", active: true
                 },
             ]
         }
