@@ -45,6 +45,9 @@ const Sidebar = ({ showSidebar, setShowSidebar, children, name }) => {
                     ref: "/homepage/hotelSetup/typology", label: "Tipologias" , active: true
                 },
                 {
+                    ref: "/homepage/hotelSetup/MaintenancePage", label: "Manutenção" , active: true
+                },
+                {
                     ref: "/homepage/false", label: "False", active: hotelSetup
                 },
             ]
