@@ -30,22 +30,13 @@ const Sidebar = ({ showSidebar, setShowSidebar, children, name }) => {
                 },
             ]
         },
-
+        
         "Hotel Setup":{
             icon: <FaHotel  size={20} />,
             active: true,
             items: [
                 {
                     ref: "/homepage/hotelSetup", label: "Hotel" , active: true
-                },
-                {
-                    ref: "/homepage/hotelSetup/rooms", label: "Quartos" , active: true
-                },
-                {
-                    ref: "/homepage/hotelSetup/typology", label: "Tipologias" , active: true
-                },
-                {
-                    ref: "/homepage/hotelSetup/MaintenancePage", label: "Manutenção" , active: true
                 },
                 {
                     ref: "/homepage/false", label: "False", active: hotelSetup
