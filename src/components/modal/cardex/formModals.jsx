@@ -81,7 +81,7 @@ const formModals = ({ buttonName, buttonIcon, modalHeader, formTypeModal, button
     return (
         <>
 
-            {formTypeModal === 10 && ( //Grupo de tipologias
+            {formTypeModal === 30 && ( //Metodos de conhecimento
                 <>
                     <Button onPress={onOpen} color="bg-primary-100" className="w-fit">
                         {buttonName}
@@ -93,9 +93,9 @@ const formModals = ({ buttonName, buttonIcon, modalHeader, formTypeModal, button
                                     <>
                                         <ModalHeader className="flex flex-col gap-1 uppercase">{modalHeader}</ModalHeader>
                                         <ModalBody className="flex flex-col mx-5 my-5 space-y-8">
-                                            <input type="text" placeholder="Descrição" className="w-full bg-transparent outline-none border-b-2 border-gray-500 h-14 px-4"></input>
+                                            <input type="text" placeholder="Grupo" className="w-full bg-transparent outline-none border-b-2 border-gray-500 h-14 px-4"></input>
                                             <input type="text" placeholder="Abreviatura" className="w-full bg-transparent outline-none border-b-2 border-gray-500 h-14 px-4"></input>
-                                            <textarea type="textarea" placeholder="Detalhe" className="w-full bg-transparent outline-none border-b-2 border-gray-500 h-24 px-4"></textarea>
+                                            <textarea type="textarea" placeholder="Descrição" className="w-full bg-transparent outline-none border-b-2 border-gray-500 h-24 px-4"></textarea>
                                             <div>
                                                 <input id="link-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></input>
                                                 <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ativo (estado).</label>
@@ -112,7 +112,7 @@ const formModals = ({ buttonName, buttonIcon, modalHeader, formTypeModal, button
                                                 Fechar
                                             </Button>
                                             <Button color="primary" onPress={onClose}>
-                                                Teste
+                                                Enviar
                                             </Button>
                                         </ModalFooter>
                                     </>

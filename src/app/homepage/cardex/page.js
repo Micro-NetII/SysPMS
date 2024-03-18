@@ -2,7 +2,7 @@
 
 import React from "react";
 //import do componente cartão
-import Cartao from "@/components/Cards/Card";
+import Cartao from "@/components/Cards/cardex/Card";
 //import de icons
 import { PiListPlus } from "react-icons/pi";
 import { FaBoxesStacked } from "react-icons/fa6";
@@ -17,10 +17,10 @@ const Card = () => {
                 <Cartao title={"TABELA DE SAUDAÇÕES"} description={""} listType={"saudacao"} icon={<PiListPlus size={35} />} formTypeCard={10}/>
             </div>
             <div className="">
-                <Cartao title={"TABELA DE NACIONALIDADES"} description={""} listType={"nacionalidades"} formType={"/quartos/bedrooms"} formName={"Bedrooms"} icon={<FaBoxesStacked size={35}/>} formTypeCard={40}/>
+                <Cartao title={"TABELA DE NACIONALIDADES"} description={""} listType={"nacionalidades"} icon={<FaBoxesStacked size={35}/>} formTypeCard={40}/>
             </div>
             <div className="">
-                <Cartao title={"MÉTODOS DE CONHECIMENTO"} listType={"metodo_conhecimento"} formTypeCard={20}/>
+                <Cartao title={"MÉTODOS DE CONHECIMENTO"} listType={"metodo_conhecimento"} formTypeCard={30}/>
             </div>
             <div className="">
                 <Cartao title={"TABELA DE PROFISSÕES"} description={""} listType={"profissao"} icon={<RiPlayList2Fill size={35}/>} formTypeCard={30}/>
