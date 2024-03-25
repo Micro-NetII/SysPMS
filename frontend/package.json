@@ -15,6 +15,8 @@
     "@mui/styled-engine-sc": "^6.0.0-alpha.17",
     "@mui/x-date-pickers": "^6.19.6",
     "@nextui-org/react": "^2.2.10",
+    "@prisma/client": "^5.11.0",
+    "@prisma/extension-pulse": "^1.0.1",
     "axios": "^1.6.7",
     "next": "14.1.0",
     "next-auth": "^4.24.6",
@@ -23,6 +25,7 @@
     "react-dom": "^18",
     "react-icons": "^5.0.1",
     "react-toastify": "^10.0.4",
+    "screenfull": "^6.0.2",
     "sharp": "^0.33.2",
     "styled-components": "^6.1.8",
     "swr": "^2.2.5",
@@ -33,6 +36,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
     "postcss": "^8",
+    "prisma": "^5.11.0",
     "tailwindcss": "^3.3.0"
   }
 }

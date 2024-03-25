@@ -1,5 +1,8 @@
 'use client'
 
+
+import React, { useState } from 'react';
+
 import { Card, CardHeader, CardBody, Divider, Button, Tooltip } from '@nextui-org/react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { usePathname } from "next/navigation";
@@ -9,12 +12,17 @@ import { MdTableRows } from "react-icons/md";
 import { GoPlus } from "react-icons/go";
 import { LuPlus } from "react-icons/lu";
 import { MdOutlineAddCircleOutline } from "react-icons/md";
-import CompanyForm from "@/components/companyForm/companyForm";
+import FormModals from "@/components/modal/hotelSetup/formModals";
 
-const Cartao = ({ title, description, counter1, counter2, icon, Movementtype_id, Editable, pathextra, formType, formTypeCard }) => {
+
+
+const Cartao = ({ title, description, counter1, counter2, icon, listType, formTypeCard}) => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
+
+
+
 
   const createQueryString = (name, value) => {
     const params = new URLSearchParams(searchParams);
@@ -23,16 +31,15 @@ const Cartao = ({ title, description, counter1, counter2, icon, Movementtype_id,
   };
 
   const handleCardClick = () => {
-    router.push(pathname + pathextra)
-  };
+    router.push(pathname + "/" + ('listType', listType))
 
-  const handleCardFormClick = () =>{
-    router.push(pathname + "/" + ('formtype', formType))
   };
 
 
   return (
-    <div className="w-full h-full" data-formType={formType} data-movementtype-id={Movementtype_id}
+
+    <div className="w-full h-full" data-listType={listType}
+
       style={{ cursor: 'pointer' }} // Adiciona esta linha para definir o estilo do cursor
     >
       <Card className="w-full h-full">
@@ -69,10 +76,9 @@ const Cartao = ({ title, description, counter1, counter2, icon, Movementtype_id,
                     size="sm"
                     variant="light"
                     className="bg-primary-100   -mt"
-                    onPress={handleCardFormClick}
 
                   >
-                  <CompanyForm buttonName={<LuPlus size={20} />} modalHeader={"Inserir " + title} formTypeModal={formTypeCard}/>
+                  <FormModals buttonName = {<LuPlus size={20} />} modalHeader={"Inserir " + title} formTypeModal={formTypeCard}/>
                   </Button>
                 {/* </Tooltip> */}
 

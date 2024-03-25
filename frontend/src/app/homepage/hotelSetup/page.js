@@ -1,130 +1,35 @@
+
 "use client"
-
 import React from "react";
-import Link from "next/link";
-import { divider } from "@nextui-org/react"
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Pagination, getKeyValue} from "@nextui-org/react";
-import {Autocomplete, AutocompleteItem} from "@nextui-org/react";
-import {Select, SelectItem} from "@nextui-org/react";
+//import do componente cartão
+import Cartao from "@/components/Cards/Card";
+//import de icons
+import { PiListPlus } from "react-icons/pi";
+import { FaBoxesStacked } from "react-icons/fa6";
+import { FaBed, FaWrench, FaPencilRuler } from "react-icons/fa";
 
-import { GoGear } from "react-icons/go";
-
-export default function Roooms() {
-    const [page, setPage] = React.useState(1);
-  const rowsPerPage = 10;
-
-  const pages = Math.ceil(users.length / rowsPerPage);
-
-  const items = React.useMemo(() => {
-    const start = (page - 1) * rowsPerPage;
-    const end = start + rowsPerPage;
-
-    return users.slice(start, end);
-  }, [page, users]);
-  return (
-    <main className="mx-5">
-    <div className="flex flex-col my-10 py-3">
-        <p className="text-xs px-6">Rooms</p>
-        <div className="flex flex-row">
-        <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-            <Input
-        className="mt-4 w-80"
-          placeholder="Pesquisa"
-          labelPlacement="outside"
-          startContent={
-            <IoMdSearch className="text-2xl text-default-400 pointer-events-none flex-shrink-0"/>
- 
-          }
-        />
-              <Autocomplete
-                variant="underlined"
-                label="Selecione a opção"
-                className="max-w-xs"
-              >
-                {typologys.map((typology) => (
-                  <AutocompleteItem key={typology.value} value={typology.value}>
-                    {typology.label}
-                  </AutocompleteItem>
-                ))}
-              </Autocomplete>
+const Card = () => {
+    return (
+        <>
+        <div className="border grid grid-cols-4 gap-4 justify-between py-5 px-5">
+            <div className="">
+                <Cartao title={"GRUPOS TIPOLOGIAS"} description={"Inserir grupos que relacionam várias tipologias de quartos"} listType={"grupo_tipologia"} formName={"ModalGT"} icon={<PiListPlus size={35} />} formTypeCard={10}/>
             </div>
-        <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
-        <input type="text" placeholder="Search All" className="w-80 px-2 outline-none bg-transparent border-b-2 border-gray-400 mx-5"></input>
-    </div>
+            <div className="">
+                <Cartao title={"TIPOLOGIAS"} description={"Inserir as tipologias que associam quartos da mesma categoria"} listType={"tipologia"} formType={"/quartos/bedrooms"} formName={"Bedrooms"} icon={<FaBoxesStacked size={35}/>} formTypeCard={40}/>
+            </div>
+            <div className="">
+                <Cartao title={"QUARTOS"} counter1={"39"} counter2={"01"} listType={"quartos"} icon={<FaBed size={35}/>} formTypeCard={20}/>
+            </div>
+            <div className="">
+                <Cartao title={"CARACTERÍSTICAS"} description={"Inserir lista com as várias características para cada quarto"} listType={"carateristicas"} icon={<FaPencilRuler size={35}/>} formTypeCard={30}/>
+            </div>
+            <div className="">
+                <Cartao title={"MANUTENÇÃO"} description={"Inserir motivos que podem existir para colocar os quartos em manutenção"} listType={"manutencao"} icon={<FaWrench size={35}/>} formTypeCard={50} />
+            </div>
+
         </div>
-    </div>
-    <Table removeWrapper isStriped
-     bottomContent={
-      <div className="flex w-full justify-center">
-        <Pagination
-          isCompact
-          showControls
-          showShadow
-          color="var(--dark-green)"
-          page={page}
-          total={pages}
-          onChange={(page) => setPage(page)}
-        />
-      </div>
-    }
-    classNames={{
-      wrapper: "min-h-[222px]",
-    }}>
-        <TableHeader>
-            <TableColumn className="bg-[var(--dark-green)] text-[var(--white)] font-bold">ID</TableColumn>
-            <TableColumn className="bg-[var(--dark-green)] text-[var(--white)] font-bold">ORDEM</TableColumn>
-            <TableColumn className="bg-[var(--dark-green)] text-[var(--white)] font-bold">DESCRIÇÃO</TableColumn>
-            <TableColumn className="bg-[var(--dark-green)] text-[var(--white)] font-bold">ABREVIATURA</TableColumn>
-            <TableColumn className="bg-[var(--dark-green)] text-[var(--white)] font-bold">DETALHE</TableColumn>
-            <TableColumn className="bg-[var(--dark-green)] text-[var(--white)] font-bold">TIPOLOGIA</TableColumn>
-            <TableColumn className="bg-[var(--dark-green)] text-[var(--white)] font-bold">FUNÇÃO</TableColumn>
-            <TableColumn className="bg-[var(--dark-green)] text-[var(--white)] px-10 flex justify-center items-center"><GoGear size={20}/></TableColumn>
-        </TableHeader>
-        <TableBody>
-            <TableRow key="1">
-                <TableCell>1</TableCell>
-                <TableCell>1234</TableCell>
-                <TableCell>Quarto Duplo</TableCell>
-                <TableCell>QD</TableCell>
-                <TableCell>Quarto duplo em suite no madagascar</TableCell>
-                <TableCell>Livre</TableCell>
-                <TableCell>PEN</TableCell>
-                <TableCell>
-                <Select 
-                    label="°°°" 
-                    className="max-w-xs" 
-                >
-                    {actions.map((action) => (
-                    <SelectItem key={action.value} value={action.value}>
-                        {action.label}
-                    </SelectItem>
-                    ))}
-                </Select>
-                </TableCell>
-            </TableRow>
-            <TableRow key="2">
-                <TableCell>1</TableCell>
-                <TableCell>1234</TableCell>
-                <TableCell>Quarto Duplo</TableCell>
-                <TableCell>QD</TableCell>
-                <TableCell>Quarto duplo em suite no madagascar</TableCell>
-                <TableCell>Livre</TableCell>
-                <TableCell>PEN</TableCell>
-                <TableCell>
-                <Select 
-                    label="°°°" 
-                    className="max-w-xs" 
-                >
-                    {actions.map((action) => (
-                    <SelectItem key={action.value} value={action.value}>
-                        {action.label}
-                    </SelectItem>
-                    ))}
-                </Select>
-                </TableCell>
-            </TableRow>
-        </TableBody>
-    </Table>
-    </main>
-  )
+        </>
+    )
 }
+export default Card;

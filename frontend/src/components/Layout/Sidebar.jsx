@@ -1,3 +1,4 @@
+
 'use client'
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -10,6 +11,7 @@ import { FaTruck } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
 import { FaHotel } from "react-icons/fa";
+import { PiUsersFourFill } from "react-icons/pi";
 
 const Sidebar = ({ showSidebar, setShowSidebar, children, name }) => {
 
@@ -36,26 +38,112 @@ const Sidebar = ({ showSidebar, setShowSidebar, children, name }) => {
             active: true,
             items: [
                 {
-                    ref: "/homepage/hotelSetup/tipologyGroup", label: "Grupo Tipologias", active: true
+                    ref: "/homepage/hotelSetup", label: "Hotel", active: true
                 },
                 {
-                    ref: "/homepage/hotelSetup/tipologys", label: "Tipologias", active: true
+                    ref: "/homepage/hotelSetup/grupo_tipologia", label: "Grupo Tipologias", active: true
                 },
                 {
-                    ref: "/homepage/hotelSetup/rooms", label: "Quartos", active: true
+                    ref: "/homepage/hotelSetup/tipologia", label: "Tipologias", active: true
                 },
                 {
-                    ref: "/homepage/hotelSetup/characteristics", label: "Caracteristicas", active: true
+                    ref: "/homepage/hotelSetup/quartos", label: "Quartos", active: true
                 },
                 {
-                    ref: "/homepage/5", label: "Manutenção", active: true
+                    ref: "/homepage/hotelSetup/carateristicas", label: "Caraterísticas", active: true
+                },
+                {
+                    ref: "/homepage/hotelSetup/manutencao", label: "Manutenção", active: true
+                },
+                {
+                    ref: "/homepage/false", label: "False", active: hotelSetup
+                },
+            ]
+        },
+
+        "Cardex Setup" :{
+            icon: <PiUsersFourFill size={20}/>,
+            active:true,
+            items: [
+                {
+                    ref: "/homepage/cardex/", label: "Cardex", active: true
+                },
+                {
+                    ref: "/homepage/cardex/saudacao", label: "Saudação", active: true
+                },
+                {
+                    ref: "/homepage/cardex/nacionalidades", label: "Nacionalidades", active: true
+                },
+                {
+                    ref: "/homepage/cardex/metodo_conhecimento", label: "Método de Conhecimento", active: true
+                },
+                {
+                    ref: "/homepage/cardex/profissao", label: "Profissão", active: true
+                },
+                {
+                    ref: "/homepage/cardex/documento_identificacao", label: "Documento de Identificação", active: true
+                },
+                {
+                    ref: "/homepage/cardex/idiomas", label: "Idiomas", active: true
+                },
+                {
+                    ref: "/homepage/cardex/preferencia_cliente", label: "Preferências de Cliente", active: true
+                },
+                {
+                    ref: "/homepage/cardex/membros", label: "Membros", active: true
+                },
+                {
+                    ref: "/homepage/cardex/marketing", label: "Marketing", active: true
+                },
+                {
+                    ref: "/homepage/cardex/tipos_vip", label: "Tipos de VIP", active: true
+                },
+            ]
+        },
+
+        "Booking":{
+            icon: <FaCalendarAlt  size={20} />,
+            active: true,
+            items: [
+                {
+                    ref: "/homepage/bookings", label: "Booking", active: true
+                },
+                {
+                    ref: "/homepage/bookings/estados_de_reservas", label: "Estados de reservas", active: true
+                },
+                {
+                    ref: "/homepage/bookings/segmentos_de_mercado", label: "Segmentos de mercado", active: true
+                },
+                {
+                    ref: "/homepage/bookings/origens_de_mercado", label: "Origens de mercado", active: true
+                },
+                {
+                    ref: "/homepage/bookings/formas_de_conhecimento", label: "Formas de conhecimento", active: true
+                },
+                {
+                    ref: "/homepage/bookings/motivos_de_reserva", label: "Motivos de reservas", active: true
+                },
+                {
+                    ref: "/homepage/bookings/codigos_de_substituicao", label: " Códigos de substituição", active: true
+                },
+                {
+                    ref: "/homepage/bookings/tabela_de_recusa", label: " Tabela de recusas", active: true
+                },
+                {
+                    ref: "/homepage/bookings/tabela_de_transfer", label: "Tipos de PickUp", active: true
+                },
+                {
+                    ref: "/homepage/bookings/tipos_de_mudanca_de_reservas", label: "T. Mudança de reservas", active: true
+                },
+                {
+                    ref: "/homepage/bookings/tipos_de_cancelamento", label: "Tipos de cancelamentos", active: true
                 },
             ]
         }
     }
     return (
         <>
-            <aside className={(showSidebar ? "" : "hidden ") + "h-screen border-r border-bg-primary  overflow-hidden w-72 flex shrink-0 fixed top-0 z-40 inset-0 lg:block"} aria-label="Sidebar">
+            <aside className={(showSidebar ? "" : "hidden ") + "bg-white h-screen border-r border-bg-primary overflow-auto w-72 flex shrink-0 fixed top-0 z-40 inset-0 lg:block z-100"} aria-label="Sidebar">
                 <div className="h-full w-full no-scrollbar px-3 pb-4  bg-white text-bg-primary">
                     <Link href="/dashboard">
                         <div className="flex justify-center">
@@ -72,7 +160,7 @@ const Sidebar = ({ showSidebar, setShowSidebar, children, name }) => {
                     <div className="flex items-center space-x-2">
                         <Link href="/dashboard" className='flex space-x-4 align-middle ml-3'>
                             <FaUser className="text-2xl text-primary-800" />
-                            <span className="text-sm text-primary-800 font-semibold">{name}</span>
+                            <span className="text-sm text-primary-800 font-semibold">Sujeito Teste</span>
                         </Link>
                     </div>
 
