@@ -31,5 +31,4 @@ export const users = [
     { value: 'teste', label: 'teste' },
     { value: 'teste', label: 'teste' },
     { value: 'teste', label: 'teste' },
-
 ]
