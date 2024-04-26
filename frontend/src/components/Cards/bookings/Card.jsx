@@ -1,6 +1,8 @@
 'use client'
 
+
 import React, { useState } from 'react';
+
 import { Card, CardHeader, CardBody, Divider, Button, Tooltip } from '@nextui-org/react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { usePathname } from "next/navigation";
@@ -20,6 +22,8 @@ const Cartao = ({ title, description, counter1, counter2, icon, listType, formTy
   const router = useRouter();
 
 
+
+
   const createQueryString = (name, value) => {
     const params = new URLSearchParams(searchParams);
     params.set(name, value);
@@ -28,11 +32,14 @@ const Cartao = ({ title, description, counter1, counter2, icon, listType, formTy
 
   const handleCardClick = () => {
     router.push(pathname + "/" + ('listType', listType))
+
   };
 
 
   return (
+
     <div className="w-full h-full" data-listType={listType}
+
       style={{ cursor: 'pointer' }} // Adiciona esta linha para definir o estilo do cursor
     >
       <Card className="w-full h-full">
