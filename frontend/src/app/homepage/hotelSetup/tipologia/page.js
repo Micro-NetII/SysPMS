@@ -20,7 +20,7 @@ import { FiEdit3 } from "react-icons/fi";
 import { BsArrowRight } from "react-icons/bs";
  
 //imports de componentes
-import FormModals from "@/components/modal/hotelSetup/formModals";
+import TipologyForm from "@/components/modal/hotelSetup/tipology/page";
 import PaginationTable from "@/components/table/paginationTable/paginationTable";
  
  
@@ -100,14 +100,14 @@ export default function Tipologys() {
                 />
               </div>
             </div>
-            <FormModals
+            <TipologyForm
               buttonName={"Novo"}
               buttonIcon={<FiPlus size={15} />}
               buttonColor={"primary"}
               modalHeader={"Inserir Tipologia"}
               modalIcons={"bg-red"}
-              formTypeModal={41}
-            ></FormModals>
+              formTypeModal={11}
+            ></TipologyForm>
           </div>
         </div>
         <div className="mx-5 h-[65vh] min-h-full">
@@ -118,8 +118,20 @@ export default function Tipologys() {
             handleChangeRowsPerPage={handleChangeRowsPerPage}
             items={items}
             setPage={setPage}
+            dataCSVButton={
+              items.map((item) => ({
+                ID: item.roomTypeID,
+                Cod: item.active,
+                Abreviatura: item.name,
+                Descrição: item.desc,
+                Detalhe: item.roomFeaturesDesc,
+                Função: item.roomTypePlan,
+                GrupoTipologia: item.groupID
+              }))
+            }
           >
             <Table
+            id="TableToPDF"
       isHeaderSticky={"true"}
         layout={"fixed"}
         isCompact={"true"}
@@ -130,7 +142,7 @@ export default function Tipologys() {
         className="h-full overflow-auto"
       >
         <TableHeader>
-          <TableColumn className="bg-primary-600 text-white font-bold uppercase">
+          <TableColumn className="bg-primary-600 text-white font-bold w-[40px] uppercase">
             ID
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold  uppercase">
@@ -161,7 +173,19 @@ export default function Tipologys() {
         <TableBody>
           {items.map((roomTypeState, index) => (
             <TableRow key={index}>
-              <TableCell className="text-left">{roomTypeState.roomTypeID}</TableCell>
+              <TableCell className="text-left underline text-blue-600"><TipologyForm
+                        buttonName={roomTypeState.roomTypeID}
+                        editIcon={<FiEdit3 size={25}/>}
+                        buttonColor={"transparent"}
+                        modalHeader={"Editar Tipologia"}
+                        modalEditArrow={<BsArrowRight size={25}/>}
+                        modalEdit={`ID: ${roomTypeState.roomTypeID}`}
+                        formTypeModal={12}
+                        idRoomtype={roomTypeState.roomTypeID}
+                        criado={roomTypeState.createdAt}
+                        editado={roomTypeState.updatedAt}
+                        editor={"teste"}
+                      /></TableCell>
               <TableCell >{roomTypeState.active}</TableCell>
               <TableCell >{roomTypeState.name}</TableCell>
               <TableCell className="px-10">{roomTypeState.desc}</TableCell>
@@ -181,19 +205,19 @@ export default function Tipologys() {
                   </DropdownTrigger>
                   <DropdownMenu aria-label="Static Actions" closeOnSelect={false} isOpen={true}>
                     <DropdownItem key="edit">
-                      <FormModals
+                      <TipologyForm
                         buttonName={"Editar"}
                         editIcon={<FiEdit3 size={25}/>}
                         buttonColor={"transparent"}
                         modalHeader={"Editar Tipologia"}
                         modalEditArrow={<BsArrowRight size={25}/>}
                         modalEdit={`ID: ${roomTypeState.roomTypeID}`}
-                        formTypeModal={42}
+                        formTypeModal={12}
                         idRoomtype={roomTypeState.roomTypeID}
                         criado={roomTypeState.createdAt}
                         editado={roomTypeState.updatedAt}
                         editor={"teste"}
-                      ></FormModals>
+                      ></TipologyForm>
                     </DropdownItem>
                     <DropdownItem key="delete" onClick={() => handleDelete(roomTypeState.roomTypeID)}>Remover</DropdownItem>
                     <DropdownItem key="view">Ver</DropdownItem>

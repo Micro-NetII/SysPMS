@@ -20,7 +20,7 @@ import { FiEdit3 } from "react-icons/fi";
 import { BsArrowRight } from "react-icons/bs";
  
 //imports de componentes
-import FormModals from "@/components/modal/cardex/formModals";
+import NationalityForm from "@/components/modal/cardex/nationality/page";
 import PaginationTable from "@/components/table/paginationTable/paginationTable";
  
  
@@ -101,14 +101,14 @@ export default function Salutation() {
                 />
               </div>
             </div>
-            <FormModals
+            <NationalityForm
               buttonName={"Novo"}
               buttonIcon={<FiPlus size={15} />}
               buttonColor={"primary"}
               modalHeader={"Inserir Nacionalidade"}
               modalIcons={"bg-red"}
-              formTypeModal={21}
-            ></FormModals>
+              formTypeModal={11}
+            ></NationalityForm>
           </div>
         </div>
         <div className="mx-5 h-[65vh] min-h-full">
@@ -119,8 +119,22 @@ export default function Salutation() {
             handleChangeRowsPerPage={handleChangeRowsPerPage}
             items={items}
             setPage={setPage}
+            dataCSVButton={
+              items.map((item) => ({
+                ID: item.codeNr,
+                Scut: item.land,
+                StatNr: item.statNr,
+                Ordenação: item.brkopftyp,
+                Grupo: item.gruppe,
+                CódigoISO: item.isocode,
+                State: item.state,
+                FO: item.showFO,
+                Nacionalidade: item.nation,
+              }))
+            }
           >
             <Table
+            id="TableToPDF"
       isHeaderSticky={"true"}
         layout={"fixed"}
         isCompact={"true"}
@@ -131,7 +145,7 @@ export default function Salutation() {
         className="h-full overflow-auto"
       >
         <TableHeader>
-          <TableColumn className="bg-primary-600 text-white font-bold w-20 uppercase">
+          <TableColumn className="bg-primary-600 text-white font-bold w-[40px]  uppercase">
             ID
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold w-30 uppercase">
@@ -165,7 +179,19 @@ export default function Salutation() {
         <TableBody>
           {items.map((nationality, index) => (
             <TableRow key={index}>
-              <TableCell className="text-left">{nationality.codeNr}</TableCell>
+              <TableCell className="text-left underline text-blue-600"><NationalityForm
+                        buttonName={nationality.codeNr}
+                        editIcon={<FiEdit3 size={25}/>}
+                        buttonColor={"transparent"}
+                        modalHeader={"Editar Nacionalidade"}
+                        modalEditArrow={<BsArrowRight size={25}/>}
+                        modalEdit={`ID: ${nationality.codeNr}`}
+                        formTypeModal={12}
+                        idNacionality={nationality.codeNr}
+                        criado={nationality.createdAt}
+                        editado={nationality.updatedAt}
+                        editor={"teste"}
+                      /></TableCell>
               <TableCell className="">{nationality.land}</TableCell>
               <TableCell className="">{nationality.statNr}</TableCell>
               <TableCell className="">{nationality.brkopftyp}</TableCell>
@@ -186,19 +212,19 @@ export default function Salutation() {
                   </DropdownTrigger>
                   <DropdownMenu aria-label="Static Actions" closeOnSelect={false} isOpen={true}>
                     <DropdownItem key="edit">
-                      <FormModals
+                      <NationalityForm
                         buttonName={"Editar"}
                         editIcon={<FiEdit3 size={25}/>}
                         buttonColor={"transparent"}
                         modalHeader={"Editar Nacionalidade"}
                         modalEditArrow={<BsArrowRight size={25}/>}
                         modalEdit={`ID: ${nationality.codeNr}`}
-                        formTypeModal={22}
+                        formTypeModal={12}
                         idNacionality={nationality.codeNr}
                         criado={nationality.createdAt}
                         editado={nationality.updatedAt}
                         editor={"teste"}
-                      ></FormModals>
+                      ></NationalityForm>
                     </DropdownItem>
                     <DropdownItem key="delete" onClick={() => handleDelete(nationality.codeNr)}>Remover</DropdownItem>
                     <DropdownItem key="view">Ver</DropdownItem>

@@ -20,11 +20,11 @@ import { FiEdit3 } from "react-icons/fi";
 import { BsArrowRight } from "react-icons/bs";
  
 //imports de componentes
-import FormModals from "@/components/modal/bookings/formModals";
+import ReserveChangeForm from "@/components/modal/bookings/reservationChange/page";
 import PaginationTable from "@/components/table/paginationTable/paginationTable";
  
  
-export default function Characteristics() {
+export default function reserveChange() {
   const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const [searchValue, setSearchValue] = React.useState("");
@@ -101,14 +101,14 @@ export default function Characteristics() {
                 />
               </div>
             </div>
-            <FormModals
+            <ReserveChangeForm
               buttonName={"Novo"}
               buttonIcon={<FiPlus size={15} />}
               buttonColor={"primary"}
               modalHeader={"Inserir Tipo de Mudança de Reserva"}
               modalIcons={"bg-red"}
-              formTypeModal={91}
-            ></FormModals>
+              formTypeModal={11}
+            ></ReserveChangeForm>
           </div>
         </div>
         <div className="mx-5 h-[65vh] min-h-full">
@@ -119,8 +119,17 @@ export default function Characteristics() {
             handleChangeRowsPerPage={handleChangeRowsPerPage}
             items={items}
             setPage={setPage}
+            dataCSVButton={
+              items.map((item) => ({
+                ID: item.reservationchangeID,
+                Abreviatura: item.abreviature,
+                Descrição: item.description,
+                Ordenação: item.ordenation,
+              }))
+            }
           >
             <Table
+            id="TableToPDF"
       isHeaderSticky={"true"}
         layout={"fixed"}
         isCompact={"true"}
@@ -131,7 +140,7 @@ export default function Characteristics() {
         className="h-full overflow-auto"
       >
         <TableHeader>
-          <TableColumn className="bg-primary-600 text-white font-bold w-[2%] uppercase">
+          <TableColumn className="bg-primary-600 text-white font-bold w-[40px] uppercase">
             ID
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold w-64 px-40 uppercase">
@@ -150,7 +159,19 @@ export default function Characteristics() {
         <TableBody>
           {items.map((reservChange, index) => (
             <TableRow key={index}>
-              <TableCell className="text-right">{reservChange.reservationchangeID}</TableCell>
+              <TableCell className="text-right underline text-blue-600"><ReserveChangeForm
+                        buttonName={reservChange.reservationchangeID}
+                        editIcon={<FiEdit3 size={25}/>}
+                        buttonColor={"transparent"}
+                        modalHeader={"Editar Tipo de Mudança de Reserva"}
+                        modalEditArrow={<BsArrowRight size={25}/>}
+                        modalEdit={`ID: ${reservChange.reservationchangeID}`}
+                        formTypeModal={12}
+                        idReservChange={reservChange.reservationchangeID}
+                        criado={reservChange.createdAt}
+                        editado={reservChange.updatedAt}
+                        editor={"teste"}
+                      /></TableCell>
               <TableCell className="px-40">{reservChange.abreviature}</TableCell>
               <TableCell>{reservChange.description}</TableCell>
               <TableCell className="px-20">{reservChange.ordenation}</TableCell>
@@ -166,19 +187,19 @@ export default function Characteristics() {
                   </DropdownTrigger>
                   <DropdownMenu aria-label="Static Actions" closeOnSelect={false} isOpen={true}>
                     <DropdownItem key="edit">
-                      <FormModals
+                      <ReserveChangeForm
                         buttonName={"Editar"}
                         editIcon={<FiEdit3 size={25}/>}
                         buttonColor={"transparent"}
                         modalHeader={"Editar Tipo de Mudança de Reserva"}
                         modalEditArrow={<BsArrowRight size={25}/>}
                         modalEdit={`ID: ${reservChange.reservationchangeID}`}
-                        formTypeModal={92}
+                        formTypeModal={12}
                         idReservChange={reservChange.reservationchangeID}
                         criado={reservChange.createdAt}
                         editado={reservChange.updatedAt}
                         editor={"teste"}
-                      ></FormModals>
+                      ></ReserveChangeForm>
                     </DropdownItem>
                     <DropdownItem key="delete" onClick={() => handleDelete(reservChange.reservationchangeID)}>Remover</DropdownItem>
                     <DropdownItem key="view">Ver</DropdownItem>
