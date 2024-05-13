@@ -26,6 +26,7 @@ import TravelGroupForm from "@/components/modal/frontOffice/clientForm/travelAge
 import GroupForm from "@/components/modal/frontOffice/clientForm/groups/page";
 import OthersForm from "@/components/modal/frontOffice/clientForm/others/page";
 import PaginationTable from "@/components/table/paginationTable/paginationTable";
+import InputFieldControlled from "@/components/functionsForm/inputs/typeText/page";
 
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
@@ -319,7 +320,7 @@ export default function clientForm() {
               <TableBody>
                 {items.map((individual, index) => (
                   <TableRow key={index}>
-                    <TableCell className="text-right undeline text-blue-600">
+                    <TableCell className="text-left underline text-blue-600">
                       {individual.profileType === 0 ? (
                         <IndividualForm
                           buttonName={individual.guestProfileID}

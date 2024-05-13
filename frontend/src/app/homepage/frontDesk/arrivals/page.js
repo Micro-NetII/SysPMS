@@ -20,9 +20,15 @@ import { FiEdit3 } from "react-icons/fi";
 import { BsArrowRight } from "react-icons/bs";
 import { FaCalendarAlt } from "react-icons/fa";
 
+/* ESTA PAGINA É IGUAL A DAS RESERVAR EXATAMENTE IGUAL E NESTE MOMENTO ESTA A DAR DISPLAY
+A MESMA INFORMAÇÃO É FAVOR DE QUEM FIZER AS ALTERACOES ALTERAR AS APIS PARA AS CORRETAS*/
+
 //imports de componentes
 import ReservationsForm from "@/components/modal/frontOffice/reservations/page";
 import PaginationTable from "@/components/table/paginationTable/paginationTable";
+import InputFieldControlled from "@/components/functionsForm/inputs/typeText/page";
+import CountryAutocomplete from "@/components/functionsForm/autocomplete/country/page";
+
 
 
 export default function clientForm() {
@@ -57,7 +63,7 @@ export default function clientForm() {
     };
     fetchData();
   }, []);
-  
+
   const filteredItems = React.useMemo(() => {
     if (!reservation || !Array.isArray(reservation)) {
       return [];
@@ -101,38 +107,153 @@ export default function clientForm() {
       console.error("Erro ao remover departamento.", error.message);
     }
   };
-  
+
+  const [selectedComponent, setSelectedComponent] = useState(null)
+
+  const handleClickIndividual = () => {
+    setSelectedComponent('IndividualForm')
+  }
+
+  const handleClickCompany = () => {
+    setSelectedComponent('CompanyForm')
+  }
+
+  const handleClickAgency = () => {
+    setSelectedComponent('AgencyForm')
+  }
+
+  const handleClickGroup = () => {
+    setSelectedComponent('GroupForm')
+  }
+
+  const handleClickOthers = () => {
+    setSelectedComponent('OthersForm')
+  }
+
+
+  //botoes que mudam de cor
+  const [selectedButton, setSelectedButton] = useState("")
+  const inputStyle = "w-full border-b-2 border-gray-300 px-1 h-8 outline-none my-2 text-sm"
+  const sharedLineInputStyle = "w-1/2 border-b-2 border-gray-300 px-1 h-10 outline-none my-2"
+
 
   return (
     <main>
       <div className="flex flex-col mt-1 py-3">
-        <p className="text-xs px-6">Reservas</p>
+        <p className="text-xs px-6 pb-3">Fichas de Clientes</p>
         <div className="flex flex-row justify-between items-center mx-5">
-          <div className="flex flex-row">
-            <div className="flex flex-wrap md:flex-nowrap gap-4">
-              <Input
-                className="mt-2 w-80"
-                placeholder="Procurar..."
-                labelPlacement="outside"
-                aria-label="Pesquisar clientes"
-                startContent={
-                  <FiSearch color={"black"} className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
+          <div className="gap-12 grid-cols-2">
+            <div className="flex flex-wrap gap-12 py-2">
+              <InputFieldControlled
+                type={"text"}
+                id={"tipologias"}
+                name={"Tipologias"}
+                label={"Grupo de Tipologias"}
+                ariaLabel={"Grupo de Tipologias"}
+                style={inputStyle}
+              />
+
+              <InputFieldControlled
+                type={"text"}
+                id={"procurar"}
+                name={"Procurar"}
+                label={"Procurar tudo"}
+                ariaLabel={"Procurar tudo"}
+                style={inputStyle}
+              />
+            </div>
+            <div className="flex flex-row gap-12 pb-1.5">
+              <CountryAutocomplete
+                label="Procurar"
+                name={"Procurar"}
+                style={
+                  "flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4 h-10 my-2"
                 }
-                value={searchValue}
-                onChange={(e) => handleSearchChange(e.target.value)}
+                onChange={(value) => handleSelect(value, "Procurar")}
+              />
+              <InputFieldControlled
+                type={"date"}
+                id={"de"}
+                name={"De"}
+                label={"De:"}
+                ariaLabel={"De:"}
+                style={inputStyle}
+              />
+              <InputFieldControlled
+                type={"date"}
+                id={"ate"}
+                name={"Até"}
+                label={"Até:"}
+                ariaLabel={"Até:"}
+                style={inputStyle}
+              />
+              <CountryAutocomplete
+                label="Quartos"
+                name={"Quartos"}
+                style={
+                  "flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4 h-10 my-2"
+                }
+                onChange={(value) => handleSelect(value, "Quartos")}
               />
             </div>
           </div>
-          <ReservationsForm
-            formTypeModal={0}
-            buttonName={"Novo"}
-            buttonIcon={<FiPlus size={15} />}
-            editIcon={<FaCalendarAlt size={25} color="white"/>}
-            buttonColor={"primary"}
-            modalHeader={"Inserir uma Reserva"} 
-            />
+          {selectedComponent === 'IndividualForm' && (
+            <IndividualForm
+              buttonName={"Novo"}
+              buttonIcon={<FiPlus size={15} />}
+              buttonColor={"primary"}
+              modalHeader={"Inserir Ficha de Cliente"}
+              modalEditArrow={<BsArrowRight size={25} />}
+              modalEdit={"Particular"}
+              modalIcons={"bg-red"}
+              formTypeModal={0}
+            ></IndividualForm>
+          )}
+          {selectedComponent === 'CompanyForm' && (
+            <CompanyForm
+              buttonName={"Novo"}
+              buttonIcon={<FiPlus size={15} />}
+              buttonColor={"primary"}
+              modalHeader={"Inserir Ficha de Cliente"}
+              modalEditArrow={<BsArrowRight size={25} />}
+              modalEdit={"Empresa"}
+              modalIcons={"bg-red"}
+              formTypeModal={0}
+            ></CompanyForm>
+          )}
+          {selectedComponent === 'AgencyForm' && (
+            <TravelGroupForm
+              formTypeModal={0}
+              buttonName={"Novo"}
+              buttonIcon={<FiPlus size={15} />}
+              buttonColor={"primary"}
+              modalHeader={"Inserir Ficha de Cliente"}
+              modalEditArrow={<BsArrowRight size={25} />}
+              modalEdit={"Agencia de Viagens"} />
+          )}
+          {selectedComponent === 'GroupForm' && (
+            <GroupForm
+              formTypeModal={0}
+              buttonName={"Novo"}
+              buttonIcon={<FiPlus size={15} />}
+              buttonColor={"primary"}
+              modalHeader={"Inserir Ficha de Cliente"}
+              modalEditArrow={<BsArrowRight size={25} />}
+              modalEdit={"Grupos"} />
+          )}
+          {selectedComponent === 'OthersForm' && (
+            <OthersForm
+              formTypeModal={0}
+              buttonName={"Novo"}
+              buttonIcon={<FiPlus size={15} />}
+              buttonColor={"primary"}
+              modalHeader={"Inserir Ficha de Cliente"}
+              modalEditArrow={<BsArrowRight size={25} />}
+              modalEdit={"Outros"} />
+          )}
         </div>
       </div>
+
       <div className="mx-5 h-[65vh] min-h-full">
         <PaginationTable
           page={page}
@@ -142,14 +263,14 @@ export default function clientForm() {
           items={items}
           setPage={setPage}
         >
-          {/*<div className="flex flex-row gap-4 mb-2">
+          <div className="flex flex-row gap-4 mb-2">
             <button
               className={`h-fit px-3 rounded-2xl text-black text-xs ${selectedButton === "individual" ? "bg-blue-600 text-white border-2 border-blue-600" : "bg-slate-200 border-2 border-slate-300"}`}
               onClick={() => {
                 handleClickIndividual();
                 setSelectedButton("individual");
               }}>
-              Checked In
+              Pendentes
             </button>
             <button
               className={`h-fit px-3 rounded-2xl text-black text-xs ${selectedButton === "agency" ? "bg-blue-600 text-white border-2 border-blue-600" : "bg-slate-200 border-2 border-slate-300"}`}
@@ -157,13 +278,21 @@ export default function clientForm() {
                 handleClickAgency();
                 setSelectedButton("agency");
               }}>
-              Checked Out
+              Checked-In
             </button>
             <button
               className={`h-fit px-3 rounded-2xl text-black text-xs ${selectedButton === "group" ? "bg-blue-600 text-white border-2 border-blue-600" : "bg-slate-200 border-2 border-slate-300"}`}
               onClick={() => {
                 handleClickGroup();
                 setSelectedButton("group");
+              }}>
+              Checked-Out
+            </button>
+            <button
+              className={`h-fit px-3 rounded-2xl text-black text-xs ${selectedButton === "others" ? "bg-blue-600 text-white border-2 border-blue-600" : "bg-slate-200 border-2 border-slate-300"}`}
+              onClick={() => {
+                handleClickOthers();
+                setSelectedButton("others");
               }}>
               Canceladas
             </button>
@@ -173,10 +302,10 @@ export default function clientForm() {
                 handleClickOthers();
                 setSelectedButton("others");
               }}>
-              Pagas
+              No-Show
             </button>
 
-            </div>*/}
+          </div>
           <Table
             id="TableToPDF"
             isHeaderSticky={"true"}
@@ -223,7 +352,7 @@ export default function clientForm() {
             <TableBody>
               {items.map((reservation, index) => (
                 <TableRow key={index}>
-                  <TableCell className="text-right undeline text-blue-600">
+                  <TableCell className="text-left underline text-blue-600">
                     <ReservationsForm
                       buttonName={reservation.reservationID}
                       editIcon={<FiEdit3 size={25} />}

@@ -1,4 +1,3 @@
-
 'use client'
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -12,6 +11,7 @@ import { IoReceipt, IoStorefront  } from "react-icons/io5";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoSettings } from "react-icons/io5";
 import { FaHotel } from "react-icons/fa";
+import { IoMdPricetags } from "react-icons/io";
 import { PiUsersFourFill } from "react-icons/pi";
 
 const Sidebar = ({ showSidebar, setShowSidebar, children, name }) => {
@@ -32,7 +32,19 @@ const Sidebar = ({ showSidebar, setShowSidebar, children, name }) => {
                     ref: "/homepage/frontOffice/clientForm", label: "Fichas de clientes", active: true
                 },
                 {
-                    ref: "/homepage/frontOffice/reservations", label: "Reservas", active: true
+                    ref: "/homepage/frontOffice/frontDesk", label: "Front-Desk", active: true
+                },
+                {
+                    ref: "/homepage/frontDesk/reservations", label: "Reservas", active: true
+                },
+                {
+                    ref: "/homepage/frontDesk/arrivals", label: "Chegadas", active: true
+                },
+                {
+                    ref: "/homepage/frontDesk/departures", label: "Partidas", active: true
+                },
+                {
+                    ref: "/homepage/frontDesk/guestlist", label: "Lista de Hóspedes", active: true
                 },
                 {
                     ref: "/homepage/frontOffice/tipologyPlan", label: "Agenda de Tipologias", active: true
@@ -192,6 +204,17 @@ const Sidebar = ({ showSidebar, setShowSidebar, children, name }) => {
                 {
                     ref: "/homepage/financialSetup/void_charges", label: "Anulação de Cobranças", active: true
                 },
+            ]
+        },
+
+        "Gestão de Preços":{
+            icon: <IoMdPricetags  size={20} />,
+            active: true,
+            items: [
+                {
+                    ref: "/homepage/priceManagement", label: "Códigos de Preços", active: true
+                },
+                
             ]
         }
     }
