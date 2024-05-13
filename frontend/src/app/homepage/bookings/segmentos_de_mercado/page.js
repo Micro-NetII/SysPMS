@@ -20,7 +20,7 @@ import { FiEdit3 } from "react-icons/fi";
 import { BsArrowRight } from "react-icons/bs";
  
 //imports de componentes
-import FormModals from "@/components/modal/bookings/formModals";
+import MarketSegmentForm from "@/components/modal/bookings/marketSegment/page";
 import PaginationTable from "@/components/table/paginationTable/paginationTable";
  
  
@@ -101,14 +101,14 @@ export default function Characteristics() {
                 />
               </div>
             </div>
-            <FormModals
+            <MarketSegmentForm
               buttonName={"Novo"}
               buttonIcon={<FiPlus size={15} />}
               buttonColor={"primary"}
               modalHeader={"Inserir Segmento de Mercado"}
               modalIcons={"bg-red"}
-              formTypeModal={21}
-            ></FormModals>
+              formTypeModal={11}
+            ></MarketSegmentForm>
           </div>
         </div>
         <div className="mx-5 h-[65vh] min-h-full">
@@ -119,8 +119,17 @@ export default function Characteristics() {
             handleChangeRowsPerPage={handleChangeRowsPerPage}
             items={items}
             setPage={setPage}
+            dataCSVButton={
+              items.map((item) => ({
+                ID: item.marketsegmentsID,
+                Abreviatura: item.abreviature,
+                Descrição: item.description,
+                Ordenação: item.ordenation,
+              }))
+            }
           >
             <Table
+            id="TableToPDF"
       isHeaderSticky={"true"}
         layout={"fixed"}
         isCompact={"true"}
@@ -131,7 +140,7 @@ export default function Characteristics() {
         className="h-full overflow-auto"
       >
         <TableHeader>
-          <TableColumn className="bg-primary-600 text-white font-bold w-[2%] uppercase">
+          <TableColumn className="bg-primary-600 text-white font-bold w-[40px] uppercase">
             ID
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold w-64 px-40 uppercase">
@@ -150,7 +159,19 @@ export default function Characteristics() {
         <TableBody>
           {items.map((marketSegment, index) => (
             <TableRow key={index}>
-              <TableCell className="text-right">{marketSegment.marketsegmentsID}</TableCell>
+              <TableCell className="text-right underline text-blue-600"><MarketSegmentForm
+                        buttonName={marketSegment.marketsegmentsID}
+                        editIcon={<FiEdit3 size={25}/>}
+                        buttonColor={"transparent"}
+                        modalHeader={"Editar Segmento de Mercado"}
+                        modalEditArrow={<BsArrowRight size={25}/>}
+                        modalEdit={`ID: ${marketSegment.marketsegmentsID}`}
+                        formTypeModal={12}
+                        idMarketSegment={marketSegment.marketsegmentsID}
+                        criado={marketSegment.createdAt}
+                        editado={marketSegment.updatedAt}
+                        editor={"teste"}
+                      /></TableCell>
               <TableCell className="px-40">{marketSegment.abreviature}</TableCell>
               <TableCell>{marketSegment.description}</TableCell>
               <TableCell className="px-20">{marketSegment.ordenation}</TableCell>
@@ -166,19 +187,19 @@ export default function Characteristics() {
                   </DropdownTrigger>
                   <DropdownMenu aria-label="Static Actions" closeOnSelect={false} isOpen={true}>
                     <DropdownItem key="edit">
-                      <FormModals
+                      <MarketSegmentForm
                         buttonName={"Editar"}
                         editIcon={<FiEdit3 size={25}/>}
                         buttonColor={"transparent"}
                         modalHeader={"Editar Segmento de Mercado"}
                         modalEditArrow={<BsArrowRight size={25}/>}
                         modalEdit={`ID: ${marketSegment.marketsegmentsID}`}
-                        formTypeModal={22}
+                        formTypeModal={12}
                         idMarketSegment={marketSegment.marketsegmentsID}
                         criado={marketSegment.createdAt}
                         editado={marketSegment.updatedAt}
                         editor={"teste"}
-                      ></FormModals>
+                      ></MarketSegmentForm>
                     </DropdownItem>
                     <DropdownItem key="delete" onClick={() => handleDelete(marketSegment.marketsegmentsID)}>Remover</DropdownItem>
                     <DropdownItem key="view">Ver</DropdownItem>

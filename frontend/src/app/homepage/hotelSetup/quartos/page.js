@@ -20,34 +20,34 @@ import { FiEdit3 } from "react-icons/fi";
 import { BsArrowRight } from "react-icons/bs";
  
 //imports de componentes
-import FormModals from "@/components/modal/hotelSetup/formModals";
+import RoomForm from "@/components/modal/hotelSetup/rooms/page";
 import PaginationTable from "@/components/table/paginationTable/paginationTable";
  
  
-export default function Characteristics() {
+export default function Rooms() {
   const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const [searchValue, setSearchValue] = React.useState("");
-  const [caracteristics, setCaracteristics] = useState([]);
+  const [rooms, setRooms] = useState([]);
  
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get("/api/v1/hotel/caracteristicas");
-      setCaracteristics(res.data.response);
+      const res = await axios.get("/api/v1/hotel/rooms");
+      setRooms(res.data.response);
     };
     getData();
   }, []);
  
   const filteredItems = React.useMemo(() => {
-    return caracteristics.filter((caracteristic) =>
-      caracteristic.description.toLowerCase().includes(
+    return rooms.filter((rooms) =>
+      rooms.description.toLowerCase().includes(
         searchValue.toLowerCase()
       ) ||
-      caracteristic.characteristicID.toString().toLowerCase().includes(
+      rooms.roomID.toString().toLowerCase().includes(
         searchValue.toLowerCase()
       )
     );
-  }, [caracteristics, searchValue]);
+  }, [rooms, searchValue]);
  
   const items = React.useMemo(() => {
     const start = (page - 1) * rowsPerPage;
@@ -58,8 +58,8 @@ export default function Characteristics() {
  
   const pages = Math.ceil(filteredItems.length / rowsPerPage);
  
-  const renderCell = React.useCallback((caracteristic, columnKey) => {
-    const cellValue = caracteristic[columnKey];
+  const renderCell = React.useCallback((rooms, columnKey) => {
+    const cellValue = rooms[columnKey];
   }, []);
  
   const handleChangeRowsPerPage = (event) => {
@@ -72,16 +72,12 @@ export default function Characteristics() {
     setPage(1);
   };
  
-  const handleDelete = async (idCarateristics) => {
+  const handleDelete = async (idRoom) => {
     try {
-      const response = await axios.delete(`/api/hotel/caracteristicas`, {
-        data: {
-          idCarateristics: idCarateristics
-        }
-    });
-      alert("Característica removida com sucesso!");
+      const response = await axios.delete(`/api/v1/hotel/rooms/` + idRoom);
+      alert("Quarto removida com sucesso!");
     } catch (error) {
-      console.error("Erro ao remover característica:", error.message);
+      console.error("Erro ao remover quarto:", error.message);
     }
   };
  
@@ -104,14 +100,14 @@ export default function Characteristics() {
                 />
               </div>
             </div>
-            <FormModals
+            <RoomForm
               buttonName={"Novo"}
               buttonIcon={<FiPlus size={15} />}
               buttonColor={"primary"}
               modalHeader={"Inserir Quarto"}
               modalIcons={"bg-red"}
-              formTypeModal={21}
-            ></FormModals>
+              formTypeModal={11}
+            ></RoomForm>
           </div>
         </div>
         <div className="mx-5 h-[65vh] min-h-full">
@@ -122,8 +118,20 @@ export default function Characteristics() {
             handleChangeRowsPerPage={handleChangeRowsPerPage}
             items={items}
             setPage={setPage}
+            dataCSVButton={
+              items.map((item) => ({
+                ID: item.roomID,
+                Ordem: item.label,
+                Abreviatura: item.roomType,
+                Descrição: item.pmsHotel,
+                Detalhe: item.description,
+                Tipologia: item.description2,
+                Função: item.temptext
+              }))
+            }
           >
             <Table
+            id="TableToPDF"
       isHeaderSticky={"true"}
         layout={"fixed"}
         isCompact={"true"}
@@ -134,7 +142,7 @@ export default function Characteristics() {
         className="h-full overflow-auto"
       >
         <TableHeader>
-          <TableColumn className="bg-primary-600 text-white font-bold uppercase">
+          <TableColumn className="bg-primary-600 text-white font-bold w-[40px] uppercase">
             ID
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold uppercase">
@@ -160,15 +168,29 @@ export default function Characteristics() {
           </TableColumn>
         </TableHeader>
         <TableBody>
-          {items.map((caracteristic, index) => (
+          {items.map((rooms, index) => (
+
             <TableRow key={index}>
-              <TableCell className="text-left">alterar</TableCell>
-              <TableCell >alterar</TableCell>
-              <TableCell className="px-10">alterar</TableCell>
-              <TableCell>alterar</TableCell>
-              <TableCell>alterar</TableCell>
-              <TableCell>alterar</TableCell>
-              <TableCell>alterar</TableCell>
+              <TableCell className="text-left underline text-blue-600"><RoomForm
+                        buttonName={rooms.roomID}
+                        editIcon={<FiEdit3 size={25}/>}
+                        buttonColor={"transparent"}
+                        modalHeader={"Editar Quartos"}
+                        modalEditArrow={<BsArrowRight size={25}/>}
+                        modalEdit={`ID: ${rooms.roomID}`}
+                        formTypeModal={12}
+                        idRoom={rooms.roomID}
+                        idRoomType={rooms.roomType}
+                        criado={rooms.createdAt}
+                        editado={rooms.updatedAt}
+                        editor={"teste"}
+                      /></TableCell>
+              <TableCell >{rooms.label}</TableCell>
+              <TableCell className="px-10">{rooms.roomType}</TableCell>
+              <TableCell>{rooms.pmsHotel}</TableCell>
+              <TableCell>{rooms.description}</TableCell>
+              <TableCell>{rooms.description2}</TableCell>
+              <TableCell>{rooms.temptext}</TableCell>
               <TableCell className="flex justify-end">
                 <Dropdown>
                   <DropdownTrigger>
@@ -181,21 +203,22 @@ export default function Characteristics() {
                   </DropdownTrigger>
                   <DropdownMenu aria-label="Static Actions" closeOnSelect={false} isOpen={true}>
                     <DropdownItem key="edit">
-                      <FormModals
+                      <RoomForm
                         buttonName={"Editar"}
                         editIcon={<FiEdit3 size={25}/>}
                         buttonColor={"transparent"}
                         modalHeader={"Editar Quartos"}
                         modalEditArrow={<BsArrowRight size={25}/>}
-                        modalEdit={`ID: ${caracteristic.characteristicID}`}
-                        formTypeModal={22}
-                        idCarateristics={caracteristic.characteristicID}
-                        criado={caracteristic.createdAt}
-                        editado={caracteristic.updatedAt}
+                        modalEdit={`ID: ${rooms.roomID}`}
+                        formTypeModal={12}
+                        idRoom={rooms.roomID}
+                        idRoomType={rooms.roomType}
+                        criado={rooms.createdAt}
+                        editado={rooms.updatedAt}
                         editor={"teste"}
-                      ></FormModals>
+                      ></RoomForm>
                     </DropdownItem>
-                    <DropdownItem key="delete" onClick={() => handleDelete(caracteristic.characteristicID)}>Remover</DropdownItem>
+                    <DropdownItem key="delete" onClick={() => handleDelete(rooms.roomID)}>Remover</DropdownItem>
                     <DropdownItem key="view">Ver</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>

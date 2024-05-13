@@ -20,11 +20,11 @@ import { FiEdit3 } from "react-icons/fi";
 import { BsArrowRight } from "react-icons/bs";
  
 //imports de componentes
-import FormModals from "@/components/modal/cardex/formModals";
+import ProfessionForm from "@/components/modal/cardex/profession/page";
 import PaginationTable from "@/components/table/paginationTable/paginationTable";
  
  
-export default function Salutation() {
+export default function Profession() {
   const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const [searchValue, setSearchValue] = React.useState("");
@@ -101,14 +101,14 @@ export default function Salutation() {
                 />
               </div>
             </div>
-            <FormModals
+            <ProfessionForm
               buttonName={"Novo"}
               buttonIcon={<FiPlus size={15} />}
               buttonColor={"primary"}
               modalHeader={"Inserir Profissão"}
               modalIcons={"bg-red"}
-              formTypeModal={31}
-            ></FormModals>
+              formTypeModal={11}
+            ></ProfessionForm>
           </div>
         </div>
         <div className="mx-5 h-[65vh] min-h-full">
@@ -119,8 +119,19 @@ export default function Salutation() {
             handleChangeRowsPerPage={handleChangeRowsPerPage}
             items={items}
             setPage={setPage}
+            dataCSVButton={
+              items.map((item) => ({
+                ID: item.professionID,
+                Grupo: item.gruppe,
+                Abreviatura: item.abreviature,
+                Descrição: item.description,
+                Ordenação: item.ordenation,
+                Propriedade: item.property
+              }))
+            }
           >
             <Table
+            id="TableToPDF"
       isHeaderSticky={"true"}
         layout={"fixed"}
         isCompact={"true"}
@@ -131,7 +142,7 @@ export default function Salutation() {
         className="h-full overflow-auto"
       >
         <TableHeader>
-          <TableColumn className="bg-primary-600 text-white font-bold w-20 uppercase">
+          <TableColumn className="bg-primary-600 text-white font-bold w-[40px] uppercase">
             ID
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold w-30 uppercase">
@@ -156,7 +167,19 @@ export default function Salutation() {
         <TableBody>
           {items.map((profession, index) => (
             <TableRow key={index}>
-              <TableCell className="text-left">{profession.professionID}</TableCell>
+              <TableCell className="text-left underline text-blue-600"><ProfessionForm
+                        buttonName={profession.professionID}
+                        editIcon={<FiEdit3 size={25}/>}
+                        buttonColor={"transparent"}
+                        modalHeader={"Editar Profissão"}
+                        modalEditArrow={<BsArrowRight size={25}/>}
+                        modalEdit={`ID: ${profession.professionID}`}
+                        formTypeModal={12}
+                        idProfession={profession.professionID}
+                        criado={profession.createdAt}
+                        editado={profession.updatedAt}
+                        editor={"teste"}
+                      /></TableCell>
               <TableCell className="">{profession.gruppe}</TableCell>
               <TableCell className="">{profession.abreviature}</TableCell>
               <TableCell className="">{profession.description}</TableCell>
@@ -174,19 +197,19 @@ export default function Salutation() {
                   </DropdownTrigger>
                   <DropdownMenu aria-label="Static Actions" closeOnSelect={false} isOpen={true}>
                     <DropdownItem key="edit">
-                      <FormModals
+                      <ProfessionForm
                         buttonName={"Editar"}
                         editIcon={<FiEdit3 size={25}/>}
                         buttonColor={"transparent"}
-                        modalHeader={"Editar Saudação"}
+                        modalHeader={"Editar Profissão"}
                         modalEditArrow={<BsArrowRight size={25}/>}
                         modalEdit={`ID: ${profession.professionID}`}
-                        formTypeModal={32}
+                        formTypeModal={12}
                         idProfession={profession.professionID}
                         criado={profession.createdAt}
                         editado={profession.updatedAt}
                         editor={"teste"}
-                      ></FormModals>
+                      ></ProfessionForm>
                     </DropdownItem>
                     <DropdownItem key="delete" onClick={() => handleDelete(profession.professionID)}>Remover</DropdownItem>
                     <DropdownItem key="view">Ver</DropdownItem>

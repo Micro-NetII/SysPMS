@@ -20,7 +20,7 @@ import { FiEdit3 } from "react-icons/fi";
 import { BsArrowRight } from "react-icons/bs";
  
 //imports de componentes
-import FormModals from "@/components/modal/bookings/formModals";
+import ReplacementCodeForm from "@/components/modal/bookings/replacementCode/page";
 import PaginationTable from "@/components/table/paginationTable/paginationTable";
  
  
@@ -101,14 +101,14 @@ export default function Characteristics() {
                 />
               </div>
             </div>
-            <FormModals
+            <ReplacementCodeForm
               buttonName={"Novo"}
               buttonIcon={<FiPlus size={15} />}
               buttonColor={"primary"}
               modalHeader={"Inserir Códigos de Substituição"}
               modalIcons={"bg-red"}
-              formTypeModal={61}
-            ></FormModals>
+              formTypeModal={11}
+            ></ReplacementCodeForm>
           </div>
         </div>
         <div className="mx-5 h-[65vh] min-h-full">
@@ -119,8 +119,17 @@ export default function Characteristics() {
             handleChangeRowsPerPage={handleChangeRowsPerPage}
             items={items}
             setPage={setPage}
+            dataCSVButton={
+              items.map((item) => ({
+                ID: item.replacementcodeID,
+                Abreviatura: item.abreviature,
+                Descrição: item.description,
+                Ordenação: item.ordenation,
+              }))
+            }
           >
             <Table
+            id="TableToPDF"
       isHeaderSticky={"true"}
         layout={"fixed"}
         isCompact={"true"}
@@ -131,7 +140,7 @@ export default function Characteristics() {
         className="h-full overflow-auto"
       >
         <TableHeader>
-          <TableColumn className="bg-primary-600 text-white font-bold w-[2%] uppercase">
+          <TableColumn className="bg-primary-600 text-white font-bold w-[40px] uppercase">
             ID
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold w-64 px-40 uppercase">
@@ -150,7 +159,19 @@ export default function Characteristics() {
         <TableBody>
           {items.map((replaceCode, index) => (
             <TableRow key={index}>
-              <TableCell className="text-right">{replaceCode.replacementcodeID}</TableCell>
+              <TableCell className="text-right underline text-blue-600"><ReplacementCodeForm
+                        buttonName={replaceCode.replacementcodeID}
+                        editIcon={<FiEdit3 size={25}/>}
+                        buttonColor={"transparent"}
+                        modalHeader={"Editar Códigos de Substituição"}
+                        modalEditArrow={<BsArrowRight size={25}/>}
+                        modalEdit={`ID: ${replaceCode.replacementcodeID}`}
+                        formTypeModal={12}
+                        idReplaceCode={replaceCode.replacementcodeID}
+                        criado={replaceCode.createdAt}
+                        editado={replaceCode.updatedAt}
+                        editor={"teste"}
+                      /></TableCell>
               <TableCell className="px-40">{replaceCode.abreviature}</TableCell>
               <TableCell>{replaceCode.description}</TableCell>
               <TableCell className="px-20">{replaceCode.ordenation}</TableCell>
@@ -166,19 +187,19 @@ export default function Characteristics() {
                   </DropdownTrigger>
                   <DropdownMenu aria-label="Static Actions" closeOnSelect={false} isOpen={true}>
                     <DropdownItem key="edit">
-                      <FormModals
+                      <ReplacementCodeForm
                         buttonName={"Editar"}
                         editIcon={<FiEdit3 size={25}/>}
                         buttonColor={"transparent"}
                         modalHeader={"Editar Códigos de Substituição"}
                         modalEditArrow={<BsArrowRight size={25}/>}
                         modalEdit={`ID: ${replaceCode.replacementcodeID}`}
-                        formTypeModal={62}
+                        formTypeModal={12}
                         idReplaceCode={replaceCode.replacementcodeID}
                         criado={replaceCode.createdAt}
                         editado={replaceCode.updatedAt}
                         editor={"teste"}
-                      ></FormModals>
+                      ></ReplacementCodeForm>
                     </DropdownItem>
                     <DropdownItem key="delete" onClick={() => handleDelete(replaceCode.replacementcodeID)}>Remover</DropdownItem>
                     <DropdownItem key="view">Ver</DropdownItem>

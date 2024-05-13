@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/app/lib/prisma";
 
 export async function GET(request) {
-
-    const prisma = new PrismaClient()
 
     const tipologysRecords = await prisma.roomtypes.findMany()
 
@@ -16,16 +14,15 @@ export async function GET(request) {
 }
 
 export async function PUT(request) {
-    const prisma = new PrismaClient();
-
     try {
         const { data } = await request.json();
+        console.log(data)
         const newRecord = await prisma.roomtypes.create({
             data: {
                 name: data.name,
                 desc: data.desc,
                 roomFeaturesDesc: data.roomFeaturesDesc,
-                groupID: 1
+                groupID: parseInt(data.tipologyGroup),
             }
         });
 
