@@ -9,7 +9,7 @@ import cashiersInsert, { cashiersEdit } from "@/components/functionsForm/CRUD/fi
 import InputFieldControlled from "@/components/functionsForm/inputs/typeText/page";
 import { expansion } from "@/components/functionsForm/expansion/page";
 import ModalFooterContent from "@/components/modal/modalFooterContent";
-
+import {useTranslations} from 'next-intl';
 
 
 const doctypeForm = ({
@@ -33,7 +33,7 @@ const doctypeForm = ({
     const { handleUpdateCashiers, setValuesCashiers, valuesCashiers } = cashiersEdit(idCashiers);
 
     const { toggleExpand, setIsExpanded, isExpanded } = expansion();
-
+    const t = useTranslations('Index');
 
 
     return (
@@ -44,13 +44,13 @@ const doctypeForm = ({
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
@@ -69,7 +69,7 @@ const doctypeForm = ({
                                                     type={"text"}
                                                     id={"cod"}
                                                     name={"Cod"}
-                                                    label={"Cod."}
+                                                    label={t('financialSetup.cashiers.cod')}
                                                     ariaLabel={"Cod."}
                                                     onChange={handleInputCashiers}
                                                 />
@@ -78,7 +78,7 @@ const doctypeForm = ({
                                                     type={"text"}
                                                     id={"abreviature"}
                                                     name={"Abreviature"}
-                                                    label={"Abreviatura"}
+                                                    label={t('financialSetup.cashiers.abreviature')}
                                                     ariaLabel={"Abreviatura"}
                                                     onChange={handleInputCashiers}
                                                 />
@@ -87,7 +87,7 @@ const doctypeForm = ({
                                                     type={"password"}
                                                     id={"password"}
                                                     name={"Password"}
-                                                    label={"Password"}
+                                                    label={t('financialSetup.cashiers.password')}
                                                     ariaLabel={"Password"}
                                                     onChange={handleInputCashiers}
                                                 />
@@ -97,7 +97,7 @@ const doctypeForm = ({
                                                     type={"text"}
                                                     id={"Description"}
                                                     name={"Description"}
-                                                    label={"Descrição"}
+                                                    label={t('financialSetup.cashiers.description')}
                                                     ariaLabel={"Descrição"}
                                                 />
 
@@ -117,18 +117,18 @@ const doctypeForm = ({
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
                                     <form onSubmit={(e) => handleUpdateCashiers(e)}>
-                                        <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
+                                    <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
                                             <div className="flex flex-row justify-start gap-4">
                                                 {editIcon} {modalHeader} {modalEditArrow} {modalEdit}
                                             </div>
@@ -144,7 +144,7 @@ const doctypeForm = ({
                                                 type={"text"}
                                                 id={"cod"}
                                                 name={"Cod"}
-                                                label={"Cod."}
+                                                label={t('financialSetup.cashiers.cod')}
                                                 ariaLabel={"Cod."}
                                                 value={valuesCashiers.Cod}
                                                 onChange={e => setValuesCashiers({ ...valuesCashiers, Cod: e.target.value })}
@@ -154,7 +154,7 @@ const doctypeForm = ({
                                                 type={"text"}
                                                 id={"abreviature"}
                                                 name={"Abreviature"}
-                                                label={"Abreviatura"}
+                                                label={t('financialSetup.cashiers.abreviature')}
                                                 ariaLabel={"Abreviatura"}
                                                 value={valuesCashiers.Abreviature}
                                                 onChange={e => setValuesCashiers({ ...valuesCashiers, Abreviature: e.target.value })}
@@ -164,7 +164,7 @@ const doctypeForm = ({
                                                 type={"password"}
                                                 id={"password"}
                                                 name={"Password"}
-                                                label={"Password"}
+                                                label={t('financialSetup.cashiers.password')}
                                                 ariaLabel={"Password"}
                                                 value={valuesCashiers.Password}
                                                 onChange={e => setValuesCashiers({ ...valuesCashiers, Password: e.target.value })}
@@ -175,7 +175,7 @@ const doctypeForm = ({
                                                 type={"text"}
                                                 id={"Description"}
                                                 name={"Description"}
-                                                label={"Descrição"}
+                                                label={t('financialSetup.cashiers.description')}
                                                 ariaLabel={"Descrição"}
                                             />
 

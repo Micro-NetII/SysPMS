@@ -10,10 +10,11 @@ import { MdClose } from "react-icons/md";
 import characteristicsInsert, { characteristicsEdit } from "@/components/functionsForm/CRUD/hotel/characteristics/page";
 import InputFieldControlled from "@/components/functionsForm/inputs/typeText/page"
 import ModalFooterContent from "@/components/modal/modalFooterContent";
-;
+
 
 import { expansion } from "@/components/functionsForm/expansion/page";
 
+import {useTranslations} from 'next-intl';
 
 const characteristicForm = ({
     idCarateristics,
@@ -39,33 +40,34 @@ const characteristicForm = ({
     const { handleUpdate, setValues, values } = characteristicsEdit(idCarateristics);
     const { toggleExpand, setIsExpanded, isExpanded } = expansion();
 
-
+    const t = useTranslations('Index');
 
     return (
         <>
 
             {formTypeModal === 11 && ( //characteristics insert
                 <>
-                    <Button onPress={onOpen} color={buttonColor} className="w-fit">
+                   <Button onPress={onOpen} color={buttonColor} className="w-fit">
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
                                     <form onSubmit={handleSubmit}>
-                                        <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">{modalHeader}
+                                        <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
+                                            {modalHeader}
                                             <div className='flex flex-row items-center mr-5'>
-                                                <Button color="transparent" onPress={onClose} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
+                                                <Button color="transparent" onClick={() => { onClose(); window.location.reload(); }} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
                                                 <Button color="transparent" className="-mr-5" onClick={toggleExpand}><LiaExpandSolid size={30} /></Button>
-                                                <Button color="transparent" variant="light" onPress={onClose}><MdClose size={30} /></Button>
+                                                <Button color="transparent" variant="light" onClick={() => { onClose(); window.location.reload(); }}><MdClose size={30} /></Button>
                                             </div>
                                         </ModalHeader>
                                         <ModalBody className="flex flex-col mx-5 my-5 space-y-8">
@@ -74,8 +76,8 @@ const characteristicForm = ({
                                                 type={"text"}
                                                 id={"abreviature"}
                                                 name={"Abreviature"}
-                                                label={"Abreviatura"}
-                                                ariaLabel={"Abreviatura"}
+                                                label={t("hotel.characteristics.shortnameLabel")}
+                                                ariaLabel={"Short Name"}
                                                 style={"w-full outline-none h-10"}
                                                 onChange={handleInput} />
 
@@ -83,8 +85,8 @@ const characteristicForm = ({
                                                 type={"text"}
                                                 id={"description"}
                                                 name={"Description"}
-                                                label={"Descrição"}
-                                                ariaLabel={"Descrição"}
+                                                label={t("hotel.characteristics.descriptionLabel")}
+                                                ariaLabel={"Description"}
                                                 style={"w-full outline-none h-10"}
                                                 onChange={handleInput} />
 
@@ -92,8 +94,8 @@ const characteristicForm = ({
                                                 type={"text"}
                                                 id={"details"}
                                                 name={"Details"}
-                                                label={"Detalhes"}
-                                                ariaLabel={"Detalhes"}
+                                                label={t("hotel.characteristics.detailsLabel")}
+                                                ariaLabel={"Details"}
                                                 style={"w-full outline-none h-10"}
                                                 onChange={handleInput} />
 
@@ -109,29 +111,29 @@ const characteristicForm = ({
 
             {formTypeModal === 12 && ( //characteristics edit
                 <>
-                    <Button fullWidth={true} size="md" onPress={onOpen} color={buttonColor} className="-h-3 flex justify-start -p-3">
+                     <Button fullWidth={true} size="md" onPress={onOpen} color={buttonColor} className="-h-3 flex justify-start -p-3">
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
-                                    <form onSubmit={(e) => handleUpdate(e)}>
-                                        <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
+                                    <form onSubmit={(e) => handleUpdateMaintenance(e)}>
+                                    <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
                                             <div className="flex flex-row justify-start gap-4">
                                                 {editIcon} {modalHeader} {modalEditArrow} {modalEdit}
                                             </div>
                                             <div className='flex flex-row items-center mr-5'>
-                                                <Button color="transparent" onPress={onClose} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
+                                                <Button color="transparent" onClick={() => { onClose(); window.location.reload(); }} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
                                                 <Button color="transparent" className="-mr-5" onClick={toggleExpand}><LiaExpandSolid size={30} /></Button>
-                                                <Button color="transparent" variant="light" onPress={onClose}><MdClose size={30} /></Button>
+                                                <Button color="transparent" variant="light" onClick={() => { onClose(); window.location.reload(); }}><MdClose size={30} /></Button>
                                             </div>
                                         </ModalHeader>
                                         <ModalBody className="flex flex-col mx-5 my-5 space-y-8">
@@ -140,8 +142,8 @@ const characteristicForm = ({
                                                 type={"text"}
                                                 id={"abreviature"}
                                                 name={"Abreviature"}
-                                                label={"Abreviatura"}
-                                                ariaLabel={"Abreviatura"}
+                                                label={t("hotel.characteristics.shortnameLabel")}
+                                                ariaLabel={"Short Name"}
                                                 style={"w-full outline-none h-10"}
                                                 value={values.Description}
                                                 onChange={e => setValues({ ...values, Description: e.target.value })} />
@@ -150,8 +152,8 @@ const characteristicForm = ({
                                                 type={"text"}
                                                 id={"description"}
                                                 name={"Description"}
-                                                label={"Descrição"}
-                                                ariaLabel={"Descrição"}
+                                                label={t("hotel.characteristics.descriptionLabel")}
+                                                ariaLabel={"Description"}
                                                 style={"w-full outline-none h-10"}
                                                 value={values.Abreviature}
                                                 onChange={e => setValues({ ...values, Abreviature: e.target.value })} />
@@ -160,8 +162,8 @@ const characteristicForm = ({
                                                 type={"text"}
                                                 id={"details"}
                                                 name={"Details"}
-                                                label={"Detalhes"}
-                                                ariaLabel={"Detalhes"}
+                                                label={t("hotel.characteristics.detailsLabel")}
+                                                ariaLabel={"Details"}
                                                 style={"w-full outline-none h-10"}
                                                 value={values.Details}
                                                 onChange={e => setValues({ ...values, Details: e.target.value })} />

@@ -11,7 +11,7 @@ import taxesInsert, { taxesEdit } from "@/components/functionsForm/CRUD/financia
 import InputFieldControlled from "@/components/functionsForm/inputs/typeText/page";
 import { expansion } from "@/components/functionsForm/expansion/page";
 import ModalFooterContent from "@/components/modal/modalFooterContent";
-
+import {useTranslations} from 'next-intl';
 
 
 const doctypeForm = ({
@@ -35,7 +35,7 @@ const doctypeForm = ({
     const { handleUpdateTaxes, setValuesTaxes, valuesTaxes } = taxesEdit(idTaxes);
 
     const { toggleExpand, setIsExpanded, isExpanded } = expansion();
-
+    const t = useTranslations('Index');
 
 
     return (
@@ -46,13 +46,13 @@ const doctypeForm = ({
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
@@ -71,7 +71,7 @@ const doctypeForm = ({
                                                     type={"text"}
                                                     id={"cod"}
                                                     name={"Cod"}
-                                                    label={"Cod."}
+                                                    label={t('financialSetup.taxes.cod')}
                                                     ariaLabel={"Cod."}
                                                     onChange={handleInputTaxes}
                                                 />
@@ -80,7 +80,7 @@ const doctypeForm = ({
                                                     type={"text"}
                                                     id={"abreviature"}
                                                     name={"Abreviature"}
-                                                    label={"Abreviatura"}
+                                                    label={t('financialSetup.taxes.abreviature')}
                                                     ariaLabel={"Abreviatura"}
                                                     onChange={handleInputTaxes}
                                                 />
@@ -89,7 +89,7 @@ const doctypeForm = ({
                                                     type={"text"}
                                                     id={"Description"}
                                                     name={"Description"}
-                                                    label={"Descrição"}
+                                                    label={t('financialSetup.taxes.description')}
                                                     ariaLabel={"Descrição"}
                                                     onChange={handleInputTaxes}
                                                 />
@@ -98,13 +98,13 @@ const doctypeForm = ({
                                                     type={"text"}
                                                     id={"order"}
                                                     name={"Order"}
-                                                    label={"Ordem"}
+                                                    label={t('financialSetup.taxes.order')}
                                                     ariaLabel={"Ordem"}
                                                 />
 
                                                 <div className="w-64 border border-gray-400">
                                                     <div className="flex flex-row justify-between items-center border-b border-gray-400">
-                                                        <label>Percentagem</label>
+                                                        <label>{t('financialSetup.taxes.percentage')}</label>
                                                         <LuPlus size={20} color="blue" />
                                                     </div>
                                                     <div className="flex flex-row gap-4">
@@ -113,13 +113,13 @@ const doctypeForm = ({
                                                     </div>
                                                 </div>
                                                 <div className="flex flex-row justify-between">
-                                                    <input type="text" placeholder="Cod. SAFT"></input>
-                                                    <input type="text" placeholder="Desc..SAFT"></input>
+                                                    <input type="text" placeholder={t('financialSetup.taxes.codSAFT')}></input>
+                                                    <input type="text" placeholder={t('financialSetup.taxes.descSAFT')}></input>
                                                 </div>
-                                                <input type="text" placeholder="Detalhe"></input>
+                                                <input type="text" placeholder={t('financialSetup.taxes.detail')}></input>
                                                 <div>
                                                     <input id="link-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></input>
-                                                    <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Detailed invoice</label>
+                                                    <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{t('financialSetup.taxes.detailedInvoice')}</label>
                                                 </div>
                                             </ModalBody>
                                         </form>
@@ -133,22 +133,22 @@ const doctypeForm = ({
 
             {formTypeModal === 12 && ( //taxes edit
                 <>
-                    <Button fullWidth={true} size="md" onPress={onOpen} color={buttonColor} className="-h-3 flex justify-start -p-3">
+                     <Button fullWidth={true} size="md" onPress={onOpen} color={buttonColor} className="-h-3 flex justify-start -p-3">
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
                                     <form onSubmit={(e) => handleUpdateTaxes(e)}>
-                                        <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
+                                    <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
                                             <div className="flex flex-row justify-start gap-4">
                                                 {editIcon} {modalHeader} {modalEditArrow} {modalEdit}
                                             </div>
@@ -164,7 +164,7 @@ const doctypeForm = ({
                                                 type={"text"}
                                                 id={"cod"}
                                                 name={"Cod"}
-                                                label={"Cod."}
+                                                label={t('financialSetup.taxes.cod')}
                                                 ariaLabel={"Cod."}
                                                 value={valuesTaxes.Cod}
                                                 onChange={e => setValuesTaxes({ ...valuesTaxes, Cod: e.target.value })}
@@ -174,7 +174,7 @@ const doctypeForm = ({
                                                 type={"text"}
                                                 id={"abreviature"}
                                                 name={"Abreviature"}
-                                                label={"Abreviatura"}
+                                                label={t('financialSetup.taxes.abreviature')}
                                                 ariaLabel={"Abreviatura"}
                                                 value={valuesTaxes.Abreviature}
                                                 onChange={e => setValuesTaxes({ ...valuesTaxes, Abreviature: e.target.value })}
@@ -184,7 +184,7 @@ const doctypeForm = ({
                                                 type={"text"}
                                                 id={"Description"}
                                                 name={"Description"}
-                                                label={"Descrição"}
+                                                label={t('financialSetup.taxes.description')}
                                                 ariaLabel={"Descrição"}
                                                 value={valuesTaxes.Description}
                                                 onChange={e => setValuesTaxes({ ...valuesTaxes, Description: e.target.value })}
@@ -194,13 +194,13 @@ const doctypeForm = ({
                                                 type={"text"}
                                                 id={"order"}
                                                 name={"Order"}
-                                                label={"Ordem"}
+                                                label={t('financialSetup.taxes.order')}
                                                 ariaLabel={"Ordem"}
                                             />
 
                                             <div className="w-64 border border-gray-400">
                                                 <div className="flex flex-row justify-between items-center border-b border-gray-400">
-                                                    <label>Percentagem</label>
+                                                    <label>{t('financialSetup.taxes.percentage')}</label>
                                                     <LuPlus size={20} color="blue" />
                                                 </div>
                                                 <div className="flex flex-row gap-4">
@@ -209,13 +209,13 @@ const doctypeForm = ({
                                                 </div>
                                             </div>
                                             <div className="flex flex-row justify-between">
-                                                <input type="text" placeholder="Cod. SAFT"></input>
-                                                <input type="text" placeholder="Desc..SAFT"></input>
+                                                <input type="text" placeholder={t('financialSetup.taxes.codSAFT')}></input>
+                                                <input type="text" placeholder={t('financialSetup.taxes.descSAFT')}></input>
                                             </div>
-                                            <input type="text" placeholder="Detalhe"></input>
+                                            <input type="text" placeholder={t('financialSetup.taxes.detail')}></input>
                                             <div>
                                                 <input id="link-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></input>
-                                                <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Detailed invoice</label>
+                                                <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{t('financialSetup.taxes.detailedInvoice')}</label>
                                             </div>
                                         </ModalBody>
                                     </form>

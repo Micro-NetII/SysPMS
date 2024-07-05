@@ -12,7 +12,7 @@ import marketSegmentsInsert, { marketSegmentsEdit } from "@/components/functions
 import InputFieldControlled from "@/components/functionsForm/inputs/typeText/page";
 import { expansion } from "@/components/functionsForm/expansion/page";
 import ModalFooterContent from "@/components/modal/modalFooterContent";
-
+import {useTranslations} from 'next-intl';
 
 
 const marketSegmentForm = ({
@@ -35,6 +35,8 @@ const marketSegmentForm = ({
     const pathname = usePathname();
     const router = useRouter();
 
+    const t = useTranslations('Index');
+
     const { handleInputMarketSegment, handleSubmitMarketSegment } = marketSegmentsInsert();
     const { handleUpdateMarketSegment, setValuesMarketSegment, valuesMarketSegment } = marketSegmentsEdit(idMarketSegment);
     const { toggleExpand, setIsExpanded, isExpanded } = expansion();
@@ -46,27 +48,27 @@ const marketSegmentForm = ({
 
             {formTypeModal === 11 && ( //origens mercado insert
                 <>
-                    <Button onPress={onOpen} color={buttonColor} className="w-fit">
+                   <Button onPress={onOpen} color={buttonColor} className="w-fit">
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
                                     <>
                                         <form onSubmit={handleSubmitMarketSegment}>
-                                            <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">{modalHeader}
+                                        <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">{modalHeader}
                                                 <div className='flex flex-row items-center mr-5'>
-                                                    <Button color="transparent" onPress={onClose} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
+                                                    <Button color="transparent" onClick={() => { onClose(); window.location.reload(); }} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
                                                     <Button color="transparent" className="-mr-5" onClick={toggleExpand}><LiaExpandSolid size={30} /></Button>
-                                                    <Button color="transparent" variant="light" onPress={onClose}><MdClose size={30} /></Button>
+                                                    <Button color="transparent" variant="light" onClick={() => { onClose(); window.location.reload(); }}><MdClose size={30} /></Button>
                                                 </div>
                                             </ModalHeader>
                                             <ModalBody className="flex flex-col mx-5 my-5 space-y-8">
@@ -75,7 +77,7 @@ const marketSegmentForm = ({
                                                     type={"text"}
                                                     id={"abreviature"}
                                                     name={"Abreviature"}
-                                                    label={"Abreviatura"}
+                                                    label={t('bookings.marketSegments.abreviature')}
                                                     ariaLabel={"Abreviatura"}
                                                     onChange={handleInputMarketSegment} />
 
@@ -84,7 +86,7 @@ const marketSegmentForm = ({
                                                         type={"text"}
                                                         id={"description"}
                                                         name={"Description"}
-                                                        label={"Descrição"}
+                                                        label={t('bookings.marketSegments.description')}
                                                         ariaLabel={"Descrição"}
                                                         onChange={handleInputMarketSegment} />
                                                     <AiOutlineGlobal className="ml-auto text-xl" />
@@ -94,7 +96,7 @@ const marketSegmentForm = ({
                                                     type={"text"}
                                                     id={"ordenation"}
                                                     name={"Ordenation"}
-                                                    label={"Ordenação"}
+                                                    label={t('bookings.marketSegments.order')}
                                                     ariaLabel={"Ordenação"}
                                                     nChange={handleInputMarketSegment} />
 
@@ -109,7 +111,7 @@ const marketSegmentForm = ({
                                                         for="link-checkbox"
                                                         class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                                     >
-                                                        Estado
+                                                        {t('bookings.marketSegments.status')}
                                                     </label>
                                                 </div>
                                             </ModalBody>
@@ -124,30 +126,30 @@ const marketSegmentForm = ({
 
             {formTypeModal === 12 && ( //segmentos mercado edit
                 <>
-                    <Button fullWidth={true} size="md" onPress={onOpen} color={buttonColor} className="-h-3 flex justify-start -p-3">
+                   <Button fullWidth={true} size="md" onPress={onOpen} color={buttonColor} className="-h-3 flex justify-start -p-3">
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
                                     <>
                                         <form onSubmit={(e) => handleUpdateMarketSegment(e)}>
-                                            <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
+                                        <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
                                                 <div className="flex flex-row justify-start gap-4">
                                                     {editIcon} {modalHeader} {modalEditArrow} {modalEdit}
                                                 </div>
                                                 <div className='flex flex-row items-center mr-5'>
-                                                    <Button color="transparent" onPress={onClose} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
+                                                    <Button color="transparent" onClick={() => { onClose(); window.location.reload(); }} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
                                                     <Button color="transparent" className="-mr-5" onClick={toggleExpand}><LiaExpandSolid size={30} /></Button>
-                                                    <Button color="transparent" variant="light" onPress={onClose}><MdClose size={30} /></Button>
+                                                    <Button color="transparent" variant="light" onClick={() => { onClose(); window.location.reload(); }}><MdClose size={30} /></Button>
                                                 </div>
                                             </ModalHeader>
                                             <ModalBody className="flex flex-col mx-5 my-5 space-y-8">
@@ -156,7 +158,7 @@ const marketSegmentForm = ({
                                                     type={"text"}
                                                     id={"abreviature"}
                                                     name={"Abreviature"}
-                                                    label={"Abreviatura"}
+                                                    label={t('bookings.marketSegments.abreviature')}
                                                     ariaLabel={"Abreviatura"}
                                                     value={valuesMarketSegment.Abreviature}
                                                     onChange={e => setValuesMarketSegment({ ...valuesMarketSegment, Abreviature: e.target.value })} />
@@ -166,7 +168,7 @@ const marketSegmentForm = ({
                                                         type={"text"}
                                                         id={"description"}
                                                         name={"Description"}
-                                                        label={"Descrição"}
+                                                        label={t('bookings.marketSegments.description')}
                                                         ariaLabel={"Descrição"}
                                                         value={valuesMarketSegment.Description}
                                                         onChange={e => setValuesMarketSegment({ ...valuesMarketSegment, Description: e.target.value })} />
@@ -177,7 +179,7 @@ const marketSegmentForm = ({
                                                     type={"text"}
                                                     id={"ordenation"}
                                                     name={"Ordenation"}
-                                                    label={"Ordenação"}
+                                                    label={t('bookings.marketSegments.order')}
                                                     ariaLabel={"Ordenação"}
                                                     value={valuesMarketSegment.Ordenation}
                                                     onChange={e => setValuesMarketSegment({ ...valuesMarketSegment, Ordenation: e.target.value })} />
@@ -193,7 +195,7 @@ const marketSegmentForm = ({
                                                         for="link-checkbox"
                                                         class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                                     >
-                                                        Estado
+                                                        {t('bookings.marketSegments.status')}
                                                     </label>
                                                 </div>
                                             </ModalBody>

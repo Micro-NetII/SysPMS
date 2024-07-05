@@ -50,13 +50,13 @@ const transferForm = ({
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
@@ -64,9 +64,9 @@ const transferForm = ({
                                         <form onSubmit={handleSubmitTransfer}>
                                             <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">{modalHeader}
                                                 <div className='flex flex-row items-center mr-5'>
-                                                    <Button color="transparent" onPress={onClose} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
+                                                    <Button color="transparent" onClick={() => { onClose(); window.location.reload(); }} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
                                                     <Button color="transparent" className="-mr-5" onClick={toggleExpand}><LiaExpandSolid size={30} /></Button>
-                                                    <Button color="transparent" variant="light" onPress={onClose}><MdClose size={30} /></Button>
+                                                    <Button color="transparent" variant="light" onClick={() => { onClose(); window.location.reload(); }}><MdClose size={30} /></Button>
                                                 </div>
                                             </ModalHeader>
                                             <ModalBody className="flex flex-col mx-5 my-5 space-y-8">
@@ -75,7 +75,7 @@ const transferForm = ({
                                                     type={"text"}
                                                     id={"shortName"}
                                                     name={"shortName"}
-                                                    label={"Abreviatura"}
+                                                    label={t("bookings.pickUp.abreviature")}
                                                     ariaLabel={"Abreviatura"}
                                                     onChange={handleInputTransfer} />
 
@@ -84,7 +84,7 @@ const transferForm = ({
                                                         type={"text"}
                                                         id={"name"}
                                                         name={"name"}
-                                                        label={"Descrição"}
+                                                        label={t("bookings.pickUp.description")}
                                                         ariaLabel={"Descrição"}
                                                         onChange={handleInputTransfer} />
                                                     <AiOutlineGlobal className="ml-auto text-xl" />
@@ -94,7 +94,7 @@ const transferForm = ({
                                                     type={"text"}
                                                     id={"class"}
                                                     name={"class"}
-                                                    label={"Detalhes"}
+                                                    label={t("bookings.pickUp.details")}
                                                     ariaLabel={"Detalhes"}
                                                     onChange={handleInputTransfer} />
 
@@ -109,7 +109,7 @@ const transferForm = ({
                                                         for="link-checkbox"
                                                         class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                                     >
-                                                        Estado
+                                                        {t("bookings.pickUp.status")}
                                                     </label>
                                                 </div>
                                             </ModalBody>
@@ -126,30 +126,30 @@ const transferForm = ({
             {
                 formTypeModal === 12 && ( //transfers edit
                     <>
-                        <Button onPress={onOpen} color={buttonColor} className="-h-3 flex justify-start -p-3">
-                            {buttonName} {buttonIcon}
-                        </Button>
-                        <Modal
-                            classNames={{
-                                base: "max-h-screen",
-                                wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                                body: "h-full",
-                            }}
-                            size="full"
-                            isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
-                            <ModalContent>
-                                {(onClose) => (
+                       <Button fullWidth={true} size="md" onPress={onOpen} color={buttonColor} className="-h-3 flex justify-start -p-3">
+                        {buttonName} {buttonIcon}
+                    </Button>
+                    <Modal
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
+                        <ModalContent>
+                            {(onClose) => (
+                                <>
                                     <>
-                                        <>
-                                            <form onSubmit={handleUpdateTransfer}>
-                                                <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
+                                        <form onSubmit={(e) => handleUpdateTransfer(e)}>
+                                            <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
                                                     <div className="flex flex-row justify-start gap-4">
                                                         {editIcon} {modalHeader} {modalEditArrow} {modalEdit}
                                                     </div>
                                                     <div className='flex flex-row items-center mr-5'>
-                                                        <Button color="transparent" onPress={onClose} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
+                                                        <Button color="transparent" onClick={() => { onClose(); window.location.reload(); }} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
                                                         <Button color="transparent" className="-mr-5" onClick={toggleExpand}><LiaExpandSolid size={30} /></Button>
-                                                        <Button color="transparent" variant="light" onPress={onClose}><MdClose size={30} /></Button>
+                                                        <Button color="transparent" variant="light" onClick={() => { onClose(); window.location.reload(); }}><MdClose size={30} /></Button>
                                                     </div>
                                                 </ModalHeader>
                                                 <ModalBody className="flex flex-col mx-5 my-5 space-y-8">
@@ -158,7 +158,7 @@ const transferForm = ({
                                                         type={"text"}
                                                         id={"shortName"}
                                                         name={"shortName"}
-                                                        label={"Abreviatura"}
+                                                        label={t("bookings.pickUp.abreviature")}
                                                         ariaLabel={"Abreviatura"}
                                                         value={valuesTransfer.ShortName}
                                                         onChange={e => setValuesTransfer({ ...valuesTransfer, ShortName: e.target.value })} />
@@ -169,7 +169,7 @@ const transferForm = ({
                                                             type={"text"}
                                                             id={"name"}
                                                             name={"Name"}
-                                                            label={"Descrição"}
+                                                            label={t("bookings.pickUp.description")}
                                                             ariaLabel={"Descrição"}
                                                             value={valuesTransfer.Name}
                                                             onChange={e => setValuesTransfer({ ...valuesTransfer, Name: e.target.value })} />
@@ -180,7 +180,7 @@ const transferForm = ({
                                                         type={"text"}
                                                         id={"class"}
                                                         name={"Class"}
-                                                        label={"Detalhes"}
+                                                        label={t("bookings.pickUp.details")}
                                                         ariaLabel={"Detalhes"}
                                                         value={valuesTransfer.Class}
                                                         onChange={e => setValuesTransfer({ ...valuesTransfer, Class: e.target.value })} />
@@ -196,7 +196,7 @@ const transferForm = ({
                                                             for="link-checkbox"
                                                             class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                                         >
-                                                            Estado
+                                                            {t("bookings.pickUp.status")}
                                                         </label>
                                                     </div>
                                                 </ModalBody>
