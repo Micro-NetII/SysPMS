@@ -23,18 +23,27 @@ import { BsArrowRight } from "react-icons/bs";
 //imports de componentes
 import TransferForm from "@/components/modal/bookings/transfers/page";
 import PaginationTable from "@/components/table/paginationTable/paginationTable";
- 
+import LoadingBackdrop from "@/components/table/loadingBackdrop/loadingBackdrop";
+import {useTranslations} from 'next-intl';
  
 export default function Transfers() {
   const [page, setPage] = React.useState(1);
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const [searchValue, setSearchValue] = React.useState("");
   const [transfers, setTransfers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const t = useTranslations('Index');
  
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get("/api/v1/bookings/transfers");
-      setTransfers(res.data.response);
+      try{
+        const res = await axios.get("/api/v1/bookings/transfers");
+        setTransfers(res.data.response);
+      } catch(error) {
+        console.error("Erro: ", error.message);
+      } finally {
+        setIsLoading(false);
+      }
     };
     getData();
   }, []);
@@ -85,13 +94,13 @@ export default function Transfers() {
     return (
       <main>
         <div className="flex flex-col mt-3 py-3">
-          <p className="text-xs px-6">Tabela de Transfer</p>
+          <p className="text-xs px-6">{t("bookings.pickUp.title")}</p>
           <div className="flex flex-row justify-between items-center mx-5">
             <div className="flex flex-row">
               <div className="flex flex-wrap md:flex-nowrap gap-4">
                 <Input
                   className="mt-4 w-80"
-                  placeholder="Procurar..."
+                  placeholder={t("general.search")}
                   labelPlacement="outside"
                   startContent={
                     <FiSearch color={"black"} className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
@@ -102,10 +111,10 @@ export default function Transfers() {
               </div>
             </div>
             <TransferForm
-              buttonName={"Novo"}
+              buttonName={t("general.newRecord")}
               buttonIcon={<FiPlus size={15} />}
               buttonColor={"primary"}
-              modalHeader={"Inserir Quarto"}
+              modalHeader={t("bookings.pickUp.new.modalHeader")}
               modalIcons={"bg-red"}
               formTypeModal={11}
             ></TransferForm>
@@ -128,6 +137,8 @@ export default function Transfers() {
               }))
             }
           >
+            <LoadingBackdrop open={isLoading} />
+          {!isLoading && (
             <Table
             id="TableToPDF"
       isHeaderSticky={"true"}
@@ -141,16 +152,16 @@ export default function Transfers() {
       >
         <TableHeader>
           <TableColumn className="bg-primary-600 text-white font-bold w-[40px] uppercase">
-            ID
+          {t("bookings.pickUp.datatable.id")}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold uppercase">
-            Abreviatura
+          {t("bookings.pickUp.datatable.abreviature")}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold uppercase">
-            Descrição
+          {t("bookings.pickUp.datatable.description")}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold w-1/4 px-10 uppercase">
-            Ordenação
+          {t("bookings.pickUp.datatable.order")}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white flex justify-end items-center pr-7">
             <GoGear size={20} />
@@ -164,7 +175,7 @@ export default function Transfers() {
                         buttonName={transfers.refID}
                         editIcon={<FiEdit3 size={25}/>}
                         buttonColor={"transparent"}
-                        modalHeader={"Editar Quartos"}
+                        modalHeader={t("bookings.pickUp.new.modalHeader")}
                         modalEditArrow={<BsArrowRight size={25}/>}
                         modalEdit={`ID: ${transfers.refID}`}
                         formTypeModal={12}
@@ -189,10 +200,10 @@ export default function Transfers() {
                   <DropdownMenu aria-label="Static Actions" closeOnSelect={false} isOpen={true}>
                     <DropdownItem key="edit">
                       <TransferForm
-                        buttonName={"Editar"}
+                        buttonName={t("general.editRecord")}
                         editIcon={<FiEdit3 size={25}/>}
                         buttonColor={"transparent"}
-                        modalHeader={"Editar Quartos"}
+                        modalHeader={t("bookings.pickUp.edit.modalHeader")}
                         modalEditArrow={<BsArrowRight size={25}/>}
                         modalEdit={`ID: ${transfers.refID}`}
                         formTypeModal={12}
@@ -202,8 +213,8 @@ export default function Transfers() {
                         editor={"teste"}
                       ></TransferForm>
                     </DropdownItem>
-                    <DropdownItem key="delete" onClick={() => handleDelete(transfers.refID)}>Remover</DropdownItem>
-                    <DropdownItem key="view">Ver</DropdownItem>
+                    <DropdownItem key="delete" onClick={() => handleDelete(transfers.refID)}>{t("general.removeRecord")}</DropdownItem>
+                    <DropdownItem key="view">{t("general.viewRecord")}</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
               </TableCell>
@@ -211,6 +222,7 @@ export default function Transfers() {
           ))}
         </TableBody>
       </Table>
+          )}
           </PaginationTable>
         </div>
       </main>

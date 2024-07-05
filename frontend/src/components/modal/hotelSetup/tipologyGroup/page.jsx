@@ -10,7 +10,7 @@ import InputFieldControlled from "@/components/functionsForm/inputs/typeText/pag
 import { expansion } from "@/components/functionsForm/expansion/page";
 import ModalFooterContent from "@/components/modal/modalFooterContent";
 
-
+import {useTranslations} from 'next-intl';
 
 const tipologyGroupForm = ({
     idTypesgroups,
@@ -33,7 +33,7 @@ const tipologyGroupForm = ({
     const { handleUpdateTypesgroups, valuesTypesgroups, setValuesTypesGroups } = typesGroupsEdit(idTypesgroups);
     const { toggleExpand, setIsExpanded, isExpanded } = expansion();
 
-
+    const t = useTranslations('Index');
 
     return (
         <>
@@ -44,23 +44,24 @@ const tipologyGroupForm = ({
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} hideCloseButton={true} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} >
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
                                     <>
                                         <form onSubmit={handleSubmitTypesgroups}>
-                                            <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">{modalHeader}
+                                        <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
+                                        {modalHeader}
                                                 <div className='flex flex-row items-center mr-5'>
-                                                    <Button color="transparent" onPress={onClose} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
+                                                    <Button color="transparent" onClick={() => { onClose(); window.location.reload(); }} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
                                                     <Button color="transparent" className="-mr-5" onClick={toggleExpand}><LiaExpandSolid size={30} /></Button>
-                                                    <Button color="transparent" variant="light" onPress={onClose}><MdClose size={30} /></Button>
+                                                    <Button color="transparent" variant="light" onClick={() => { onClose(); window.location.reload(); }}><MdClose size={30} /></Button>
                                                 </div>
                                             </ModalHeader>
                                             <ModalBody className="flex flex-col mx-5 my-5 space-y-8">
@@ -69,8 +70,8 @@ const tipologyGroupForm = ({
                                                     type={"text"}
                                                     id={"description"}
                                                     name={"Description"}
-                                                    label={"Descrição"}
-                                                    ariaLabel={"Descrição"}
+                                                    label={t("hotel.tipologiesGroup.descriptionLabel")}
+                                                    ariaLabel={"Description"}
                                                     style={"w-full outline-none h-10"}
                                                 />
 
@@ -78,8 +79,8 @@ const tipologyGroupForm = ({
                                                     type={"text"}
                                                     id={"abreviature"}
                                                     name={"Label"}
-                                                    label={"Abreviatura"}
-                                                    ariaLabel={"Abreviatura"}
+                                                    label={t("hotel.tipologiesGroup.shortnameLabel")}
+                                                    ariaLabel={"Short Name"}
                                                     style={"w-full outline-none h-10"}
                                                     onChange={handleInputTypesgroups} />
 
@@ -87,22 +88,22 @@ const tipologyGroupForm = ({
                                                     type={"textarea"}
                                                     id={"details"}
                                                     name={"Details"}
-                                                    label={"Detalhes"}
-                                                    ariaLabel={"Detalhes"}
+                                                    label={t("hotel.tipologiesGroup.detailsLabel")}
+                                                    ariaLabel={"Details"}
                                                     style={"w-full outline-none h-10"}
                                                 />
 
                                                 <div>
                                                     <input id="link-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></input>
-                                                    <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ativo (estado).</label>
+                                                    <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{t("hotel.tipologiesGroup.statusLabel")}</label>
                                                 </div>
 
                                                 <InputFieldControlled
                                                     type={"text"}
                                                     id={"order"}
                                                     name={"Order"}
-                                                    label={"Ordem"}
-                                                    ariaLabel={"Ordem"}
+                                                    label={t("hotel.tipologiesGroup.orderLabel")}
+                                                    ariaLabel={"Order"}
                                                     style={"w-1/2 outline-none h-10"}
                                                 />
 
@@ -123,29 +124,29 @@ const tipologyGroupForm = ({
 
             {formTypeModal === 12 && ( //tipology group edit
                 <>
-                    <Button fullWidth={true} size="md" onPress={onOpen} color={buttonColor} className="-h-3 flex justify-start -p-3">
+                     <Button fullWidth={true} size="md" onPress={onOpen} color={buttonColor} className="-h-3 flex justify-start -p-3">
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
                                     <form onSubmit={(e) => handleUpdateTypesgroups(e)}>
-                                        <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
+                                    <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
                                             <div className="flex flex-row justify-start gap-4">
                                                 {editIcon} {modalHeader} {modalEditArrow} {modalEdit}
                                             </div>
                                             <div className='flex flex-row items-center mr-5'>
-                                                <Button color="transparent" onPress={onClose} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
+                                                <Button color="transparent" onClick={() => { onClose(); window.location.reload(); }} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
                                                 <Button color="transparent" className="-mr-5" onClick={toggleExpand}><LiaExpandSolid size={30} /></Button>
-                                                <Button color="transparent" variant="light" onPress={onClose}><MdClose size={30} /></Button>
+                                                <Button color="transparent" variant="light" onClick={() => { onClose(); window.location.reload(); }}><MdClose size={30} /></Button>
                                             </div>
                                         </ModalHeader>
                                         <ModalBody className="flex flex-col mx-5 my-5 space-y-8">
@@ -154,8 +155,8 @@ const tipologyGroupForm = ({
                                                 type={"text"}
                                                 id={"description"}
                                                 name={"Description"}
-                                                label={"Descrição"}
-                                                ariaLabel={"Descrição"}
+                                                label={t("hotel.tipologiesGroup.descriptionLabel")}
+                                                ariaLabel={"Description"}
                                                 style={"w-full outline-none h-10"}
                                             />
 
@@ -163,8 +164,8 @@ const tipologyGroupForm = ({
                                                 type={"text"}
                                                 id={"label"}
                                                 name={"Label"}
-                                                label={"Abreviatura"}
-                                                ariaLabel={"Abreviatura"}
+                                                label={t("hotel.tipologiesGroup.shortnameLabel")}
+                                                ariaLabel={"Short Name"}
                                                 style={"w-full outline-none h-10"}
                                                 value={valuesTypesgroups.Label}
                                                 onChange={e => setValuesTypesGroups({ ...valuesTypesgroups, Label: e.target.value })} />
@@ -173,22 +174,22 @@ const tipologyGroupForm = ({
                                                 type={"text"}
                                                 id={"details"}
                                                 name={"Details"}
-                                                label={"Detalhes"}
-                                                ariaLabel={"Detalhes"}
+                                                label={t("hotel.tipologiesGroup.detailsLabel")}
+                                                ariaLabel={"Details"}
                                                 style={"w-full outline-none h-10"}
                                             />
 
                                             <div>
                                                 <input id="link-checkbox" type="checkbox" value="" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"></input>
-                                                <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ativo (estado).</label>
+                                                <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{t("hotel.tipologiesGroup.statusLabel")}</label>
                                             </div>
 
                                             <InputFieldControlled
                                                 type={"text"}
                                                 id={"order"}
                                                 name={"Order"}
-                                                label={"Ordem"}
-                                                ariaLabel={"Ordem"}
+                                                label={t("hotel.tipologiesGroup.orderLabel")}
+                                                ariaLabel={"Order"}
                                                 style={"w-1/2 outline-none h-10"}
                                             />
 

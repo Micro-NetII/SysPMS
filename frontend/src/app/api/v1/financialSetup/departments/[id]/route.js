@@ -1,42 +1,41 @@
 import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
-import prisma from "@/app/lib/prisma";
- 
+import { generatePrismaClient, getPropertyIDFromToken, getUserIDFromToken } from '@/app/lib/utils'
+import { cookies } from 'next/headers';
+
 export async function GET(request, context) {
- 
-    // console.log("1")
- 
-    // const pathname = new URL(request.url).pathname;
- 
-    // const parts = pathname.split('/');
- 
-    // const id = parts[parts.length - 1];
- 
+
+    const prisma = generatePrismaClient()
+
     const { id } = context.params;
- 
-    //console.log(id)
- 
+
     const response = await prisma.departments.findUnique({
         where: {
             departmentID: parseInt(id)
         }
     })
- 
+
     if (!response) {
-        return new NextResponse(JSON.stringify({status: 404 }));
+        return new NextResponse(JSON.stringify({ status: 404 }));
     }
- 
+
     prisma.$disconnect()
- 
-    return new NextResponse(JSON.stringify({response, status: 200 }));
+
+    return new NextResponse(JSON.stringify({ response, status: 200 }));
 }
- 
+
 export async function PATCH(request, context) {
- 
+
+    const tokenCookie = cookies().get("jwt");
+
+    const prisma = generatePrismaClient()
+
+    const userID = getUserIDFromToken(tokenCookie.value)
+
     try {
         const { id } = context.params;
         const { data } = await request.json();
- 
+
         const updateRecord = await prisma.departments.update({
             where: {
                 departmentID: parseInt(id),
@@ -44,37 +43,38 @@ export async function PATCH(request, context) {
             data: {
                 departmentName: data.Abreviature,
                 description: data.Description,
-                showFo: parseInt(data.Order)
+                showFo: parseInt(data.Order),
+                updatedBy: userID
             }
         })
-        return new NextResponse(JSON.stringify({status: 200 }));
- 
+        return new NextResponse(JSON.stringify({ status: 200 }));
+
     } catch (error) {
         return new NextResponse(JSON.stringify({ error: error.message }), { status: 500 });
     } finally {
         await prisma.$disconnect();
     }
- 
+
 }
- 
+
 export async function DELETE(request, context) {
- 
+
+    const prisma = generatePrismaClient()
+
     try {
         const { id } = context.params;
- 
-        //console.log(id)
- 
+
         const deleteRecord = await prisma.departments.delete({
             where: {
                 departmentID: parseInt(id),
             }
         })
-        return new NextResponse(JSON.stringify({status: 200 }));
- 
+        return new NextResponse(JSON.stringify({ status: 200 }));
+
     } catch (error) {
         return new NextResponse(JSON.stringify({ error: error.message }), { status: 500 });
     } finally {
         await prisma.$disconnect();
     }
- 
+
 }

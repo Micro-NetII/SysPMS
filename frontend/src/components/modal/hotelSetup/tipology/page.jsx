@@ -11,6 +11,8 @@ import { expansion } from "@/components/functionsForm/expansion/page";
 import ModalFooterContent from "@/components/modal/modalFooterContent";
 import TipologyGroupAutocomplete from "@/components/functionsForm/autocomplete/tipologyGroup/page";
 
+import {useTranslations} from 'next-intl'
+
 
 const tipologyForm = ({
     idRoomtype,
@@ -33,7 +35,7 @@ const tipologyForm = ({
     const { handleUpdateRoomtype, setValuesRoomtype, valuesRoomtype } = tipologysEdit(idRoomtype);
     const { toggleExpand, setIsExpanded, isExpanded } = expansion();
 
-
+    const t = useTranslations('Index');
 
     return (
         <>
@@ -44,22 +46,23 @@ const tipologyForm = ({
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
                                     <form onSubmit={handleSubmitRoomtype}>
-                                        <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">{modalHeader}
+                                        <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
+                                            {modalHeader}
                                             <div className='flex flex-row items-center mr-5'>
-                                                <Button color="transparent" onPress={onClose} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
+                                                <Button color="transparent" onClick={() => { onClose(); window.location.reload(); }} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
                                                 <Button color="transparent" className="-mr-5" onClick={toggleExpand}><LiaExpandSolid size={30} /></Button>
-                                                <Button color="transparent" variant="light" onPress={onClose}><MdClose size={30} /></Button>
+                                                <Button color="transparent" variant="light" onClick={() => { onClose(); window.location.reload(); }}><MdClose size={30} /></Button>
                                             </div>
                                         </ModalHeader>
                                         <ModalBody className="flex flex-col mx-5 my-5 space-y-8">
@@ -68,8 +71,8 @@ const tipologyForm = ({
                                                 type={"text"}
                                                 id={"description"}
                                                 name={"Desc"}
-                                                label={"Descrição"}
-                                                ariaLabel={"Descrição"}
+                                                label={t("hotel.tipologies.descriptionLabel")}
+                                                ariaLabel={"Description"}
                                                 style={"w-full outline-none h-10"}
                                                 onChange={handleInputRoomtype} />
 
@@ -77,8 +80,8 @@ const tipologyForm = ({
                                                 type={"text"}
                                                 id={"abreviature"}
                                                 name={"Name"}
-                                                label={"Abreviatura"}
-                                                ariaLabel={"Abreviatura"}
+                                                label={t("hotel.tipologies.shortnameLabel")}
+                                                ariaLabel={"Short Name"}
                                                 style={"w-full outline-none h-10"}
                                                 onChange={handleInputRoomtype} />
 
@@ -86,13 +89,13 @@ const tipologyForm = ({
                                                 type={"text"}
                                                 id={"details"}
                                                 name={"RoomFeaturesDesc"}
-                                                label={"Detalhes"}
-                                                ariaLabel={"Detalhes"}
+                                                label={t("hotel.tipologies.detailsLabel")}
+                                                ariaLabel={"Details"}
                                                 style={"w-full outline-none h-10"}
                                                 onChange={handleInputRoomtype} />
 
                                             <TipologyGroupAutocomplete
-                                                label={"Grupo de Tipologia"}
+                                                label={t("hotel.tipologies.tipologyGroupLabel")}
                                                 style={""}
                                                 onChange={(value) => handleSelect(value)}
                                             />
@@ -132,17 +135,17 @@ const tipologyForm = ({
 
             {formTypeModal === 12 && ( //tipology edit
                 <>
-                    <Button fullWidth={true} size="md" onPress={onOpen} color={buttonColor} className="-h-3 flex justify-start -p-3">
+                     <Button fullWidth={true} size="md" onPress={onOpen} color={buttonColor} className="-h-3 flex justify-start -p-3">
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
@@ -163,8 +166,8 @@ const tipologyForm = ({
                                                 type={"text"}
                                                 id={"description"}
                                                 name={"Desc"}
-                                                label={"Descrição"}
-                                                ariaLabel={"Descrição"}
+                                                label={t("hotel.tipologies.descriptionLabel")}
+                                                ariaLabel={"Description"}
                                                 style={"w-full outline-none h-10"}
                                                 value={valuesRoomtype.Desc}
                                                 onChange={e => setValuesRoomtype({ ...valuesRoomtype, Desc: e.target.value })} />
@@ -173,8 +176,8 @@ const tipologyForm = ({
                                                 type={"text"}
                                                 id={"abreviature"}
                                                 name={"Name"}
-                                                label={"Abreviatura"}
-                                                ariaLabel={"Abreviatura"}
+                                                label={t("hotel.tipologies.shortnameLabel")}
+                                                ariaLabel={"Short Name"}
                                                 style={"w-full outline-none h-10"}
                                                 value={valuesRoomtype.Name}
                                                 onChange={e => setValuesRoomtype({ ...valuesRoomtype, Name: e.target.value })} />
@@ -183,8 +186,8 @@ const tipologyForm = ({
                                                 type={"text"}
                                                 id={"details"}
                                                 name={"RoomFeaturesDesc"}
-                                                label={"Detalhes"}
-                                                ariaLabel={"Detalhes"}
+                                                label={t("hotel.tipologies.detailsLabel")}
+                                                ariaLabel={"Details"}
                                                 style={"w-full outline-none h-10"}
                                                 value={valuesRoomtype.RoomFeaturesDesc}
                                                 onChange={e => setValuesRoomtype({ ...valuesRoomtype, RoomFeaturesDesc: e.target.value })} />

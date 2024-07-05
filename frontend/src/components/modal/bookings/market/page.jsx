@@ -12,7 +12,7 @@ import marketInsert, { marketEdit } from "@/components/functionsForm/CRUD/bookin
 import InputFieldControlled from "@/components/functionsForm/inputs/typeText/page";
 import { expansion } from "@/components/functionsForm/expansion/page";
 import ModalFooterContent from "@/components/modal/modalFooterContent";
-
+import {useTranslations} from 'next-intl';
 
 
 const marketForm = ({
@@ -35,6 +35,8 @@ const marketForm = ({
     const pathname = usePathname();
     const router = useRouter();
 
+    const t = useTranslations('Index');
+
     const { handleInputMarket, handleSubmitMarket } = marketInsert();
     const { handleUpdateMarket, setValuesMarket, valuesMarket } = marketEdit(idMarket);
     const { toggleExpand, setIsExpanded, isExpanded } = expansion();
@@ -50,23 +52,23 @@ const marketForm = ({
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
                                     <>
                                         <form onSubmit={handleSubmitMarket}>
-                                            <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">{modalHeader}
+                                        <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">{modalHeader}
                                                 <div className='flex flex-row items-center mr-5'>
-                                                    <Button color="transparent" onPress={onClose} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
+                                                    <Button color="transparent" onClick={() => { onClose(); window.location.reload(); }} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
                                                     <Button color="transparent" className="-mr-5" onClick={toggleExpand}><LiaExpandSolid size={30} /></Button>
-                                                    <Button color="transparent" variant="light" onPress={onClose}><MdClose size={30} /></Button>
+                                                    <Button color="transparent" variant="light" onClick={() => { onClose(); window.location.reload(); }}><MdClose size={30} /></Button>
                                                 </div>
                                             </ModalHeader>
                                             <ModalBody className="flex flex-col mx-5 my-5 space-y-8">
@@ -75,7 +77,7 @@ const marketForm = ({
                                                     type={"text"}
                                                     id={"abreviature"}
                                                     name={"Abreviature"}
-                                                    label={"Abreviatura"}
+                                                    label={t("bookings.marketOrigins.abreviature")}
                                                     ariaLabel={"Abreviatura"}
                                                     onChange={handleInputMarket} />
 
@@ -84,7 +86,7 @@ const marketForm = ({
                                                         type={"text"}
                                                         id={"description"}
                                                         name={"Description"}
-                                                        label={"Descrição"}
+                                                        label={t("bookings.marketOrigins.description")}
                                                         ariaLabel={"Descrição"}
                                                         onChange={handleInputMarket} />
                                                     <AiOutlineGlobal className="ml-auto text-xl" />
@@ -94,7 +96,7 @@ const marketForm = ({
                                                     type={"text"}
                                                     id={"ordenation"}
                                                     name={"Ordenation"}
-                                                    label={"Ordenação"}
+                                                    label={t("bookings.marketOrigins.order")}
                                                     ariaLabel={"Ordenação"}
                                                     onChange={handleInputMarket} />
 
@@ -109,7 +111,7 @@ const marketForm = ({
                                                         for="link-checkbox"
                                                         class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                                     >
-                                                        Estado
+                                                        {t("bookings.marketOrigins.status")}
                                                     </label>
                                                 </div>
                                             </ModalBody>
@@ -128,26 +130,26 @@ const marketForm = ({
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
                                     <>
                                         <form onSubmit={(e) => handleUpdateMarket(e)}>
-                                            <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
+                                        <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
                                                 <div className="flex flex-row justify-start gap-4">
                                                     {editIcon} {modalHeader} {modalEditArrow} {modalEdit}
                                                 </div>
                                                 <div className='flex flex-row items-center mr-5'>
-                                                    <Button color="transparent" onPress={onClose} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
+                                                    <Button color="transparent" onClick={() => { onClose(); window.location.reload(); }} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
                                                     <Button color="transparent" className="-mr-5" onClick={toggleExpand}><LiaExpandSolid size={30} /></Button>
-                                                    <Button color="transparent" variant="light" onPress={onClose}><MdClose size={30} /></Button>
+                                                    <Button color="transparent" variant="light" onClick={() => { onClose(); window.location.reload(); }}><MdClose size={30} /></Button>
                                                 </div>
                                             </ModalHeader>
                                             <ModalBody className="flex flex-col mx-5 my-5 space-y-8">
@@ -156,7 +158,7 @@ const marketForm = ({
                                                     type={"text"}
                                                     id={"abreviature"}
                                                     name={"Abreviature"}
-                                                    label={"Abreviatura"}
+                                                    label={t("bookings.marketOrigins.abreviature")}
                                                     ariaLabel={"Abreviatura"}
                                                     value={valuesMarket.Abreviature}
                                                     onChange={e => setValuesMarket({ ...valuesMarket, Abreviature: e.target.value })} />
@@ -166,7 +168,7 @@ const marketForm = ({
                                                         type={"text"}
                                                         id={"description"}
                                                         name={"Description"}
-                                                        label={"Descrição"}
+                                                        label={t("bookings.marketOrigins.description")}
                                                         ariaLabel={"Descrição"}
                                                         value={valuesMarket.Description}
                                                         onChange={e => setValuesMarket({ ...valuesMarket, Description: e.target.value })} />
@@ -177,7 +179,7 @@ const marketForm = ({
                                                     type={"text"}
                                                     id={"ordenation"}
                                                     name={"Ordenation"}
-                                                    label={"Ordenação"}
+                                                    label={t("bookings.marketOrigins.order")}
                                                     ariaLabel={"Ordenação"}
                                                     value={valuesMarket.Ordenation}
                                                     onChange={e => setValuesMarket({ ...valuesMarket, Ordenation: e.target.value })} />
@@ -193,7 +195,7 @@ const marketForm = ({
                                                         for="link-checkbox"
                                                         class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                                     >
-                                                        Estado
+                                                        {t("bookings.marketOrigins.status")}
                                                     </label>
                                                 </div>
                                             </ModalBody>

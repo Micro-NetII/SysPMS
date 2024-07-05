@@ -12,7 +12,7 @@ import replacementCodeInsert, { replacementCodeEdit } from "@/components/functio
 import InputFieldControlled from "@/components/functionsForm/inputs/typeText/page";
 import { expansion } from "@/components/functionsForm/expansion/page";
 import ModalFooterContent from "@/components/modal/modalFooterContent";
-
+import {useTranslations} from 'next-intl';
 
 
 const replacementCodeForm = ({
@@ -35,6 +35,8 @@ const replacementCodeForm = ({
     const pathname = usePathname();
     const router = useRouter();
 
+    const t = useTranslations('Index');
+
     const { handleInputReplaceCode, handleSubmitReplaceCode } = replacementCodeInsert();
     const { handleUpdateReplaceCode, setValuesReplaceCode, valuesReplaceCode } = replacementCodeEdit(idReplaceCode);
     const { toggleExpand, setIsExpanded, isExpanded } = expansion();
@@ -50,23 +52,23 @@ const replacementCodeForm = ({
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
                                     <>
                                         <form onSubmit={handleSubmitReplaceCode}>
-                                            <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">{modalHeader}
+                                        <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">{modalHeader}
                                                 <div className='flex flex-row items-center mr-5'>
-                                                    <Button color="transparent" onPress={onClose} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
+                                                    <Button color="transparent" onClick={() => { onClose(); window.location.reload(); }} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
                                                     <Button color="transparent" className="-mr-5" onClick={toggleExpand}><LiaExpandSolid size={30} /></Button>
-                                                    <Button color="transparent" variant="light" onPress={onClose}><MdClose size={30} /></Button>
+                                                    <Button color="transparent" variant="light" onClick={() => { onClose(); window.location.reload(); }}><MdClose size={30} /></Button>
                                                 </div>
                                             </ModalHeader>
                                             <ModalBody className="flex flex-col mx-5 my-5 space-y-8">
@@ -74,7 +76,7 @@ const replacementCodeForm = ({
                                                     type={"text"}
                                                     id={"abreviature"}
                                                     name={"Abreviature"}
-                                                    label={"Abreviatura"}
+                                                    label={t("bookings.swapCodes.abreviature")}
                                                     ariaLabel={"Abreviatura"}
                                                     onChange={handleInputReplaceCode} />
 
@@ -83,7 +85,7 @@ const replacementCodeForm = ({
                                                         type={"text"}
                                                         id={"description"}
                                                         name={"Description"}
-                                                        label={"Descrição"}
+                                                        label={t("bookings.swapCodes.description")}
                                                         ariaLabel={"Descrição"}
                                                         onChange={handleInputReplaceCode} />
                                                     <AiOutlineGlobal className="ml-auto text-xl" />
@@ -93,7 +95,7 @@ const replacementCodeForm = ({
                                                     type={"text"}
                                                     id={"ordenation"}
                                                     name={"Ordenation"}
-                                                    label={"Ordenação"}
+                                                    label={t("bookings.swapCodes.order")}
                                                     ariaLabel={"Ordenação"}
                                                     onChange={handleInputReplaceCode} />
 
@@ -108,7 +110,7 @@ const replacementCodeForm = ({
                                                         for="link-checkbox"
                                                         class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                                     >
-                                                        Estado
+                                                        {t("bookings.swapCodes.status")}
                                                     </label>
                                                 </div>
                                             </ModalBody>
@@ -123,30 +125,30 @@ const replacementCodeForm = ({
 
             {formTypeModal === 12 && ( //replacement code edit
                 <>
-                    <Button fullWidth={true} size="md" onPress={onOpen} color={buttonColor} className="-h-3 flex justify-start -p-3">
+                     <Button fullWidth={true} size="md" onPress={onOpen} color={buttonColor} className="-h-3 flex justify-start -p-3">
                         {buttonName} {buttonIcon}
                     </Button>
                     <Modal
-                        classNames={{
-                            base: "max-h-screen",
-                            wrapper: isExpanded ? "w-full h-screen" : "lg:pl-72 h-screen w-full",
-                            body: "h-full",
-                        }}
-                        size="full"
-                        isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false} isKeyboardDismissDisabled={true} hideCloseButton={true}>
+                        isOpen={isOpen}
+                        hideCloseButton={true}
+                        onOpenChange={onOpenChange}
+                        isDismissable={false}
+                        isKeyboardDismissDisabled={true}
+                        className="z-50"
+                    >
                         <ModalContent>
                             {(onClose) => (
                                 <>
                                     <>
                                         <form onSubmit={(e) => handleUpdateReplaceCode(e)}>
-                                            <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
+                                        <ModalHeader className="flex flex-row justify-between items-center gap-1 bg-primary-600 text-white">
                                                 <div className="flex flex-row justify-start gap-4">
                                                     {editIcon} {modalHeader} {modalEditArrow} {modalEdit}
                                                 </div>
                                                 <div className='flex flex-row items-center mr-5'>
-                                                    <Button color="transparent" onPress={onClose} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
+                                                    <Button color="transparent" onClick={() => { onClose(); window.location.reload(); }} className="-mr-5" type="submit"><TfiSave size={25} /></Button>
                                                     <Button color="transparent" className="-mr-5" onClick={toggleExpand}><LiaExpandSolid size={30} /></Button>
-                                                    <Button color="transparent" variant="light" onPress={onClose}><MdClose size={30} /></Button>
+                                                    <Button color="transparent" variant="light" onClick={() => { onClose(); window.location.reload(); }}><MdClose size={30} /></Button>
                                                 </div>
                                             </ModalHeader>
                                             <ModalBody className="flex flex-col mx-5 my-5 space-y-8">
@@ -155,7 +157,7 @@ const replacementCodeForm = ({
                                                     type={"text"}
                                                     id={"abreviature"}
                                                     name={"Abreviature"}
-                                                    label={"Abreviatura"}
+                                                    label={t("bookings.swapCodes.abreviature")}
                                                     ariaLabel={"Abreviatura"}
                                                     value={valuesReplaceCode.Abreviature}
                                                     onChange={e => setValuesReplaceCode({ ...valuesReplaceCode, Abreviature: e.target.value })} />
@@ -165,7 +167,7 @@ const replacementCodeForm = ({
                                                         type={"text"}
                                                         id={"description"}
                                                         name={"Description"}
-                                                        label={"Descrição"}
+                                                        label={t("bookings.swapCodes.description")}
                                                         ariaLabel={"Descrição"}
                                                         value={valuesReplaceCode.Description}
                                                         onChange={e => setValuesReplaceCode({ ...valuesReplaceCode, Description: e.target.value })} />
@@ -176,7 +178,7 @@ const replacementCodeForm = ({
                                                     type={"text"}
                                                     id={"ordenation"}
                                                     name={"Ordenation"}
-                                                    label={"Ordenação"}
+                                                    label={t("bookings.swapCodes.order")}
                                                     ariaLabel={"Ordenação"}
                                                     value={valuesReplaceCode.Ordenation}
                                                     onChange={e => setValuesReplaceCode({ ...valuesReplaceCode, Ordenation: e.target.value })} />
@@ -192,7 +194,7 @@ const replacementCodeForm = ({
                                                         for="link-checkbox"
                                                         class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                                                     >
-                                                        Estado
+                                                        {t("bookings.swapCodes.status")}
                                                     </label>
                                                 </div>
                                             </ModalBody>

@@ -19,9 +19,12 @@ import { FiPlus } from "react-icons/fi";
 import { FiEdit3 } from "react-icons/fi";
 import { BsArrowRight } from "react-icons/bs";
  
+import {useTranslations} from 'next-intl';
+
 //imports de componentes
 import FormModals from "@/components/modal/financialSetup/formModals";
 import PaginationTable from "@/components/table/paginationTable/paginationTable";
+import LoadingBackdrop from "@/components/table/loadingBackdrop/loadingBackdrop";
  
  
 export default function Characteristics() {
@@ -29,11 +32,19 @@ export default function Characteristics() {
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const [searchValue, setSearchValue] = React.useState("");
   const [reservChange, setReservChange] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const t = useTranslations('Index');
  
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get("/api/v1/bookings/reservationChange");
-      setReservChange(res.data.response);
+      try{
+        const res = await axios.get("/api/v1/bookings/reservationChange");
+        setReservChange(res.data.response);
+      } catch(error) {
+        console.error("Erro: ", error.message);
+      } finally {
+        setIsLoading(false);
+      }
     };
     getData();
   }, []);
@@ -85,13 +96,13 @@ export default function Characteristics() {
     return (
       <main>
         <div className="flex flex-col mt-3 py-3">
-          <p className="text-xs px-6">Anulação de Cobranças</p>
+          <p className="text-xs px-6">{t('financialSetup.voidCharges.title')}</p>
           <div className="flex flex-row justify-between items-center mx-5">
             <div className="flex flex-row">
               <div className="flex flex-wrap md:flex-nowrap gap-4">
                 <Input
                   className="mt-4 w-80"
-                  placeholder="Procurar..."
+                  placeholder={t('general.search')}
                   labelPlacement="outside"
                   startContent={
                     <FiSearch color={"black"} className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
@@ -102,10 +113,10 @@ export default function Characteristics() {
               </div>
             </div>
             <FormModals
-              buttonName={"Novo"}
+              buttonName={t('general.newRecord')}
               buttonIcon={<FiPlus size={15} />}
               buttonColor={"primary"}
-              modalHeader={"Inserir Anulação de Cobrança"}
+              modalHeader={t('financialSetup.voidCharges.new.modalHeader')}
               modalIcons={"bg-red"}
               formTypeModal={71}
             ></FormModals>
@@ -120,6 +131,8 @@ export default function Characteristics() {
             items={items}
             setPage={setPage}
           >
+            <LoadingBackdrop open={isLoading} />
+          {!isLoading && (
             <Table
             id="TableToPDF"
       isHeaderSticky={"true"}
@@ -133,16 +146,16 @@ export default function Characteristics() {
       >
         <TableHeader>
           <TableColumn className="bg-primary-600 text-white font-bold w-[40px] uppercase">
-            ID
+          {t('financialSetup.voidCharges.datatable.id')}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold px-20 uppercase">
-            Cod.
+          {t('financialSetup.voidCharges.datatable.cod')}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold uppercase">
-            Abreviatura
+          {t('financialSetup.voidCharges.datatable.abreviature')}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold w-1/4 uppercase">
-            Descrição
+          {t('financialSetup.voidCharges.datatable.description')}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white flex justify-end items-center pr-7">
             <GoGear size={20} />
@@ -155,7 +168,7 @@ export default function Characteristics() {
                         buttonName={reservChange.reservationchangeID}
                         editIcon={<FiEdit3 size={25}/>}
                         buttonColor={"transparent"}
-                        modalHeader={"Editar Anulação de Cobrança"}
+                        modalHeader={t('financialSetup.voidCharges.edit.modalHeader')}
                         modalEditArrow={<BsArrowRight size={25}/>}
                         modalEdit={`ID: ${reservChange.reservationchangeID}`}
                         formTypeModal={72}
@@ -180,10 +193,10 @@ export default function Characteristics() {
                   <DropdownMenu aria-label="Static Actions" closeOnSelect={false} isOpen={true}>
                     <DropdownItem key="edit">
                       <FormModals
-                        buttonName={"Editar"}
+                        buttonName={t('general.editRecord')}
                         editIcon={<FiEdit3 size={25}/>}
                         buttonColor={"transparent"}
-                        modalHeader={"Editar Anulação de Cobrança"}
+                        modalHeader={t('financialSetup.voidCharges.new.modalHeader')}
                         modalEditArrow={<BsArrowRight size={25}/>}
                         modalEdit={`ID: ${reservChange.reservationchangeID}`}
                         formTypeModal={72}
@@ -193,8 +206,8 @@ export default function Characteristics() {
                         editor={"teste"}
                       ></FormModals>
                     </DropdownItem>
-                    <DropdownItem key="delete" onClick={() => handleDelete(reservChange.reservationchangeID)}>Remover</DropdownItem>
-                    <DropdownItem key="view">Ver</DropdownItem>
+                    <DropdownItem key="delete" onClick={() => handleDelete(reservChange.reservationchangeID)}>{t('general.removeRecord')}</DropdownItem>
+                    <DropdownItem key="view">{t('general.viewRecord')}</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
               </TableCell>
@@ -202,6 +215,7 @@ export default function Characteristics() {
           ))}
         </TableBody>
       </Table>
+          )}
           </PaginationTable>
         </div>
       </main>

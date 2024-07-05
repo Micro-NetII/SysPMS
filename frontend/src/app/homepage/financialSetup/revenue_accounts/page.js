@@ -18,10 +18,13 @@ import { FiSearch } from "react-icons/fi";
 import { FiPlus } from "react-icons/fi";
 import { FiEdit3 } from "react-icons/fi";
 import { BsArrowRight } from "react-icons/bs";
+
+import {useTranslations} from 'next-intl';
  
 //imports de componentes
 import RevenueAccountsForm from "@/components/modal/financialSetup/revenueAccounts/page";
 import PaginationTable from "@/components/table/paginationTable/paginationTable";
+import LoadingBackdrop from "@/components/table/loadingBackdrop/loadingBackdrop";
  
  
 export default function Characteristics() {
@@ -29,11 +32,19 @@ export default function Characteristics() {
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const [searchValue, setSearchValue] = React.useState("");
   const [revenueAccounts, setRevenueAccounts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const t = useTranslations('Index');
  
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get("/api/v1/financialSetup/revenueAccounts");
-      setRevenueAccounts(res.data.response);
+      try{
+        const res = await axios.get("/api/v1/financialSetup/revenueAccounts");
+        setRevenueAccounts(res.data.response);
+      } catch(error) {
+        console.error("Erro: ", error.message);
+      } finally {
+        setIsLoading(false);
+      }
     };
     getData();
   }, []);
@@ -85,13 +96,13 @@ export default function Characteristics() {
     return (
       <main>
         <div className="flex flex-col mt-3 py-3">
-          <p className="text-xs px-6">Contas de Revenue</p>
+          <p className="text-xs px-6">{t('financialSetup.revenueAccounts.title')}</p>
           <div className="flex flex-row justify-between items-center mx-5">
             <div className="flex flex-row">
               <div className="flex flex-wrap md:flex-nowrap gap-4">
                 <Input
                   className="mt-4 w-80"
-                  placeholder="Procurar..."
+                  placeholder={t('general.search')}
                   labelPlacement="outside"
                   startContent={
                     <FiSearch color={"black"} className="text-2xl text-default-400 pointer-events-none flex-shrink-0" />
@@ -102,10 +113,10 @@ export default function Characteristics() {
               </div>
             </div>
             <RevenueAccountsForm
-              buttonName={"Novo"}
+              buttonName={t('general.newRecord')}
               buttonIcon={<FiPlus size={15} />}
               buttonColor={"primary"}
-              modalHeader={"Inserir Conta de Revenue"}
+              modalHeader={t('financialSetup.revenueAccounts.new.modalHeader')}
               modalIcons={"bg-red"}
               formTypeModal={11}
             ></RevenueAccountsForm>
@@ -128,6 +139,8 @@ export default function Characteristics() {
               }))
             }
           >
+            <LoadingBackdrop open={isLoading} />
+          {!isLoading && (
             <Table
             id="TableToPDF"
       isHeaderSticky={"true"}
@@ -141,31 +154,31 @@ export default function Characteristics() {
       >
         <TableHeader>
           <TableColumn className="bg-primary-600 text-white font-bold w-[40px] uppercase">
-            ID
+          {t('financialSetup.revenueAccounts.datatable.id')}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold px-10 uppercase">
-            Cod.
+          {t('financialSetup.revenueAccounts.datatable.cod')}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold uppercase">
-            Conta
+          {t('financialSetup.revenueAccounts.datatable.account')}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold uppercase">
-            Abreviatura
+          {t('financialSetup.revenueAccounts.datatable.abreviature')}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold w-1/4 uppercase">
-            Descrição
+          {t('financialSetup.revenueAccounts.datatable.description')}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold px-10 uppercase">
-            Grupo de Conta
+          {t('financialSetup.revenueAccounts.datatable.accountGroup')}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold px-20 uppercase">
-            Departamento
+          {t('financialSetup.revenueAccounts.datatable.department')}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold px-[7vw] uppercase">
-            Taxa
+          {t('financialSetup.revenueAccounts.datatable.tax')}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white font-bold px-20 uppercase">
-            Ordem
+          {t('financialSetup.revenueAccounts.datatable.order')}
           </TableColumn>
           <TableColumn className="bg-primary-600 text-white flex justify-end items-center pr-7">
             <GoGear size={20} />
@@ -179,7 +192,7 @@ export default function Characteristics() {
                         buttonName={revenueAccounts.revenueAccountID}
                         editIcon={<FiEdit3 size={25}/>}
                         buttonColor={"transparent"}
-                        modalHeader={"Editar Conta de Revenue"}
+                        modalHeader={t('financialSetup.revenueAccounts.edit.modalHeader')}
                         modalEditArrow={<BsArrowRight size={25}/>}
                         modalEdit={`ID: ${revenueAccounts.revenueAccountID}`}
                         formTypeModal={12}
@@ -209,10 +222,10 @@ export default function Characteristics() {
                   <DropdownMenu aria-label="Static Actions" closeOnSelect={false} isOpen={true}>
                     <DropdownItem key="edit">
                       <RevenueAccountsForm
-                        buttonName={"Editar"}
+                        buttonName={t('general.editRecord')}
                         editIcon={<FiEdit3 size={25}/>}
                         buttonColor={"transparent"}
-                        modalHeader={"Editar Conta de Revenue"}
+                        modalHeader={t('financialSetup.revenueAccounts.edit.modalHeader')}
                         modalEditArrow={<BsArrowRight size={25}/>}
                         modalEdit={`ID: ${revenueAccounts.revenueAccountID}`}
                         formTypeModal={12}
@@ -222,8 +235,8 @@ export default function Characteristics() {
                         editor={"teste"}
                       ></RevenueAccountsForm>
                     </DropdownItem>
-                    <DropdownItem key="delete" onClick={() => handleDelete(revenueAccounts.revenueAccountID)}>Remover</DropdownItem>
-                    <DropdownItem key="view">Ver</DropdownItem>
+                    <DropdownItem key="delete" onClick={() => handleDelete(revenueAccounts.revenueAccountID)}>{t('general.removeRecord')}</DropdownItem>
+                    <DropdownItem key="view">{t('general.viewRecord')}</DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
               </TableCell>
@@ -231,6 +244,7 @@ export default function Characteristics() {
           ))}
         </TableBody>
       </Table>
+          )}
           </PaginationTable>
         </div>
       </main>
