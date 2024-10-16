@@ -35,18 +35,34 @@ export async function PATCH(request, context) {
     try {
         const { id } = context.params;
         const { data } = await request.json();
-        const checkInDate = new Date(data.checkInDate);
-        const checkOutDate = new Date(data.checkOutDate);
+        // Prepare um objeto de atualização vazio
+        const updateData = {};
 
+        // Adicione o checkInDate se ele estiver presente
+        if (data.checkInDate) {
+            updateData.checkInDate = new Date(data.checkInDate);
+        }
+
+        // Adicione o checkOutDate se ele estiver presente
+        if (data.checkOutDate) {
+            updateData.checkOutDate = new Date(data.checkOutDate);
+        }
+
+        if (data.roomNumber) {
+            updateData.roomNumber = parseInt(data.roomNumber);
+        }
+        // Se updateData ainda estiver vazio, retorne um erro
+        if (Object.keys(updateData).length === 0) {
+            return new NextResponse(JSON.stringify({ error: 'Nenhum dado válido fornecido para atualização' }), { status: 400 });
+        }
+
+        // Atualize o registro apenas com os campos presentes
         const updateRecord = await prisma.reservations.update({
             where: {
                 reservationID: parseInt(id),
             },
-            data: {
-                checkOutDate: checkOutDate,
-
-            }
-        })
+            data: updateData,
+        });
         return new NextResponse(JSON.stringify({ status: 200 }));
 
     } catch (error) {

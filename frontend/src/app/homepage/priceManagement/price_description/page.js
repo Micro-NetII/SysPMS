@@ -6,7 +6,7 @@ import {
   AccordionItem,
   Autocomplete,
   AutocompleteItem,
-  Button
+  Button,
 } from "@nextui-org/react";
 import { FiPlus } from "react-icons/fi";
 import { BsArrowRight, BsDot } from "react-icons/bs";
@@ -30,7 +30,7 @@ export default function PriceManagement() {
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get("/api/v1/prices/priceDescription");
+      const res = await axios.get("/api/v1/prices/priceDescriptionHeader");
       setPriceDescription(res.data.response);
     };
     getData();
@@ -82,33 +82,40 @@ export default function PriceManagement() {
             <AccordionItem key={code.id} title={code.raterName}>
               <div className="space-y-3 mb-3 text-left">
                 <div className="space-y-2">
-                {priceDescription
-  .filter(priceDescription => priceDescription.rateCodeID === code.rategrpID)
-  .sort((a, b) => new Date(b.validFrom) - new Date(a.validFrom))  // Sort by validFrom date in descending order
-  .map((priceDescription, detailIndex) => {
-    const validFrom = new Date(priceDescription.validFrom);
-    const validUntil = new Date(priceDescription.validUntil);
+                  {priceDescription
+                    .filter(
+                      (priceDescription) =>
+                        priceDescription.priceCode === code.rategrpID
+                    )
+                    .sort(
+                      (a, b) => new Date(b.validFrom) - new Date(a.validFrom)
+                    ) // Sort by validFrom date in descending order
+                    .map((priceDescription, detailIndex) => {
+                      const validFrom = new Date(priceDescription.validFrom);
+                      const validUntil = new Date(priceDescription.validUntil);
 
-    var font;
-    console.log(validFrom);
-    if (validFrom && validUntil) {
-      if (today < validFrom && today < validUntil) {
-        font = "font-normal";
-      } else if (today >= validFrom && today <= validUntil) {
-        font = "font-bold";
-      } else if (today >= validFrom && today >= validUntil) {
-        font = "line-through";
-      }
-    }
+                      var font;
+                      console.log(validFrom);
+                      if (validFrom && validUntil) {
+                        if (today < validFrom && today < validUntil) {
+                          font = "font-normal";
+                        } else if (today >= validFrom && today <= validUntil) {
+                          font = "font-bold";
+                        } else if (today >= validFrom && today >= validUntil) {
+                          font = "line-through";
+                        }
+                      }
 
-    return (
-      <div key={detailIndex} className={`flex items-center ${font}`}>
-        <BsDot size={20} className={`mr-2`} />
-        {priceDescription.rateCodeDetName}
-      </div>
-    );
-  })}
-
+                      return (
+                        <div
+                          key={detailIndex}
+                          className={`flex items-center ${font}`}
+                        >
+                          <BsDot size={20} className={`mr-2`} />
+                          {priceDescription.descriptionName}
+                        </div>
+                      );
+                    })}
                 </div>
                 <PriceDescriptionForm
                   buttonName={"Novo"}
