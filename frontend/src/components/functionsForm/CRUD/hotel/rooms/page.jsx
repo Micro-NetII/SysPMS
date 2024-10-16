@@ -17,7 +17,7 @@ export default function roomsInsert() {
     const handleTipologySelect = (tipology) => {
         setRoom({
             ...room,
-            RoomTypeID: tipology.roomTypeID,
+            RoomTypeID: tipology,
         })
     };
 
@@ -25,10 +25,9 @@ export default function roomsInsert() {
     const handleCaracteristicSelect = (caracteristics) => {
         setRoom({
             ...room,
-            CharacteristcID: [caracteristics.characteristicID],
+            CharacteristcID: [caracteristics],
         })
     };
-
     const handleInputRoom = (event) => {
         setRoom({ ...room, [event.target.name]: event.target.value })
     }
@@ -51,16 +50,16 @@ export default function roomsInsert() {
                 }
             });
 
-            const newRecordRoomID = await roomCreationInfo.data.newRecord.roomID.toString();
+            // const newRecordRoomID = await roomCreationInfo.data.newRecord.roomID.toString();
             // Envio da solicitação para criar localidades
-            const caracteristicCreationInfo = await axios.put('/api/v1/hotel/rooms/roomCharacteristics', {
-                data: {
-                    characteristicID: room.CharacteristcID,
-                    roomID: newRecordRoomID,
-                }
-            });
+            // const caracteristicCreationInfo = await axios.put('/api/v1/hotel/rooms/roomCharacteristics', {
+            //     data: {
+            //         characteristicID: room.CharacteristcID,
+            //         roomID: newRecordRoomID,
+            //     }
+            // });
 
-            console.log(roomCreationInfo, caracteristicCreationInfo); // Exibe a resposta do servidor no console
+            // console.log(roomCreationInfo, caracteristicCreationInfo); // Exibe a resposta do servidor no console
         } catch (error) {
             console.error('Erro ao enviar requisições:', error);
         }

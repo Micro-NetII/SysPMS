@@ -1,1390 +1,1427 @@
 {
-    "Index": {
-        "general": {
-            "search": "Search...",
-            "newRecord": "New",
-            "editRecord": "Edit",
-            "removeRecord": "Remove",
-            "viewRecord": "View",
-            "loadingStatus": "Loading..."
+  "Index": {
+    "general": {
+      "search": "Search...",
+      "newRecord": "New",
+      "editRecord": "Edit",
+      "removeRecord": "Remove",
+      "viewRecord": "View",
+      "loadingStatus": "Loading..."
+    },
+    "pagination": {
+      "noRecords": "0 results",
+      "pageRecords": "Records per Page:",
+      "of": "of"
+    },
+    "sidebar": {
+      "frontoffice": {
+        "label": "Front Office",
+        "frontOffice": "Front Office",
+        "clientFiles": "Client Files",
+        "frontDesk": "Front-Desk",
+        "reservations": "Reservations",
+        "arrivals": "Arrivals",
+        "guestList": "Guest List",
+        "departures": "Departures",
+        "typologiesPlan": "Typologies Plan",
+        "roomsPlan": "Rooms Plan"
+      },
+      "housekeeping": {
+        "label": "Housekeeping",
+        "housekeeping": "Housekeeping",
+        "management": "Management",
+        "lostAndFound": "Lost And Found",
+        "attendantSheets": "Attendant Sheets"
+      },
+      "settings": {
+        "label": "Settings",
+        "company": "Company",
+        "chargeAccounts": "Charge Accounts"
+      },
+      "hotel": {
+        "label": "Hotel",
+        "hotel": "Hotel",
+        "tipologiesGroup": "Tipologies Group",
+        "tipologies": "Tipologies",
+        "rooms": "Rooms",
+        "characteristics": "Characteristics",
+        "maintenance": "Maintenance"
+      },
+      "cardex": {
+        "label": "Cardex",
+        "cardex": "Cardex",
+        "salutations": "Salutations",
+        "nationalities": "Nationalities",
+        "knowledgeMethod": "Knowledge Method",
+        "profession": "Profession",
+        "idDocument": "Identification Document",
+        "languages": "Languages",
+        "clientPreferences": "Client Preferences",
+        "members": "Members",
+        "marketing": "Marketing",
+        "vipTypes": "VIP Types",
+        "ageConfig": "Age Configuration"
+      },
+      "bookings": {
+        "label": "Bookings",
+        "bookings": "Bookings",
+        "bookingStatus": "Booking Status",
+        "marketSegments": "Market Segments",
+        "marketSources": "Market Sources",
+        "formsOfKnowledge": "Forms of Knowledge",
+        "bookingReasons": "Booking Reasons",
+        "substitutionCodes": "Substitution Codes",
+        "cancelationReasons": "Cancelation Reasons",
+        "pickupTypes": "Pickup Types",
+        "bookingChangeTypes": "Booking Change Types",
+        "cancelationTypes": "Cancelation Types"
+      },
+      "financial": {
+        "label": "Financial",
+        "financial": "Financial",
+        "departments": "Departments",
+        "accountsGroups": "Accounts Groups",
+        "revenueAccounts": "Revenue Accounts",
+        "paymentAccounts": "Payment Accounts",
+        "taxes": "Taxes",
+        "cashiers": "Cashiers",
+        "voidCharges": "Void Charges"
+      },
+      "priceManagement": {
+        "label": "Price Management",
+        "priceCodes": "Price Codes",
+        "priceCodesDescription": "Price Codes Description",
+        "ratesPlanner": "Rate Code Planner"
+      }
+    },
+    "frontOffice": {
+      "frontOffice": {
+        "generalCard": "GENERAL",
+        "individualCard": "INDIVIDUALS",
+        "companyCard": "COMPANIES",
+        "travelAgencyCard": "TRAVEL AGENCIES",
+        "groupsCard": "GROUPS",
+        "othersCard": "OTHERS"
+      },
+      "clientFiles": {
+        "label": "Client Files",
+        "addressTitle": "Address",
+        "contactsTitle": "Contacts",
+        "personalDataTitle": "Personal Data",
+        "additionalInformationTitle": "Additional Information",
+        "billingDataTitle": "Billing Data",
+        "marketingTitle": "Marketing",
+        "businessClassTitle": "Business Classification",
+        "membersTitle": "Members",
+        "notesTitle": "Notes",
+        "attachmentsTitle": "Attachments",
+        "generalTitle": "General",
+        "informationTitle": "Information",
+        "contact1Title": "Contact 1",
+        "contact2Title": "Contact 2",
+        "nameLabel": "Name",
+        "lastNameLabel": "Last Name",
+        "salutationLabel": "Salutation",
+        "languageLabel": "Language",
+        "addressLabel": "Address",
+        "postalCodeLabel": "Postal Code",
+        "localityLabel": "Locality",
+        "regionStateLabel": "Region/State",
+        "countryLabel": "Country",
+        "personalEmailLabel": "Personal Email",
+        "workEmailLabel": "Work Email",
+        "personalPhoneNumberLabel": "Personal Phone Number",
+        "workPhoneNumberLabel": "Work Phone Number",
+        "homePhoneNumberLabel": "Home Phone Number",
+        "birthdateLabel": "Birthdate",
+        "birthplaceLabel": "Place of Birth",
+        "originPlaceLabel": "Place of Origin",
+        "nationalityLabel": "Nationality",
+        "citizenCardLabel": "Citizen Card",
+        "issuedLabel": "Issued On:",
+        "expiresLabel": "Expires On:",
+        "countryIssueLabel": "Country of Issue",
+        "fiscalNumberLabel": "Fiscal Number",
+        "marketingCodesLabel": "Codes",
+        "marketingMarketsLabel": "Markets",
+        "marketingLabel": "Marketing",
+        "sentLabel": "Sent On:",
+        "vipCodeLabel": "VIP Code",
+        "professionLabel": "Profession",
+        "priceTableLabel": "Price Table",
+        "roomPreferencesLabel": "Room Preferences",
+        "processLabel": "Process",
+        "subscriptionLabel": "Subscription",
+        "admittedLabel": "Admitted On:",
+        "notesObs1Label": "Obs.1.",
+        "notesObs2Label": "Obs.2.",
+        "shortnameLabel": "Short Name",
+        "generalEmailLabel": "General Email",
+        "departmentEmailLabel": "Department Email",
+        "generalPhoneNumberLabel": "General Phone Number",
+        "departmentPhoneNumberLabel": "Department Phone Number",
+        "urlLabel": "URL",
+        "departmentLabel": "Department",
+        "emailLabel": "Email",
+        "phoneNumberLabel": "Phone Number",
+        "CAECodeLabel": "CAE Code",
+        "datatable": {
+          "id": "ID",
+          "fileType": "FILE TYPE",
+          "name": "NAME",
+          "lastName": "LAST NAME",
+          "address": "ADDRESS",
+          "email": "EMAIL",
+          "phoneNumber": "PHONE NUMBER"
         },
-        "pagination": {
-            "noRecords": "0 results",
-            "pageRecords": "Records per Page:",
-            "of": "of"
+        "cards": {
+          "individual": "Individual",
+          "company": "Company",
+          "travelAgency": "Travel Agency",
+          "group": "Group",
+          "other": "Other"
         },
-        "sidebar": {
-            "frontoffice": {
-                "label": "Front Office",
-                "frontOffice": "Front Office",
-                "clientFiles": "Client Files",
-                "frontDesk": "Front-Desk",
-                "reservations": "Reservations",
-                "arrivals": "Arrivals",
-                "guestList": "Guest List",
-                "departures": "Departures",
-                "typologiesPlan": "Typologies Plan",
-                "roomsPlan": "Rooms Plan"
-            },
-            "housekeeping": {
-                "label": "Housekeeping",
-                "housekeeping": "Housekeeping",
-                "management": "Management",
-                "lostAndFound": "Lost And Found",
-                "attendantSheets": "Attendant Sheets"
-            },
-            "settings": {
-                "label": "Settings",
-                "company": "Company",
-                "chargeAccounts": "Charge Accounts"
-            },
-            "hotel": {
-                "label": "Hotel",
-                "hotel": "Hotel",
-                "tipologiesGroup": "Tipologies Group",
-                "tipologies": "Tipologies",
-                "rooms": "Rooms",
-                "characteristics": "Characteristics",
-                "maintenance": "Maintenance"
-            },
-            "cardex": {
-                "label": "Cardex",
-                "cardex": "Cardex",
-                "salutations": "Salutations",
-                "nationalities": "Nationalities",
-                "knowledgeMethod": "Knowledge Method",
-                "profession": "Profession",
-                "idDocument": "Identification Document",
-                "languages": "Languages",
-                "clientPreferences": "Client Preferences",
-                "members": "Members",
-                "marketing": "Marketing",
-                "vipTypes": "VIP Types"
-            },
-            "bookings": {
-                "label": "Bookings",
-                "bookings": "Bookings",
-                "bookingStatus": "Booking Status",
-                "marketSegments": "Market Segments",
-                "marketSources": "Market Sources",
-                "formsOfKnowledge": "Forms of Knowledge",
-                "bookingReasons": "Booking Reasons",
-                "substitutionCodes": "Substitution Codes",
-                "cancelationReasons": "Cancelation Reasons",
-                "pickupTypes": "Pickup Types",
-                "bookingChangeTypes": "Booking Change Types",
-                "cancelationTypes": "Cancelation Types"
-            },
-            "financial": {
-                "label": "Financial",
-                "financial": "Financial",
-                "departments": "Departments",
-                "accountsGroups": "Accounts Groups",
-                "revenueAccounts": "Revenue Accounts",
-                "paymentAccounts": "Payment Accounts",
-                "taxes": "Taxes",
-                "cashiers": "Cashiers",
-                "voidCharges": "Void Charges"
-            },
-            "priceManagement": {
-                "label": "Price Management",
-                "priceCodes": "Price Codes",
-                "priceCodesDescription": "Price Codes Description",
-                "seasons": "Seasons"
-            }
+        "fileType": {
+          "individual": "Individual",
+          "company": "Company",
+          "travelAgency": "Travel Agency",
+          "group": "Group",
+          "other": "Other"
         },
-        "frontOffice": {
-            "frontOffice": {
-                "generalCard": "GENERAL",
-                "individualCard": "INDIVIDUALS",
-                "companyCard": "COMPANIES",
-                "travelAgencyCard": "TRAVEL AGENCIES",
-                "groupsCard": "GROUPS",
-                "othersCard": "OTHERS"
-            },
-            "clientFiles": {
-                "label": "Client Files",
-                "addressTitle": "Address",
-                "contactsTitle": "Contacts",
-                "personalDataTitle": "Personal Data",
-                "additionalInformationTitle": "Additional Information",
-                "billingDataTitle": "Billing Data",
-                "marketingTitle": "Marketing",
-                "businessClassTitle": "Business Classification",
-                "membersTitle": "Members",
-                "notesTitle": "Notes",
-                "attachmentsTitle": "Attachments",
-                "generalTitle": "General",
-                "informationTitle": "Information",
-                "contact1Title": "Contact 1",
-                "contact2Title": "Contact 2",
-                "nameLabel": "Name",
-                "lastNameLabel": "Last Name",
-                "salutationLabel": "Salutation",
-                "languageLabel": "Language",
-                "addressLabel": "Address",
-                "postalCodeLabel": "Postal Code",
-                "localityLabel": "Locality",
-                "regionStateLabel": "Region/State",
-                "countryLabel": "Country",
-                "personalEmailLabel": "Personal Email",
-                "workEmailLabel": "Work Email",
-                "personalPhoneNumberLabel": "Personal Phone Number",
-                "workPhoneNumberLabel": "Work Phone Number",
-                "homePhoneNumberLabel": "Home Phone Number",
-                "birthdateLabel": "Birthdate",
-                "birthplaceLabel": "Place of Birth",
-                "originPlaceLabel": "Place of Origin",
-                "nationalityLabel": "Nationality",
-                "citizenCardLabel": "Citizen Card",
-                "issuedLabel": "Issued On:",
-                "expiresLabel": "Expires On:",
-                "countryIssueLabel": "Country of Issue",
-                "fiscalNumberLabel": "Fiscal Number",
-                "marketingCodesLabel": "Codes",
-                "marketingMarketsLabel": "Markets",
-                "marketingLabel": "Marketing",
-                "sentLabel": "Sent On:",
-                "vipCodeLabel": "VIP Code",
-                "professionLabel": "Profession",
-                "priceTableLabel": "Price Table",
-                "roomPreferencesLabel": "Room Preferences",
-                "processLabel": "Process",
-                "subscriptionLabel": "Subscription",
-                "admittedLabel": "Admitted On:",
-                "notesObs1Label": "Obs.1.",
-                "notesObs2Label": "Obs.2.",
-                "shortnameLabel": "Short Name",
-                "generalEmailLabel": "General Email",
-                "departmentEmailLabel": "Department Email",
-                "generalPhoneNumberLabel": "General Phone Number",
-                "departmentPhoneNumberLabel": "Department Phone Number",
-                "urlLabel": "URL",
-                "departmentLabel": "Department",
-                "emailLabel": "Email",
-                "phoneNumberLabel": "Phone Number",
-                "CAECodeLabel": "CAE Code",
-                "datatable": {
-                    "id": "ID",
-                    "fileType": "FILE TYPE",
-                    "name": "NAME",
-                    "lastName": "LAST NAME",
-                    "address": "ADDRESS",
-                    "email": "EMAIL",
-                    "phoneNumber": "PHONE NUMBER"
-                },
-                "cards": {
-                    "individual": "Individual",
-                    "company": "Company",
-                    "travelAgency": "Travel Agency",
-                    "group": "Group",
-                    "other": "Other"
-                },
-                "fileType": {
-                    "individual": "Individual",
-                    "company": "Company",
-                    "travelAgency": "Travel Agency",
-                    "group": "Group",
-                    "other": "Other"
-                },
-                "new": {
-                    "modalHeader": "New Client File"
-                },
-                "edit": {
-                    "modalHeader": "Edit Client File"
-                },
-                "view": {
-                    "modalHeader": "View Client File"
-                }
-            },
-            "frontDesk": {
-                "frontDesk": {
-                    "reservations": "Reservations",
-                    "arrivals": "Arrivals",
-                    "guestList": "Guest List",
-                    "departures": "Departures"
-                },
-                "bookings": {
-                    "label": "Bookings",
-                    "arrivalLabel": "Arrivals",
-                    "departuresLabel": "Departures",
-                    "guestListLabel": "Guest List",
-                    "cards": {
-                        "pending": "Pending",
-                        "checkedIn": "Checked-In",
-                        "checkedOut": "Checked-Out",
-                        "canceled": "Canceled",
-                        "noShow": "No-Show",
-                        "cancelCI": "Cancel CI"
-                    },
-                    "filters": {
-                        "from": "From:",
-                        "to": "To:",
-                        "searchFor": "SEARCH FOR",
-                        "searchRoom": "Search room",
-                        "searchSurname": "Search surname",
-                        "searchFirstName": "Search first name",
-                        "applyFilters": "Apply Filters",
-                        "cleanFilters": "Clean Filters",
-                        "delete": "Delete",
-                        "docType": "Document Type"
-                    },
-                    "datatable": {
-                        "name": "Name",
-                        "surname": "Surname",
-                        "checkIn": "Check-in",
-                        "checkOut": "Check-out",
-                        "nights": "Nights",
-                        "room": "Room",
-                        "rt": "rt",
-                        "people": "People",
-                        "status": "Status"
-                    },
-                    "notFound": {
-                        "name": "Name not found",
-                        "surname": "Surname not found",
-                        "status": "Unknown status"
-                    },
-                    "new": {
-                        "modalHeader": "New Reservation"
-                    },
-                    "edit": {
-                        "modalHeader": "Edit Reservation"
-                    },
-                    "view": {
-                        "modalHeader": "View Reservation"
-                    },
-                    "modal": {
-                        "booking": {
-                            "name": "Name",
-                            "surname": "Surname",
-                            "salutation": "Salutation",
-                            "language": "Language",
-                            "stayDetails": {
-                                "label": "Stay Details",
-                                "inputs": {
-                                    "checkIn": "Arrival:",
-                                    "optional": "Optional:",
-                                    "nightCount": "Nights",
-                                    "checkOut": "Departure:",
-                                    "guestNumber": "Guest per Room",
-                                    "payment": "Payment"
-                                }
-                            },
-                            "roomDetails": {
-                                "label": "Room Details",
-                                "inputs": {
-                                    "room": "Room",
-                                    "roomType": "Room Type",
-                                    "roomToCharge": "Room to Charge"
-                                }
-                            },
-                            "rateDetails": {
-                                "label": "Rate Details",
-                                "inputs": {
-                                    "rateCode": "Rate Code",
-                                    "avgRate": "Avg.Rate",
-                                    "totalRate": "Total Rate",
-                                    "packages": "Packages",
-                                    "price": "Price"
-                                }
-                            },
-                            "billing": {
-                                "label": "Billing",
-                                "inputs": {
-                                    "payment": "Payment:",
-                                    "charges": "Charges:",
-                                    "balance": "Balance:",
-                                    "forecast": "Forecast:"
-                                }
-                            },
-                            "traces": {
-                                "label": "Traces"
-                            },
-                            "notes": {
-                                "label": "Notes"
-                            },
-                            "userDefined": {
-                                "label": "User Defined"
-                            },
-                            "attachements": {
-                                "label": "Attachements"
-                            },
-                            "segmentation": {
-                                "label": "Segmentation",
-                                "inputs": {
-                                    "marketCode": "Market Code",
-                                    "distribChannel": "Distrib. Channel",
-                                    "commChannel": "Comm. Channel",
-                                    "travelReason": "Travel Reason"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "plans": {
-                "datatable": {
-                    "today": "Today"
-                },
-                "modals": {
-                    "filter": "FILTER BY MONTH AND YEAR",
-                    "reservationDetails": "Reservation details",
-                    "guestDetails": "Choose the type of guest, please:",
-                    "guestName": "Guest Name *",
-                    "in": "In:",
-                    "out": "Out:",
-                    "reserve": "RESERVE",
-                    "cancel": "CANCEL",
-                    "reservationHeader": "Enter a Reservation",
-                    "buttons": {
-                        "individuals": "Individuals",
-                        "companys": "Companys",
-                        "groups": "Groups",
-                        "travelAgencys": "Travel Agencys",
-                        "others": "Others"
-                    }
-                }
-            },
-            "typologyPlan": {
-                "label": "Typology Plan",
-                "datatable": {
-                    "typologys": "Typologys",
-                    "dayUse": "Day Use",
-                    "totalAvailable": "Total Available",
-                    "totalOverbooking": "Total Overbooking",
-                    "allotNonDedNotPu": "Allot - Non Ded/Not Pu",
-                    "allotNonDedPu": "Allot - Non Ded/Pu",
-                    "allotDeductNotPu": "Allot - Deduct/Not Pu",
-                    "allotDeductPu": "Allot - Deduct/Pu",
-                    "outOfOrder": "Out of Order",
-                    "optionDeduct": "Option - Deduct",
-                    "optionNonDeduct": "Option - Non Deduct",
-                    "confirmedDeduct": "Confirmed - Deduct",
-                    "physicallyAvailable": "Physically Available",
-                    "occupation": "Occupation %"
-                }
-            },
-            "roomsPlan": {
-                "label": "Rooms Plan",
-                "datatable": {
-                    "rooms": "Rooms"
-                }
-            }
+        "new": {
+          "modalHeader": "New Client File"
         },
-        "financialSetup": {
-            "cards": {
-                "departments": "DEPARTMENTS",
-                "accountGroups": "ACCOUNT GROUPS",
-                "revenueAccounts": "REVENUE ACCOUNTS",
-                "paymentAccounts": "PAYMENT ACCOUNTS",
-                "taxes": "TAXES",
-                "cashiers": "CASHIERS",
-                "voidCharges": "VOID CHARGES"
-            },
-            "departments": {
-                "title": "Departments",
-                "abreviature": "Abreviature",
-                "description": "Description",
-                "activeStatus": "Active (status)",
-                "order": "Order",
-                "datatable": {
-                    "id": "id",
-                    "cod": "Cod.",
-                    "abreviature": "Abreviature",
-                    "description": "Description",
-                    "detail": "Detail",
-                    "status": "Status",
-                    "order": "Order"
-                },
-                "new": {
-                    "modalHeader": "New Department"
-                },
-                "edit": {
-                    "modalHeader": "Edit Department"
-                },
-                "view": {
-                    "modalHeader": "View Department"
-                }
-            },
-            "accountGroups": {
-                "title": "Account Groups",
-                "cod": "Cod.",
-                "abreviature": "Abreviature",
-                "description": "Description",
-                "order": "Order",
-                "datatable": {
-                    "id": "id",
-                    "cod": "Cod.",
-                    "abreviature": "Abreviature",
-                    "description": "Description",
-                    "group": "Group",
-                    "order": "Order"
-                },
-                "new": {
-                    "modalHeader": "New Account Group"
-                },
-                "edit": {
-                    "modalHeader": "Edit Account Group"
-                },
-                "view": {
-                    "modalHeader": "View Account Group"
-                }
-            },
-            "revenueAccounts": {
-                "title": "Revenue Accounts",
-                "cod": "Cod.",
-                "abreviature": "Abreviature",
-                "details": "Details",
-                "department": "Department",
-                "accountGroup": "Account Group",
-                "tax": "Tax",
-                "worth": "Worth",
-                "property": "Property",
-                "statCode": "Statistic Code",
-                "datatable": {
-                    "id": "id",
-                    "cod": "Cod.",
-                    "account": "Account",
-                    "abreviature": "Abreviature",
-                    "description": "Description",
-                    "accountGroup": "Group Account",
-                    "department": "Department",
-                    "tax": "Tax",
-                    "order": "Order"
-                },
-                "new": {
-                    "modalHeader": "New Revenue Account"
-                },
-                "edit": {
-                    "modalHeader": "Edit Revenue Account"
-                },
-                "view": {
-                    "modalHeader": "View Revenue Account"
-                }
-            },
-            "paymentAccounts": {
-                "title": "Payment Accounts",
-                "cod": "Cod.",
-                "abreviature": "Abreviature",
-                "description": "Description",
-                "departments": "Deparments",
-                "group": "Group",
-                "type": "Type",
-                "property": "Property",
-                "datatable": {
-                    "id": "id",
-                    "cod": "Cod.",
-                    "account": "Account",
-                    "abreviature": "Abreviature",
-                    "description": "Description",
-                    "group": "Group",
-                    "order": "Order"
-                },
-                "new": {
-                    "modalHeader": "New Payment Accounts"
-                },
-                "edit": {
-                    "modalHeader": "Edit Payment Accounts"
-                },
-                "view": {
-                    "modalHeader": "View Payment Accounts"
-                }
-            },
-            "taxes": {
-                "title": "Taxes",
-                "cod": "Cod.",
-                "abreviature": "Abreviature",
-                "description": "Description",
-                "order": "Order",
-                "percentage": "Percentage",
-                "codSAFT": "Cod. SAFT",
-                "descSAFT": "Desc. SAFT",
-                "detail": "Detail",
-                "detailedInvoice": "Detailed Invoice",
-                "datatable": {
-                    "id": "id",
-                    "cod": "Cod.",
-                    "abreviature": "Abreviature",
-                    "description": "Description",
-                    "percentage": "Percentage",
-                    "order": "Order"
-                },
-                "new": {
-                    "modalHeader": "New Tax"
-                },
-                "edit": {
-                    "modalHeader": "Edit Tax"
-                },
-                "view": {
-                    "modalHeader": "View Tax"
-                }
-            },
-            "cashiers": {
-                "title": "Cashiers",
-                "cod": "Cod.",
-                "abreviature": "Abreviature",
-                "password": "Password",
-                "description": "Description",
-                "datatable": {
-                    "id": "id",
-                    "cod": "Cod.",
-                    "abreviature": "Abreviature",
-                    "description": "Description"
-                },
-                "new": {
-                    "modalHeader": "New Cashier"
-                },
-                "edit": {
-                    "modalHeader": "Edit Cashier"
-                },
-                "view": {
-                    "modalHeader": "View Cashier"
-                }
-            },
-            "voidCharges": {
-                "title": "Void Charges",
-                "cod": "Cod.",
-                "abreviature": "Abreviature",
-                "property": "Property",
-                "description": "Description",
-                "datatable": {
-                    "id": "id",
-                    "cod": "Cod.",
-                    "abreviature": "Abreviature",
-                    "description": "Description"
-                },
-                "new": {
-                    "modalHeader": "New Void Charge"
-                },
-                "edit": {
-                    "modalHeader": "Edit Void Charge"
-                },
-                "view": {
-                    "modalHeader": "View  Void Charge"
-                }
-            }
+        "edit": {
+          "modalHeader": "Edit Client File"
+        },
+        "view": {
+          "modalHeader": "View Client File"
+        }
+      },
+      "frontDesk": {
+        "frontDesk": {
+          "reservations": "Reservations",
+          "arrivals": "Arrivals",
+          "guestList": "Guest List",
+          "departures": "Departures"
         },
         "bookings": {
-            "cards": {
-                "reservationStatus": "RESERVATION STATUS",
-                "marketSegments": "MARKET SEGMENTS",
-                "marketOrigins": "MARKET ORIGINS",
-                "knowledgeMethods": "KNOWLEDGE METHODS",
-                "reservationReasons": "RESERVATION REASONS",
-                "swapCodes": "SWAP CODES",
-                "cancelationReasons": "CANCELATION REASONS",
-                "pickUp": "PICK UP",
-                "changeTypeReservations": "RESERVATION TYPES CHANGES",
-                "cancelationTypes": "CANCELATION TYPES"
-            },
-            "reservationStatus": {
-                "title": "Reservation Status",
-                "abreviature": "Abreviature",
-                "description": "Description",
-                "order": "Order",
-                "status": "Status",
-                "datatable": {
-                    "id": "id",
-                    "abreviature": "Abreviature",
-                    "description": "Description",
-                    "order": "Order"
-                },
-                "new": {
-                    "modalHeader": "New Reservation Status"
-                },
-                "edit": {
-                    "modalHeader": "Edit Reservation Status"
-                },
-                "view": {
-                    "modalHeader": "View Reservation Status"
+          "label": "Bookings",
+          "arrivalLabel": "Arrivals",
+          "departuresLabel": "Departures",
+          "guestListLabel": "Guest List",
+          "cards": {
+            "pending": "Pending",
+            "checkedIn": "Checked-In",
+            "checkedOut": "Checked-Out",
+            "canceled": "Canceled",
+            "noShow": "No-Show",
+            "cancelCI": "Cancel CI"
+          },
+          "filters": {
+            "from": "From:",
+            "to": "To:",
+            "searchFor": "SEARCH FOR",
+            "searchRoom": "Search room",
+            "searchSurname": "Search surname",
+            "searchFirstName": "Search first name",
+            "applyFilters": "Apply Filters",
+            "cleanFilters": "Clean Filters",
+            "delete": "Delete",
+            "docType": "Document Type"
+          },
+          "datatable": {
+            "name": "Name",
+            "surname": "Surname",
+            "checkIn": "Check-in",
+            "checkOut": "Check-out",
+            "nights": "Nights",
+            "room": "Room",
+            "rt": "rt",
+            "people": "People",
+            "status": "Status"
+          },
+          "notFound": {
+            "name": "Name not found",
+            "surname": "Surname not found",
+            "status": "Unknown status"
+          },
+          "new": {
+            "modalHeader": "New Reservation"
+          },
+          "edit": {
+            "modalHeader": "Edit Reservation"
+          },
+          "view": {
+            "modalHeader": "View Reservation"
+          },
+          "modal": {
+            "booking": {
+              "name": "Name",
+              "surname": "Surname",
+              "salutation": "Salutation",
+              "language": "Language",
+              "stayDetails": {
+                "label": "Stay Details",
+                "inputs": {
+                  "checkIn": "Arrival:",
+                  "optional": "Optional:",
+                  "nightCount": "Nights",
+                  "checkOut": "Departure:",
+                  "guestNumber": "Guest per Room",
+                  "payment": "Payment"
                 }
-            },
-            "marketSegments": {
-                "title": "Market Segments",
-                "abreviature": "Abreviature",
-                "description": "Description",
-                "order": "Order",
-                "status": "Status",
-                "datatable": {
-                    "id": "id",
-                    "abreviature": "Abreviature",
-                    "description": "Description",
-                    "order": "Order"
-                },
-                "new": {
-                    "modalHeader": "New Market Segments"
-                },
-                "edit": {
-                    "modalHeader": "Edit Market Segments"
-                },
-                "view": {
-                    "modalHeader": "View Market Segments"
+              },
+              "roomDetails": {
+                "label": "Room Details",
+                "inputs": {
+                  "room": "Room",
+                  "roomType": "Room Type",
+                  "roomToCharge": "Room to Charge"
                 }
-            },
-            "marketOrigins": {
-                "title": "Market Origins",
-                "abreviature": "Abreviature",
-                "description": "Description",
-                "order": "Order",
-                "status": "Status",
-                "datatable": {
-                    "id": "id",
-                    "abreviature": "Abreviature",
-                    "description": "Description",
-                    "order": "Order"
-                },
-                "new": {
-                    "modalHeader": "New Market Origins"
-                },
-                "edit": {
-                    "modalHeader": "Edit Market Origins"
-                },
-                "view": {
-                    "modalHeader": "View Market Origins"
+              },
+              "rateDetails": {
+                "label": "Rate Details",
+                "inputs": {
+                  "rateCode": "Rate Code",
+                  "avgRate": "Avg.Rate",
+                  "totalRate": "Total Rate",
+                  "packages": "Packages",
+                  "price": "Price"
                 }
-            },
-            "formsOfKnowledge": {
-                "title": "Forms of Knowledge",
-                "abreviature": "Abreviature",
-                "description": "Description",
-                "order": "Order",
-                "status": "Status",
-                "datatable": {
-                    "id": "id",
-                    "abreviature": "Abreviature",
-                    "description": "Description",
-                    "order": "Order"
-                },
-                "new": {
-                    "modalHeader": "New Forms of Knowledge"
-                },
-                "edit": {
-                    "modalHeader": "Edit Forms of Knowledge"
-                },
-                "view": {
-                    "modalHeader": "View Forms of Knowledge"
+              },
+              "billing": {
+                "label": "Billing",
+                "inputs": {
+                  "payment": "Payment:",
+                  "charges": "Charges:",
+                  "balance": "Balance:",
+                  "forecast": "Forecast:"
                 }
-            },
-            "reservationReasons": {
-                "title": "Reservation Reasons",
-                "abreviature": "Abreviature",
-                "description": "Description",
-                "order": "Order",
-                "status": "Status",
-                "datatable": {
-                    "id": "id",
-                    "abreviature": "Abreviature",
-                    "description": "Description",
-                    "order": "Order"
-                },
-                "new": {
-                    "modalHeader": "New Reservation Reasons"
-                },
-                "edit": {
-                    "modalHeader": "Edit Reservation Reasons"
-                },
-                "view": {
-                    "modalHeader": "View Reservation Reasons"
+              },
+              "traces": {
+                "label": "Traces"
+              },
+              "notes": {
+                "label": "Notes"
+              },
+              "userDefined": {
+                "label": "User Defined"
+              },
+              "attachements": {
+                "label": "Attachements"
+              },
+              "segmentation": {
+                "label": "Segmentation",
+                "inputs": {
+                  "marketCode": "Market Code",
+                  "distribChannel": "Distrib. Channel",
+                  "commChannel": "Comm. Channel",
+                  "travelReason": "Travel Reason"
                 }
-            },
-            "swapCodes": {
-                "title": "Swap Codes",
-                "abreviature": "Abreviature",
-                "description": "Description",
-                "order": "Order",
-                "status": "Status",
-                "datatable": {
-                    "id": "id",
-                    "abreviature": "Abreviature",
-                    "description": "Description",
-                    "order": "Order"
-                },
-                "new": {
-                    "modalHeader": "New Swap Codes"
-                },
-                "edit": {
-                    "modalHeader": "Edit Swap Codes"
-                },
-                "view": {
-                    "modalHeader": "View Swap Codes"
-                }
-            },
-            "cancelationReasons": {
-                "title": "Cancelation Reasons",
-                "abreviature": "Abreviature",
-                "description": "Description",
-                "order": "Order",
-                "status": "Status",
-                "datatable": {
-                    "id": "id",
-                    "abreviature": "Abreviature",
-                    "description": "Description",
-                    "order": "Order"
-                },
-                "new": {
-                    "modalHeader": "New Cancelation Reasons"
-                },
-                "edit": {
-                    "modalHeader": "Edit Cancelation Reasons"
-                },
-                "view": {
-                    "modalHeader": "View Cancelation Reasons"
-                }
-            },
-            "transferTypes": {
-                "title": "Transfer Types",
-                "abreviature": "Abreviature",
-                "description": "Description",
-                "details": "Details",
-                "status": "Status",
-                "datatable": {
-                    "id": "id",
-                    "abreviature": "Abreviature",
-                    "description": "Description",
-                    "order": "Order"
-                },
-                "new": {
-                    "modalHeader": "New Transfer Type"
-                },
-                "edit": {
-                    "modalHeader": "Edit Transfer Type"
-                },
-                "view": {
-                    "modalHeader": "View Transfer Type"
-                }
-            },
-            "changeTypeReservations": {
-                "title": "Reservation Types Changes",
-                "abreviature": "Abreviature",
-                "description": "Description",
-                "order": "Order",
-                "status": "Status",
-                "datatable": {
-                    "id": "id",
-                    "abreviature": "Abreviature",
-                    "description": "Description",
-                    "order": "Order"
-                },
-                "new": {
-                    "modalHeader": "New Reservation Type Change"
-                },
-                "edit": {
-                    "modalHeader": "Edit Reservation Type Change"
-                },
-                "view": {
-                    "modalHeader": "View Reservation Type Change"
-                }
-            },
-            "cancelationTypes": {
-                "title": "Cancelations",
-                "abreviature": "Abreviature",
-                "description": "Description",
-                "order": "Order",
-                "status": "Status",
-                "datatable": {
-                    "id": "id",
-                    "abreviature": "Abreviature",
-                    "description": "Description",
-                    "order": "Order"
-                },
-                "new": {
-                    "modalHeader": "New Cancelation"
-                },
-                "edit": {
-                    "modalHeader": "Edit Cancelation"
-                },
-                "view": {
-                    "modalHeader": "View Cancelation"
-                }
+              }
             }
-        },
-        "priceManagement": {
-            "priceCodes": {
-                "title": "Price Management",
-                "rateGroup": "Rate Group",
-                "rateCode": "Rate Code",
-                "type": "Type",
-                "text1": "Text1",
-                "sortOrder": "Sort Order",
-                "virtualRate": "Virtual Rate",
-                "baseRate": "Base Rate",
-                "surcharge": "Surcharge (%)",
-                "roundTo": "Round To",
-                "options": "Options",
-                "specialRate": "Special Rate",
-                "hideRateAvailability": "Hide in Rate Availability",
-                "hotels": "Hotels",
-                "routingCode": "Routing Code",
-                "target": "Target",
-                "datatable": {
-                    "n": "nº",
-                    "group": "group",
-                    "text": "text",
-                    "basisGrp": "basis grp.",
-                    "basisRate": "basis rate",
-                    "surcharge": "surcharge",
-                    "fixSurcharge": "fix surcharge",
-                    "people": "people",
-                    "divide": "divide",
-                    "ref": "ref",
-                    "order": "order",
-                    "hotel": "hotel"
-                },
-                "new": {
-                    "modalHeader": "New Price Code"
-                },
-                "edit": {
-                    "modalHeader": "Edit Price Code"
-                },
-                "view": {
-                    "modalHeader": "View Price Code"
-                }
-            }
-        },
-        "hotel": {
-            "hotel": {
-                "tipologiesGroupCard": "TIPOLOGIES GROUPS",
-                "tipologiesGroupCardDescription": "Insert groups that relate various typologies",
-                "tipologiesCard": "TIPOLOGIES",
-                "tipologiesCardDescription": "Insert the typologies that associate rooms of the same category",
-                "roomsCard": "ROOMS",
-                "roomsCardDescription": "",
-                "characteristicsCard": "CHARACTERISTICS",
-                "characteristicsCardDescription": "Insert list with various characteristics for each room",
-                "maintenanceCard": "MAINTENANCE",
-                "maintenanceCardDescription": "Insert reasons that may exist for putting rooms under maintenance",
-                "modals": {
-                    "tipologiesGroup": {
-                        "modalHeader": "New Tipologies Group",
-                        "descriptionLabel": "Description",
-                        "shortnameLabel": "Short Name",
-                        "detailsLabel": "Details",
-                        "statusLabel": "Active (State)",
-                        "orderLabel": "Order"
-                    },
-                    "tipologies": {
-                        "modalHeader": "New Typology",
-                        "descriptionLabel": "Description",
-                        "shortnameLabel": "Short Name",
-                        "detailsLabel": "Details"
-                    },
-                    "rooms": {
-                        "modalHeader": "New Room",
-                        "descriptionLabel": "Description",
-                        "shortnameLabel": "Short Name",
-                        "roomTypeLabel": "Room Type",
-                        "selectTipologyLabel": "Select Typology",
-                        "maxOccupationLabel": "Max Occupation",
-                        "orderLabel": "Order",
-                        "housekeepingDeptLabel": "Housekeeping Department",
-                        "interfaceConfigLabel": "Interface Configuration",
-                        "selectCharacteristicLabel": "Select Characteristics"
-                    },
-                    "characteristics": {
-                        "modalHeader": "New Characteristic",
-                        "descriptionLabel": "Description",
-                        "shortnameLabel": "Short Name",
-                        "detailsLabel": "Details"
-                    },
-                    "maintenance": {
-                        "modalHeader": "New Maintenance Reason",
-                        "descriptionLabel": "Description",
-                        "shortnameLabel": "Short Name",
-                        "detailsLabel": "Details",
-                        "statusLabel": "Active (State)"
-                    }
-                }
-            },
-            "tipologiesGroup": {
-                "label": "Tipologies Groups",
-                "descriptionLabel": "Description",
-                "shortnameLabel": "Short Name",
-                "detailsLabel": "Details",
-                "statusLabel": "Active (State)",
-                "orderLabel": "Order",
-                "datatable": {
-                    "id": "ID",
-                    "code": "CODE",
-                    "shortname": "SHORT NAME",
-                    "description": "DESCRIPTION",
-                    "details": "DETAILS",
-                    "state": "STATE",
-                    "order": "ORDER"
-                },
-                "new": {
-                    "modalHeader": "New Typology Group"
-                },
-                "edit": {
-                    "modalHeader": "Edit Typology Group"
-                },
-                "view": {
-                    "modalHeader": "View Typology Group"
-                }
-            },
-            "tipologies": {
-                "label": "Tipologies",
-                "descriptionLabel": "Description",
-                "shortnameLabel": "Short Name",
-                "detailsLabel": "Details",
-                "tipologyGroupLabel": "Typology Group",
-                "datatable": {
-                    "id": "ID",
-                    "code": "CODE",
-                    "shortname": "SHORT NAME",
-                    "description": "DESCRIPTION",
-                    "details": "DETAILS",
-                    "function": "FUNCTION",
-                    "order": "ORDER",
-                    "tipologyGroup": "TYPOLOGY GROUP"
-                },
-                "new": {
-                    "modalHeader": "New Typology"
-                },
-                "edit": {
-                    "modalHeader": "Edit Typology"
-                },
-                "view": {
-                    "modalHeader": "View Typology"
-                }
-            },
-            "rooms": {
-                "label": "Rooms",
-                "descriptionLabel": "Description",
-                "shortnameLabel": "Short Name",
-                "roomTypeLabel": "Room Type",
-                "selectTipologyLabel": "Select Typology",
-                "maxOccupationLabel": "Max Occupation",
-                "orderLabel": "Order",
-                "housekeepingDeptLabel": "Housekeeping Department",
-                "interfaceConfigLabel": "Interface Configuration",
-                "selectCharacteristicLabel": "Select Characteristics",
-                "datatable": {
-                    "id": "ID",
-                    "order": "ORDER",
-                    "shortname": "SHORT NAME",
-                    "description": "DESCRIPTION",
-                    "details": "DETAILS",
-                    "tipology": "TYPOLOGY",
-                    "function": "FUNCTION"
-                },
-                "new": {
-                    "modalHeader": "New Room"
-                },
-                "edit": {
-                    "modalHeader": "Edit Room"
-                },
-                "view": {
-                    "modalHeader": "View Room"
-                }
-            },
-            "characteristics": {
-                "label": "Characteristics",
-                "descriptionLabel": "Description",
-                "shortnameLabel": "Short Name",
-                "detailsLabel": "Details",
-                "datatable": {
-                    "id": "ID",
-                    "shortname": "SHORT NAME",
-                    "description": "DESCRIPTION",
-                    "details": "DETAILS"
-                },
-                "new": {
-                    "modalHeader": "New Characteristic"
-                },
-                "edit": {
-                    "modalHeader": "Edit Characteristic"
-                },
-                "view": {
-                    "modalHeader": "View Characteristic"
-                }
-            },
-            "maintenance": {
-                "label": "Maintenance",
-                "descriptionLabel": "Description",
-                "shortnameLabel": "Short Name",
-                "detailsLabel": "Details",
-                "stateLabel": "State",
-                "datatable": {
-                    "id": "ID",
-                    "shortname": "SHORT NAME",
-                    "description": "DESCRIPTION",
-                    "details": "DETAILS",
-                    "state": "STATE"
-                },
-                "new": {
-                    "modalHeader": "New Room in Maintenance"
-                },
-                "edit": {
-                    "modalHeader": "Edit Room in Maintenance"
-                },
-                "view": {
-                    "modalHeader": "View Room in Maintenance"
-                }
-            }
-        },
-        "housekeeping": {
-            "housekeeping": {
-                "housekeepingCardClean": "Clean",
-                "housekeepingCardChecked": "verified",
-                "housekeepingCardDirty": "dirty",
-                "housekeepingCardOutOfService": "Out Of Service"
-            },
-            "management": {
-                "managementTitle": "Management Rooms",
-                "managementTitleButtonBulk": "Bulk",
-                "managementTitleButtonFilter": "Filter",
-                "managementFilterRooms": "Filter Rooms",
-                "managementTableOutOfService": "Out Of Service",
-                "managementTableDirty": "Dirty",
-                "managementTableTouched": "Touched",
-                "managementTableCleaning": "Cleaning",
-                "managementTableChecked": "Checked",
-                "managementTableClean": "Clean"
-            },
-            "lostandfound": {
-                "lostandfoundTitle": "Lost and Found",
-                "lostandfoundSearchRegistrationDate": "Registration Date",
-                "lostandfoundSearchUpdated": "Updated",
-                "lostandfoundSearchAll": "All",
-                "lostandfoundDateIn": "In",
-                "lostandfoundDateUntil": "Until",
-                "lostandfoundSearchRoom": "Room",
-                "lostandfoundSearchGuestName": "Guest Name",
-                "lostandfoundButtonClean": "Clean",
-                "lostandfoundNewModalHeader": "Enter lost and found",
-                "new": {
-                    "RegistrationDate": "Registration Date",
-                    "State": "State",
-                    "Room": "Room",
-                    "Local": "Local",
-                    "GuestName": "Guest Name",
-                    "itemOccurrence": "Item Occurrence",
-                    "User": " User",
-                    "radioGroup": {
-                        "found": "Found",
-                        "lost": "Lost",
-                        "concluded": "Concluded"
-                    }
-                },
-                "lostandfoundSearchLost": "Lost",
-                "lostandfoundSearchFound": "Found",
-                "lostandfoundSearchConcluded": "concluded",
-                "table": {
-                    "id": "ID",
-                    "registrationdate": " Registration Date",
-                    "state": "state",
-                    "room": "room",
-                    "local": "local",
-                    "guestname": "Guest Name",
-                    "itemoccurrence": "Item Occurrence",
-                    "user": "user",
-                    "updatedon": "Updated On"
-                },
-                "dropDown":{
-                    "buttonEdit" : "Edit",
-                    "buttonView" : "View",
-                    "buttonDelete" : "Delete",
-                    "buttonFound" : "Found",
-                    "buttonConcluded" : "Concluded"
-                }
-            }
-        },
-        "cardex": {
-            "cardex": {
-                "cardexCardSaudation": "SALUTATIONS TABLE",
-                "cardexCardNationalities": "TABLE OF NATIONALITIES",
-                "cardexCardKnowledgeMethods": "KNOWLEDGE METHODS",
-                "cardexCardProfessions": "TABLE OF PROFESSIONS",
-                "cardexCardIDDocuments": "ID DOCUMENT TYPES",
-                "cardexCardLanguages": "TABLE OF LANGUAGES",
-                "cardexCardClientPreferences": "CLIENT PREFERENCES",
-                "cardexCardMembers": "TABLE OF MEMBERS",
-                "cardexCardMarketing": "TABLE OF MARKETING",
-                "cardexCardVIPTypes": "VIP TYPES"
-            },
-            "salutations": {
-                "headerID": "ID",
-                "headerAbbreviation": "Shortname",
-                "headerDescription": "Description",
-                "headerTitle": "Title",
-                "headerType": "Type",
-                "headerGender": "Gender",
-                "searchPlaceholder": "Search...",
-                "buttonNew": "New",
-                "modalInsertHeader": "Insert Salutation",
-                "modalEditHeader": "Edit Salutation",
-                "modalEditID": "ID: ",
-                "deleteSuccess": "Salutation removed successfully!",
-                "deleteError": "Error removing salutation.",
-                "modalEditDelete":"Delete",
-                "new": {
-                    "modalInsertHeader": "Insert Salutation",
-                    "modalEditHeader": "Edit Salutation",
-                    "buttonSave": "Save",
-                    "buttonExpand": "Expand",
-                    "buttonClose": "Close",
-                    "labelAbreviature": "Shortname",
-                    "labelDescription": "Description",
-                    "labelTreat": "Treat",
-                    "labelGender": "Gender",
-                    "labelTitle": "Title",
-                    "labelOrdenation": "Order",
-                    "labelNameSuff": "Name-Suffix",
-                    "radioName": "Name",
-                    "radioFirstName": "First Name",
-                    "radioNoExt": "No Ext.",
-                    "labelType": "Type"
-                }
-            },
-            "nationalities": {
-                "headerID": "ID",
-                "headerScut": "Scut",
-                "headerStatNr": "Stat.nr.",
-                "headerOrdination": "Ordering",
-                "headerGroup": "Group",
-                "headerISOCode": "ISO Code",
-                "headerState": "State",
-                "headerFO": "FO",
-                "headerNationality": "Nationality",
-                "searchPlaceholder": "Search...",
-                "buttonNew": "New",
-                "modalInsertHeader": "Insert Nationality",
-                "modalEditHeader": "Edit Nationality",
-                "modalEditID": "ID: ",
-                "deleteSuccess": "Nationality removed successfully!",
-                "deleteError": "Error removing nationality.",
-                "modalEditDelete":"Delete",
-                "new": {
-                    "modalInsertHeader": "Insert Nationality",
-                    "modalEditHeader": "Edit Nationality",
-                    "buttonSave": "Save",
-                    "buttonExpand": "Expand",
-                    "buttonClose": "Close",
-                    "labelFo": "Details",
-                    "labelNation": "Country",
-                    "labelNationality": "Nationality",
-                    "labelStatnr": "Statistics Number",
-                    "labelGroup": "Group",
-                    "labelOrdenation": "Order",
-                    "labelIsocode": "ISO Code"
-                }
-            },
-            "knowledgemethod": {
-                "headerID": "ID",
-                "headerAbbreviation": "Shortname",
-                "headerDescription": "Description",
-                "searchPlaceholder": "Search...",
-                "buttonNew": "New",
-                "modalInsertHeader": "Insert Method",
-                "modalEditHeader": "Edit Method",
-                "modalEditID": "ID: ",
-                "deleteSuccess": "Method removed successfully!",
-                "deleteError": "Error removing method.",
-                "knowledgeMethodHeader": "Knowledge Method",
-                "modalEditDelete":"Delete",
-                "new": {
-                    "modalInsertHeader": "Insert Knowledge Method",
-                    "modalEditHeader": "Edit Knowledge Method",
-                    "buttonSave": "Save",
-                    "buttonExpand": "Expand",
-                    "buttonClose": "Close",
-                    "labelGroup": "Group",
-                    "labelAbreviature": "Shortname",
-                    "labelDescription": "Description",
-                    "labelEstado": "State"
-                }
-            },
-            "profession": {
-                "headerID": "ID",
-                "headerGroup": "Group",
-                "headerAbbreviation": "Shortname",
-                "headerDescription": "Description",
-                "headerOrdering": "Ordering",
-                "headerProperty": "Property",
-                "searchPlaceholder": "Search...",
-                "buttonNew": "New",
-                "modalInsertHeader": "Insert Profession",
-                "modalEditHeader": "Edit Profession",
-                "modalEditID": "ID: ",
-                "deleteSuccess": "Profession removed successfully!",
-                "deleteError": "Error removing profession.",
-                "professionHeader": "Profession",
-                "modalEditDelete":"Delete",
-                "new": {
-                    "modalInsertHeader": "Insert Profession",
-                    "modalEditHeader": "Edit Profession",
-                    "buttonSave": "Save",
-                    "buttonExpand": "Expand",
-                    "buttonClose": "Close",
-                    "labelGroup": "Group",
-                    "labelAbreviature": "Shortname",
-                    "labelDescription": "Description"
-                }
-            },
-            "idDocument": {
-                "headerID": "ID",
-                "headerAbbreviation": "Shortname",
-                "headerDescription": "Description",
-                "searchPlaceholder": "Search...",
-                "headerOrdering": "Ordering",
-                "headerProperty": "Property",
-                "buttonNew": "New",
-                "modalInsertHeader": "Insert Document",
-                "modalEditHeader": "Edit Document",
-                "modalEditID": "ID: ",
-                "deleteSuccess": "Document removed successfully!",
-                "deleteError": "Error removing Document.",
-                "identificationDocHeader": "Identification Document",
-                "modalEditDelete":"Delete",
-                "new": {
-                    "modalInsertHeader": "Insert Document Type",
-                    "modalEditHeader": "Edit Document Type",
-                    "buttonSave": "Save",
-                    "buttonExpand": "Expand",
-                    "buttonClose": "Close",
-                    "labelGroup": "Group",
-                    "labelAbreviature": "Shortname",
-                    "labelDescription": "Description",
-                    "labelStatus": "Status"
-                }
-            },
-            "clientPreferences": {
-                "headerID": "ID",
-                "headerAbbreviation": "Shortname",
-                "headerDescription": "Description",
-                "headerGroup": "Group",
-                "searchPlaceholder": "Search...",
-                "headerOrdering": "Ordering",
-                "headerProperty": "Property",
-                "buttonNew": "New",
-                "modalInsertHeader": "Insert Document",
-                "modalEditHeader": "Edit Document",
-                "modalEditID": "ID: ",
-                "deleteSuccess": "Document removed successfully!",
-                "deleteError": "Error removing Document.",
-                "view": "View",
-                "clientPreferencesheader":"Client Preferences",
-                "modalEditDelete":"Delete",
-                "new": {
-                    "modalInsertHeader": "Insert Client Preference",
-                    "modalEditHeader": "Edit Client Preference",
-                    "buttonSave": "Save",
-                    "buttonExpand": "Expand",
-                    "buttonClose": "Close",
-                    "labelGroup": "Group",
-                    "labelAbreviature": "Shortname",
-                    "labelDescription": "Description",
-                    "labelStatus": "Status"
-                }
-            },
-            "languages": {
-                "headerID": "ID",
-                "headerName": "Name",
-                "headerCode": "Code",
-                "headerOrdering": "Ordering",
-                "headerAbbreviation": "Shortname",
-                "headerDescription": "Description",
-                "headerFunction": "Function",
-                "headerDetails": "Details",
-                "headerTipologyGroup": "Tipology Group",
-                "headerActions": "Actions",
-                "searchPlaceholder": "Search...",
-                "buttonNew": "New",
-                "modalInsertHeader": "Insert Client",
-                "modalEditHeader": "Edit Client",
-                "modalEditID": "ID: ",
-                "deleteSuccess": "Client removed successfully!",
-                "deleteError": "Error removing client.",
-                "languagesHeader": "Languages",
-                "modalEditDelete":"Delete"
-            },
-            "members": {
-                "headerID": "ID",
-                "headerGroup": "Group",
-                "headerAbbreviation": "Shortname",
-                "headerDescription": "Description",
-                "headerOrder": "Order",
-                "headerProperty": "Property",
-                "headerActions": "Actions",
-                "searchPlaceholder": "Search...",
-                "buttonNew": "New",
-                "modalInsertHeader": "Insert Member",
-                "modalEditHeader": "Edit Member",
-                "modalEditID": "ID: ",
-                "deleteSuccess": "Member removed successfully!",
-                "deleteError": "Error removing member.",
-                "membersHeader":"Members",
-                "modalEditDelete":"Delete",
-                "new": {
-                    "modalInsertHeader": "Insert Member",
-                    "modalEditHeader": "Edit Member",
-                    "buttonSave": "Save",
-                    "buttonExpand": "Expand",
-                    "buttonClose": "Close",
-                    "labelGroup": "Group",
-                    "labelAbreviature": "Shortname",
-                    "labelDescription": "Description",
-                    "labelStatus": "Status"
-                }
-            },
-            "marketing": {
-                "headerID": "ID",
-                "headerGroup": "Group",
-                "headerAbbreviation": "Shortname",
-                "headerDescription": "Description",
-                "headerOrder": "Order",
-                "headerProperty": "Property",
-                "headerActions": "Actions",
-                "searchPlaceholder": "Search...",
-                "buttonNew": "New",
-                "modalInsertHeader": "Insert Marketing",
-                "modalEditHeader": "Edit Marketing",
-                "modalEditID": "ID: ",
-                "deleteSuccess": "Marketing removed successfully!",
-                "deleteError": "Error removing marketing.",
-                "marketingHeader": "Marketing",
-                "modalEditDelete":"Delete",
-                "new": {
-                    "modalInsertHeader": "Insert Marketing",
-                    "modalEditHeader": "Edit Marketing",
-                    "buttonSave": "Save",
-                    "buttonExpand": "Expand",
-                    "buttonClose": "Close",
-                    "labelGroup": "Group",
-                    "labelAbreviature": "Shortname",
-                    "labelDescription": "Description",
-                    "labelStatus": "Status"
-                }
-            },
-            "viptypes": {
-                "headerID": "ID",
-                "headerAbbreviation": "Shortname",
-                "headerDescription": "Description",
-                "headerOrder": "Order",
-                "headerProperty": "Property",
-                "headerActions": "Actions",
-                "searchPlaceholder": "Search...",
-                "buttonNew": "New",
-                "modalInsertHeader": "Insert VIP Type",
-                "modalEditHeader": "Edit VIP Type",
-                "modalEditID": "ID: ",
-                "deleteSuccess": "VIP removed successfully!",
-                "deleteError": "Error removing VIP.",
-                "vipTypesheader": "Vip Types",
-                "modalEditDelete":"Delete",
-                "new": {
-                    "modalInsertHeader": "Insert VIP Code",
-                    "modalEditHeader": "Edit VIP Code",
-                    "buttonSave": "Save",
-                    "buttonExpand": "Expand",
-                    "buttonClose": "Close",
-                    "labelAbreviature": "Shortname",
-                    "labelDescription": "Description",
-                    "labelDetails": "Details",
-                    "labelStatus": "Status"
-                }
-            }
+          }
         }
+      },
+      "plans": {
+        "datatable": {
+          "today": "Today"
+        },
+        "modals": {
+          "filter": "FILTER BY MONTH AND YEAR",
+          "reservationDetails": "Reservation details",
+          "guestDetails": "Choose the type of guest, please:",
+          "guestName": "Guest Name *",
+          "in": "In:",
+          "out": "Out:",
+          "reserve": "RESERVE",
+          "cancel": "CANCEL",
+          "back": "BACK",
+          "reservationHeader": "Enter a Reservation",
+          "buttons": {
+            "individuals": "Individuals",
+            "companys": "Companys",
+            "groups": "Groups",
+            "travelAgencys": "Travel Agencys",
+            "others": "Others"
+          }
+        }
+      },
+      "typologyPlan": {
+        "label": "Typology Plan",
+        "datatable": {
+          "typologys": "Typologys",
+          "dayUse": "Day Use",
+          "totalAvailable": "Total Available",
+          "totalOverbooking": "Total Overbooking",
+          "allotNonDedNotPu": "Allot - Non Ded/Not Pu",
+          "allotNonDedPu": "Allot - Non Ded/Pu",
+          "allotDeductNotPu": "Allot - Deduct/Not Pu",
+          "allotDeductPu": "Allot - Deduct/Pu",
+          "outOfOrder": "Out of Order",
+          "optionDeduct": "Option - Deduct",
+          "optionNonDeduct": "Option - Non Deduct",
+          "confirmedDeduct": "Confirmed - Deduct",
+          "physicallyAvailable": "Physically Available",
+          "occupation": "Occupation %"
+        }
+      },
+      "roomsPlan": {
+        "label": "Rooms Plan",
+        "datatable": {
+          "rooms": "Rooms"
+        }
+      },
+      "ratesPlanner": {
+        "modal": {
+          "ratesPlannerHeader": "Enter a new price"
+        }
+      }
+    },
+    "financialSetup": {
+      "cards": {
+        "departments": "DEPARTMENTS",
+        "accountGroups": "ACCOUNT GROUPS",
+        "revenueAccounts": "REVENUE ACCOUNTS",
+        "paymentAccounts": "PAYMENT ACCOUNTS",
+        "taxes": "TAXES",
+        "cashiers": "CASHIERS",
+        "voidCharges": "VOID CHARGES"
+      },
+      "departments": {
+        "title": "Departments",
+        "abreviature": "Abreviature",
+        "description": "Description",
+        "activeStatus": "Active (status)",
+        "order": "Order",
+        "datatable": {
+          "id": "id",
+          "cod": "Cod.",
+          "abreviature": "Abreviature",
+          "description": "Description",
+          "detail": "Detail",
+          "status": "Status",
+          "order": "Order"
+        },
+        "new": {
+          "modalHeader": "New Department"
+        },
+        "edit": {
+          "modalHeader": "Edit Department"
+        },
+        "view": {
+          "modalHeader": "View Department"
+        }
+      },
+      "accountGroups": {
+        "title": "Account Groups",
+        "cod": "Cod.",
+        "abreviature": "Abreviature",
+        "description": "Description",
+        "order": "Order",
+        "datatable": {
+          "id": "id",
+          "cod": "Cod.",
+          "abreviature": "Abreviature",
+          "description": "Description",
+          "group": "Group",
+          "order": "Order"
+        },
+        "new": {
+          "modalHeader": "New Account Group"
+        },
+        "edit": {
+          "modalHeader": "Edit Account Group"
+        },
+        "view": {
+          "modalHeader": "View Account Group"
+        }
+      },
+      "revenueAccounts": {
+        "title": "Revenue Accounts",
+        "cod": "Cod.",
+        "abreviature": "Abreviature",
+        "details": "Details",
+        "department": "Department",
+        "accountGroup": "Account Group",
+        "tax": "Tax",
+        "worth": "Worth",
+        "property": "Property",
+        "statCode": "Statistic Code",
+        "datatable": {
+          "id": "id",
+          "cod": "Cod.",
+          "account": "Account",
+          "abreviature": "Abreviature",
+          "description": "Description",
+          "accountGroup": "Group Account",
+          "department": "Department",
+          "tax": "Tax",
+          "order": "Order"
+        },
+        "new": {
+          "modalHeader": "New Revenue Account"
+        },
+        "edit": {
+          "modalHeader": "Edit Revenue Account"
+        },
+        "view": {
+          "modalHeader": "View Revenue Account"
+        }
+      },
+      "paymentAccounts": {
+        "title": "Payment Accounts",
+        "cod": "Cod.",
+        "abreviature": "Abreviature",
+        "description": "Description",
+        "departments": "Deparments",
+        "group": "Group",
+        "type": "Type",
+        "property": "Property",
+        "datatable": {
+          "id": "id",
+          "cod": "Cod.",
+          "account": "Account",
+          "abreviature": "Abreviature",
+          "description": "Description",
+          "group": "Group",
+          "order": "Order"
+        },
+        "new": {
+          "modalHeader": "New Payment Accounts"
+        },
+        "edit": {
+          "modalHeader": "Edit Payment Accounts"
+        },
+        "view": {
+          "modalHeader": "View Payment Accounts"
+        }
+      },
+      "taxes": {
+        "title": "Taxes",
+        "cod": "Cod.",
+        "abreviature": "Abreviature",
+        "description": "Description",
+        "order": "Order",
+        "percentage": "Percentage",
+        "codSAFT": "Cod. SAFT",
+        "descSAFT": "Desc. SAFT",
+        "detail": "Detail",
+        "detailedInvoice": "Detailed Invoice",
+        "datatable": {
+          "id": "id",
+          "cod": "Cod.",
+          "abreviature": "Abreviature",
+          "description": "Description",
+          "percentage": "Percentage",
+          "order": "Order"
+        },
+        "new": {
+          "modalHeader": "New Tax"
+        },
+        "edit": {
+          "modalHeader": "Edit Tax"
+        },
+        "view": {
+          "modalHeader": "View Tax"
+        }
+      },
+      "cashiers": {
+        "title": "Cashiers",
+        "cod": "Cod.",
+        "abreviature": "Abreviature",
+        "password": "Password",
+        "description": "Description",
+        "datatable": {
+          "id": "id",
+          "cod": "Cod.",
+          "abreviature": "Abreviature",
+          "description": "Description"
+        },
+        "new": {
+          "modalHeader": "New Cashier"
+        },
+        "edit": {
+          "modalHeader": "Edit Cashier"
+        },
+        "view": {
+          "modalHeader": "View Cashier"
+        }
+      },
+      "voidCharges": {
+        "title": "Void Charges",
+        "cod": "Cod.",
+        "abreviature": "Abreviature",
+        "property": "Property",
+        "description": "Description",
+        "datatable": {
+          "id": "id",
+          "cod": "Cod.",
+          "abreviature": "Abreviature",
+          "description": "Description"
+        },
+        "new": {
+          "modalHeader": "New Void Charge"
+        },
+        "edit": {
+          "modalHeader": "Edit Void Charge"
+        },
+        "view": {
+          "modalHeader": "View  Void Charge"
+        }
+      }
+    },
+    "bookings": {
+      "cards": {
+        "reservationStatus": "RESERVATION STATUS",
+        "marketSegments": "MARKET SEGMENTS",
+        "marketOrigins": "MARKET ORIGINS",
+        "knowledgeMethods": "KNOWLEDGE METHODS",
+        "reservationReasons": "RESERVATION REASONS",
+        "swapCodes": "SWAP CODES",
+        "cancelationReasons": "CANCELATION REASONS",
+        "pickUp": "PICK UP",
+        "changeTypeReservations": "RESERVATION TYPES CHANGES",
+        "cancelationTypes": "CANCELATION TYPES"
+      },
+      "reservationStatus": {
+        "title": "Reservation Status",
+        "abreviature": "Abreviature",
+        "description": "Description",
+        "order": "Order",
+        "status": "Status",
+        "datatable": {
+          "id": "id",
+          "abreviature": "Abreviature",
+          "description": "Description",
+          "order": "Order"
+        },
+        "new": {
+          "modalHeader": "New Reservation Status"
+        },
+        "edit": {
+          "modalHeader": "Edit Reservation Status"
+        },
+        "view": {
+          "modalHeader": "View Reservation Status"
+        }
+      },
+      "marketSegments": {
+        "title": "Market Segments",
+        "abreviature": "Abreviature",
+        "description": "Description",
+        "order": "Order",
+        "status": "Status",
+        "datatable": {
+          "id": "id",
+          "abreviature": "Abreviature",
+          "description": "Description",
+          "order": "Order"
+        },
+        "new": {
+          "modalHeader": "New Market Segments"
+        },
+        "edit": {
+          "modalHeader": "Edit Market Segments"
+        },
+        "view": {
+          "modalHeader": "View Market Segments"
+        }
+      },
+      "marketOrigins": {
+        "title": "Market Origins",
+        "abreviature": "Abreviature",
+        "description": "Description",
+        "order": "Order",
+        "status": "Status",
+        "datatable": {
+          "id": "id",
+          "abreviature": "Abreviature",
+          "description": "Description",
+          "order": "Order"
+        },
+        "new": {
+          "modalHeader": "New Market Origins"
+        },
+        "edit": {
+          "modalHeader": "Edit Market Origins"
+        },
+        "view": {
+          "modalHeader": "View Market Origins"
+        }
+      },
+      "formsOfKnowledge": {
+        "title": "Forms of Knowledge",
+        "abreviature": "Abreviature",
+        "description": "Description",
+        "order": "Order",
+        "status": "Status",
+        "datatable": {
+          "id": "id",
+          "abreviature": "Abreviature",
+          "description": "Description",
+          "order": "Order"
+        },
+        "new": {
+          "modalHeader": "New Forms of Knowledge"
+        },
+        "edit": {
+          "modalHeader": "Edit Forms of Knowledge"
+        },
+        "view": {
+          "modalHeader": "View Forms of Knowledge"
+        }
+      },
+      "reservationReasons": {
+        "title": "Reservation Reasons",
+        "abreviature": "Abreviature",
+        "description": "Description",
+        "order": "Order",
+        "status": "Status",
+        "datatable": {
+          "id": "id",
+          "abreviature": "Abreviature",
+          "description": "Description",
+          "order": "Order"
+        },
+        "new": {
+          "modalHeader": "New Reservation Reasons"
+        },
+        "edit": {
+          "modalHeader": "Edit Reservation Reasons"
+        },
+        "view": {
+          "modalHeader": "View Reservation Reasons"
+        }
+      },
+      "swapCodes": {
+        "title": "Swap Codes",
+        "abreviature": "Abreviature",
+        "description": "Description",
+        "order": "Order",
+        "status": "Status",
+        "datatable": {
+          "id": "id",
+          "abreviature": "Abreviature",
+          "description": "Description",
+          "order": "Order"
+        },
+        "new": {
+          "modalHeader": "New Swap Codes"
+        },
+        "edit": {
+          "modalHeader": "Edit Swap Codes"
+        },
+        "view": {
+          "modalHeader": "View Swap Codes"
+        }
+      },
+      "cancelationReasons": {
+        "title": "Cancelation Reasons",
+        "abreviature": "Abreviature",
+        "description": "Description",
+        "order": "Order",
+        "status": "Status",
+        "datatable": {
+          "id": "id",
+          "abreviature": "Abreviature",
+          "description": "Description",
+          "order": "Order"
+        },
+        "new": {
+          "modalHeader": "New Cancelation Reasons"
+        },
+        "edit": {
+          "modalHeader": "Edit Cancelation Reasons"
+        },
+        "view": {
+          "modalHeader": "View Cancelation Reasons"
+        }
+      },
+      "transferTypes": {
+        "title": "Transfer Types",
+        "abreviature": "Abreviature",
+        "description": "Description",
+        "details": "Details",
+        "status": "Status",
+        "datatable": {
+          "id": "id",
+          "abreviature": "Abreviature",
+          "description": "Description",
+          "order": "Order"
+        },
+        "new": {
+          "modalHeader": "New Transfer Type"
+        },
+        "edit": {
+          "modalHeader": "Edit Transfer Type"
+        },
+        "view": {
+          "modalHeader": "View Transfer Type"
+        }
+      },
+      "changeTypeReservations": {
+        "title": "Reservation Types Changes",
+        "abreviature": "Abreviature",
+        "description": "Description",
+        "order": "Order",
+        "status": "Status",
+        "datatable": {
+          "id": "id",
+          "abreviature": "Abreviature",
+          "description": "Description",
+          "order": "Order"
+        },
+        "new": {
+          "modalHeader": "New Reservation Type Change"
+        },
+        "edit": {
+          "modalHeader": "Edit Reservation Type Change"
+        },
+        "view": {
+          "modalHeader": "View Reservation Type Change"
+        }
+      },
+      "cancelationTypes": {
+        "title": "Cancelations",
+        "abreviature": "Abreviature",
+        "description": "Description",
+        "order": "Order",
+        "status": "Status",
+        "datatable": {
+          "id": "id",
+          "abreviature": "Abreviature",
+          "description": "Description",
+          "order": "Order"
+        },
+        "new": {
+          "modalHeader": "New Cancelation"
+        },
+        "edit": {
+          "modalHeader": "Edit Cancelation"
+        },
+        "view": {
+          "modalHeader": "View Cancelation"
+        }
+      }
+    },
+    "priceManagement": {
+      "priceCodes": {
+        "title": "Price Management",
+        "rateGroup": "Rate Group",
+        "rateCode": "Rate Code",
+        "type": "Type",
+        "text1": "Text1",
+        "sortOrder": "Sort Order",
+        "virtualRate": "Virtual Rate",
+        "baseRate": "Base Rate",
+        "surcharge": "Surcharge (%)",
+        "roundTo": "Round To",
+        "options": "Options",
+        "specialRate": "Special Rate",
+        "hideRateAvailability": "Hide in Rate Availability",
+        "hotels": "Hotels",
+        "routingCode": "Routing Code",
+        "target": "Target",
+        "datatable": {
+          "n": "nº",
+          "group": "group",
+          "text": "text",
+          "basisGrp": "basis grp.",
+          "basisRate": "basis rate",
+          "surcharge": "surcharge",
+          "fixSurcharge": "fix surcharge",
+          "people": "people",
+          "divide": "divide",
+          "ref": "ref",
+          "order": "order",
+          "hotel": "hotel"
+        },
+        "new": {
+          "modalHeader": "New Price Code"
+        },
+        "edit": {
+          "modalHeader": "Edit Price Code"
+        },
+        "view": {
+          "modalHeader": "View Price Code"
+        }
+      },
+      "priceTable": {
+        "title": "Rate Codes Planner",
+        "rates": "Rates",
+        "people": "Pax",
+        "filters": "Filters",
+        "priceDescriptionHeader": "Rate Code",
+        "type/Rooms": "Type/Rooms",
+        "details": "DETAILS",
+        "save": "SAVE"
+      }
+    },
+    "hotel": {
+      "hotel": {
+        "tipologiesGroupCard": "TIPOLOGIES GROUPS",
+        "tipologiesGroupCardDescription": "Insert groups that relate various typologies",
+        "tipologiesCard": "TIPOLOGIES",
+        "tipologiesCardDescription": "Insert the typologies that associate rooms of the same category",
+        "roomsCard": "ROOMS",
+        "roomsCardDescription": "",
+        "characteristicsCard": "CHARACTERISTICS",
+        "characteristicsCardDescription": "Insert list with various characteristics for each room",
+        "maintenanceCard": "MAINTENANCE",
+        "maintenanceCardDescription": "Insert reasons that may exist for putting rooms under maintenance",
+        "modals": {
+          "tipologiesGroup": {
+            "modalHeader": "New Tipologies Group",
+            "descriptionLabel": "Description",
+            "shortnameLabel": "Short Name",
+            "detailsLabel": "Details",
+            "statusLabel": "Active (State)",
+            "orderLabel": "Order"
+          },
+          "tipologies": {
+            "modalHeader": "New Typology",
+            "descriptionLabel": "Description",
+            "shortnameLabel": "Short Name",
+            "detailsLabel": "Details"
+          },
+          "rooms": {
+            "modalHeader": "New Room",
+            "descriptionLabel": "Description",
+            "shortnameLabel": "Short Name",
+            "roomTypeLabel": "Room Type",
+            "selectTipologyLabel": "Select Typology",
+            "maxOccupationLabel": "Max Occupation",
+            "orderLabel": "Order",
+            "housekeepingDeptLabel": "Housekeeping Department",
+            "interfaceConfigLabel": "Interface Configuration",
+            "selectCharacteristicLabel": "Select Characteristics"
+          },
+          "characteristics": {
+            "modalHeader": "New Characteristic",
+            "descriptionLabel": "Description",
+            "shortnameLabel": "Short Name",
+            "detailsLabel": "Details"
+          },
+          "maintenance": {
+            "modalHeader": "New Maintenance Reason",
+            "descriptionLabel": "Description",
+            "shortnameLabel": "Short Name",
+            "detailsLabel": "Details",
+            "statusLabel": "Active (State)"
+          }
+        }
+      },
+      "tipologiesGroup": {
+        "label": "Tipologies Groups",
+        "descriptionLabel": "Description",
+        "shortnameLabel": "Short Name",
+        "detailsLabel": "Details",
+        "statusLabel": "Active (State)",
+        "orderLabel": "Order",
+        "datatable": {
+          "id": "ID",
+          "code": "CODE",
+          "shortname": "SHORT NAME",
+          "description": "DESCRIPTION",
+          "details": "DETAILS",
+          "state": "STATE",
+          "order": "ORDER"
+        },
+        "new": {
+          "modalHeader": "New Typology Group"
+        },
+        "edit": {
+          "modalHeader": "Edit Typology Group"
+        },
+        "view": {
+          "modalHeader": "View Typology Group"
+        }
+      },
+      "tipologies": {
+        "label": "Tipologies",
+        "descriptionLabel": "Description",
+        "shortnameLabel": "Short Name",
+        "detailsLabel": "Details",
+        "tipologyGroupLabel": "Typology Group",
+        "datatable": {
+          "id": "ID",
+          "code": "CODE",
+          "shortname": "SHORT NAME",
+          "description": "DESCRIPTION",
+          "details": "DETAILS",
+          "function": "FUNCTION",
+          "order": "ORDER",
+          "tipologyGroup": "TYPOLOGY GROUP"
+        },
+        "new": {
+          "modalHeader": "New Typology"
+        },
+        "edit": {
+          "modalHeader": "Edit Typology"
+        },
+        "view": {
+          "modalHeader": "View Typology"
+        }
+      },
+      "rooms": {
+        "label": "Rooms",
+        "descriptionLabel": "Description",
+        "shortnameLabel": "Short Name",
+        "roomTypeLabel": "Room Type",
+        "selectTipologyLabel": "Select Typology",
+        "maxOccupationLabel": "Max Occupation",
+        "orderLabel": "Order",
+        "housekeepingDeptLabel": "Housekeeping Department",
+        "interfaceConfigLabel": "Interface Configuration",
+        "selectCharacteristicLabel": "Select Characteristics",
+        "datatable": {
+          "id": "ID",
+          "order": "ORDER",
+          "shortname": "SHORT NAME",
+          "description": "DESCRIPTION",
+          "details": "DETAILS",
+          "tipology": "TYPOLOGY",
+          "function": "FUNCTION"
+        },
+        "new": {
+          "modalHeader": "New Room"
+        },
+        "edit": {
+          "modalHeader": "Edit Room"
+        },
+        "view": {
+          "modalHeader": "View Room"
+        }
+      },
+      "characteristics": {
+        "label": "Characteristics",
+        "descriptionLabel": "Description",
+        "shortnameLabel": "Short Name",
+        "detailsLabel": "Details",
+        "datatable": {
+          "id": "ID",
+          "shortname": "SHORT NAME",
+          "description": "DESCRIPTION",
+          "details": "DETAILS"
+        },
+        "new": {
+          "modalHeader": "New Characteristic"
+        },
+        "edit": {
+          "modalHeader": "Edit Characteristic"
+        },
+        "view": {
+          "modalHeader": "View Characteristic"
+        }
+      },
+      "maintenance": {
+        "label": "Maintenance",
+        "descriptionLabel": "Description",
+        "shortnameLabel": "Short Name",
+        "detailsLabel": "Details",
+        "stateLabel": "State",
+        "datatable": {
+          "id": "ID",
+          "shortname": "SHORT NAME",
+          "description": "DESCRIPTION",
+          "details": "DETAILS",
+          "state": "STATE"
+        },
+        "new": {
+          "modalHeader": "New Room in Maintenance"
+        },
+        "edit": {
+          "modalHeader": "Edit Room in Maintenance"
+        },
+        "view": {
+          "modalHeader": "View Room in Maintenance"
+        }
+      }
+    },
+    "housekeeping": {
+      "housekeeping": {
+        "housekeepingCardClean": "Clean",
+        "housekeepingCardChecked": "Checked",
+        "housekeepingCardCleaning": "Cleaning",
+        "housekeepingCardTouched": "Touched",
+        "housekeepingCardDirty": "Dirty",
+        "housekeepingCardOutOfService": "Out Of Service"
+      },
+      "management": {
+        "managementTitle": "Management Rooms",
+        "managementTitleButtonBulk": "Bulk",
+        "managementTitleButtonFilter": "Filter",
+        "managementFilterRooms": "Filter Rooms",
+        "managementTableOutOfService": "Out Of Service",
+        "managementTableDirty": "Dirty",
+        "managementTableTouched": "Touched",
+        "managementTableCleaning": "Cleaning",
+        "managementTableChecked": "Checked",
+        "managementTableClean": "Clean"
+      },
+      "lostandfound": {
+        "lostandfoundTitle": "Lost and Found",
+        "lostandfoundSearchRegistrationDate": "Registration Date",
+        "lostandfoundSearchUpdated": "Updated",
+        "lostandfoundSearchAll": "All",
+        "lostandfoundDateIn": "In",
+        "lostandfoundDateUntil": "Until",
+        "lostandfoundSearchRoom": "Room",
+        "lostandfoundSearchGuestName": "Guest Name",
+        "lostandfoundButtonClean": "Clean",
+        "lostandfoundNewModalHeader": "Enter lost and found",
+        "new": {
+          "RegistrationDate": "Registration Date",
+          "State": "State",
+          "Room": "Room",
+          "Local": "Local",
+          "GuestName": "Guest Name",
+          "itemOccurrence": "Item Occurrence",
+          "User": " User",
+          "radioGroup": {
+            "found": "Found",
+            "lost": "Lost",
+            "concluded": "Concluded"
+          }
+        },
+        "lostandfoundSearchLost": "Lost",
+        "lostandfoundSearchFound": "Found",
+        "lostandfoundSearchConcluded": "concluded",
+        "table": {
+          "id": "ID",
+          "registrationdate": " Registration Date",
+          "state": "state",
+          "room": "room",
+          "local": "local",
+          "guestname": "Guest Name",
+          "itemoccurrence": "Item Occurrence",
+          "user": "user",
+          "updatedon": "Updated On"
+        },
+        "dropDown": {
+          "buttonEdit": "Edit",
+          "buttonView": "View",
+          "buttonDelete": "Delete",
+          "buttonFound": "Found",
+          "buttonConcluded": "Concluded"
+        }
+      }
+    },
+    "cardex": {
+      "cardex": {
+        "cardexCardAgeConfig": "AGE CONFIGURATION TABLE",
+        "cardexCardSaudation": "SALUTATIONS TABLE",
+        "cardexCardNationalities": "TABLE OF NATIONALITIES",
+        "cardexCardKnowledgeMethods": "KNOWLEDGE METHODS",
+        "cardexCardProfessions": "TABLE OF PROFESSIONS",
+        "cardexCardIDDocuments": "ID DOCUMENT TYPES",
+        "cardexCardLanguages": "TABLE OF LANGUAGES",
+        "cardexCardClientPreferences": "CLIENT PREFERENCES",
+        "cardexCardMembers": "TABLE OF MEMBERS",
+        "cardexCardMarketing": "TABLE OF MARKETING",
+        "cardexCardVIPTypes": "VIP TYPES"
+      },
+      "salutations": {
+        "headerID": "ID",
+        "headerAbbreviation": "Shortname",
+        "headerDescription": "Description",
+        "headerTitle": "Title",
+        "headerType": "Type",
+        "headerGender": "Gender",
+        "searchPlaceholder": "Search...",
+        "buttonNew": "New",
+        "modalInsertHeader": "Insert Salutation",
+        "modalEditHeader": "Edit Salutation",
+        "modalEditID": "ID: ",
+        "deleteSuccess": "Salutation removed successfully!",
+        "deleteError": "Error removing salutation.",
+        "modalEditDelete": "Delete",
+        "new": {
+          "modalInsertHeader": "Insert Salutation",
+          "modalEditHeader": "Edit Salutation",
+          "buttonSave": "Save",
+          "buttonExpand": "Expand",
+          "buttonClose": "Close",
+          "labelAbreviature": "Shortname",
+          "labelDescription": "Description",
+          "labelTreat": "Treat",
+          "labelGender": "Gender",
+          "labelTitle": "Title",
+          "labelOrdenation": "Order",
+          "labelNameSuff": "Name-Suffix",
+          "radioName": "Name",
+          "radioFirstName": "First Name",
+          "radioNoExt": "No Ext.",
+          "labelType": "Type"
+        }
+      },
+      "nationalities": {
+        "headerID": "ID",
+        "headerScut": "Scut",
+        "headerStatNr": "Stat.nr.",
+        "headerOrdination": "Ordering",
+        "headerGroup": "Group",
+        "headerISOCode": "ISO Code",
+        "headerState": "State",
+        "headerFO": "FO",
+        "headerNationality": "Nationality",
+        "searchPlaceholder": "Search...",
+        "buttonNew": "New",
+        "modalInsertHeader": "Insert Nationality",
+        "modalEditHeader": "Edit Nationality",
+        "modalEditID": "ID: ",
+        "deleteSuccess": "Nationality removed successfully!",
+        "deleteError": "Error removing nationality.",
+        "modalEditDelete": "Delete",
+        "new": {
+          "modalInsertHeader": "Insert Nationality",
+          "modalEditHeader": "Edit Nationality",
+          "buttonSave": "Save",
+          "buttonExpand": "Expand",
+          "buttonClose": "Close",
+          "labelFo": "Details",
+          "labelNation": "Country",
+          "labelNationality": "Nationality",
+          "labelStatnr": "Statistics Number",
+          "labelGroup": "Group",
+          "labelOrdenation": "Order",
+          "labelIsocode": "ISO Code"
+        }
+      },
+      "knowledgemethod": {
+        "headerID": "ID",
+        "headerAbbreviation": "Shortname",
+        "headerDescription": "Description",
+        "searchPlaceholder": "Search...",
+        "buttonNew": "New",
+        "modalInsertHeader": "Insert Method",
+        "modalEditHeader": "Edit Method",
+        "modalEditID": "ID: ",
+        "deleteSuccess": "Method removed successfully!",
+        "deleteError": "Error removing method.",
+        "knowledgeMethodHeader": "Knowledge Method",
+        "modalEditDelete": "Delete",
+        "new": {
+          "modalInsertHeader": "Insert Knowledge Method",
+          "modalEditHeader": "Edit Knowledge Method",
+          "buttonSave": "Save",
+          "buttonExpand": "Expand",
+          "buttonClose": "Close",
+          "labelGroup": "Group",
+          "labelAbreviature": "Shortname",
+          "labelDescription": "Description",
+          "labelEstado": "State"
+        }
+      },
+      "profession": {
+        "headerID": "ID",
+        "headerGroup": "Group",
+        "headerAbbreviation": "Shortname",
+        "headerDescription": "Description",
+        "headerOrdering": "Ordering",
+        "headerProperty": "Property",
+        "searchPlaceholder": "Search...",
+        "buttonNew": "New",
+        "modalInsertHeader": "Insert Profession",
+        "modalEditHeader": "Edit Profession",
+        "modalEditID": "ID: ",
+        "deleteSuccess": "Profession removed successfully!",
+        "deleteError": "Error removing profession.",
+        "professionHeader": "Profession",
+        "modalEditDelete": "Delete",
+        "new": {
+          "modalInsertHeader": "Insert Profession",
+          "modalEditHeader": "Edit Profession",
+          "buttonSave": "Save",
+          "buttonExpand": "Expand",
+          "buttonClose": "Close",
+          "labelGroup": "Group",
+          "labelAbreviature": "Shortname",
+          "labelDescription": "Description"
+        }
+      },
+      "idDocument": {
+        "headerID": "ID",
+        "headerAbbreviation": "Shortname",
+        "headerDescription": "Description",
+        "searchPlaceholder": "Search...",
+        "headerOrdering": "Ordering",
+        "headerProperty": "Property",
+        "buttonNew": "New",
+        "modalInsertHeader": "Insert Document",
+        "modalEditHeader": "Edit Document",
+        "modalEditID": "ID: ",
+        "deleteSuccess": "Document removed successfully!",
+        "deleteError": "Error removing Document.",
+        "identificationDocHeader": "Identification Document",
+        "modalEditDelete": "Delete",
+        "new": {
+          "modalInsertHeader": "Insert Document Type",
+          "modalEditHeader": "Edit Document Type",
+          "buttonSave": "Save",
+          "buttonExpand": "Expand",
+          "buttonClose": "Close",
+          "labelGroup": "Group",
+          "labelAbreviature": "Shortname",
+          "labelDescription": "Description",
+          "labelStatus": "Status"
+        }
+      },
+      "clientPreferences": {
+        "headerID": "ID",
+        "headerAbbreviation": "Shortname",
+        "headerDescription": "Description",
+        "headerGroup": "Group",
+        "searchPlaceholder": "Search...",
+        "headerOrdering": "Ordering",
+        "headerProperty": "Property",
+        "buttonNew": "New",
+        "modalInsertHeader": "Insert Document",
+        "modalEditHeader": "Edit Document",
+        "modalEditID": "ID: ",
+        "deleteSuccess": "Document removed successfully!",
+        "deleteError": "Error removing Document.",
+        "view": "View",
+        "clientPreferencesheader": "Client Preferences",
+        "modalEditDelete": "Delete",
+        "new": {
+          "modalInsertHeader": "Insert Client Preference",
+          "modalEditHeader": "Edit Client Preference",
+          "buttonSave": "Save",
+          "buttonExpand": "Expand",
+          "buttonClose": "Close",
+          "labelGroup": "Group",
+          "labelAbreviature": "Shortname",
+          "labelDescription": "Description",
+          "labelStatus": "Status"
+        }
+      },
+      "languages": {
+        "headerID": "ID",
+        "headerName": "Name",
+        "headerCode": "Code",
+        "headerOrdering": "Ordering",
+        "headerAbbreviation": "Shortname",
+        "headerDescription": "Description",
+        "headerFunction": "Function",
+        "headerDetails": "Details",
+        "headerTipologyGroup": "Tipology Group",
+        "headerActions": "Actions",
+        "searchPlaceholder": "Search...",
+        "buttonNew": "New",
+        "modalInsertHeader": "Insert Client",
+        "modalEditHeader": "Edit Client",
+        "modalEditID": "ID: ",
+        "deleteSuccess": "Client removed successfully!",
+        "deleteError": "Error removing client.",
+        "languagesHeader": "Languages",
+        "modalEditDelete": "Delete"
+      },
+      "members": {
+        "headerID": "ID",
+        "headerGroup": "Group",
+        "headerAbbreviation": "Shortname",
+        "headerDescription": "Description",
+        "headerOrder": "Order",
+        "headerProperty": "Property",
+        "headerActions": "Actions",
+        "searchPlaceholder": "Search...",
+        "buttonNew": "New",
+        "modalInsertHeader": "Insert Member",
+        "modalEditHeader": "Edit Member",
+        "modalEditID": "ID: ",
+        "deleteSuccess": "Member removed successfully!",
+        "deleteError": "Error removing member.",
+        "membersHeader": "Members",
+        "modalEditDelete": "Delete",
+        "new": {
+          "modalInsertHeader": "Insert Member",
+          "modalEditHeader": "Edit Member",
+          "buttonSave": "Save",
+          "buttonExpand": "Expand",
+          "buttonClose": "Close",
+          "labelGroup": "Group",
+          "labelAbreviature": "Shortname",
+          "labelDescription": "Description",
+          "labelStatus": "Status"
+        }
+      },
+      "marketing": {
+        "headerID": "ID",
+        "headerGroup": "Group",
+        "headerAbbreviation": "Shortname",
+        "headerDescription": "Description",
+        "headerOrder": "Order",
+        "headerProperty": "Property",
+        "headerActions": "Actions",
+        "searchPlaceholder": "Search...",
+        "buttonNew": "New",
+        "modalInsertHeader": "Insert Marketing",
+        "modalEditHeader": "Edit Marketing",
+        "modalEditID": "ID: ",
+        "deleteSuccess": "Marketing removed successfully!",
+        "deleteError": "Error removing marketing.",
+        "marketingHeader": "Marketing",
+        "modalEditDelete": "Delete",
+        "new": {
+          "modalInsertHeader": "Insert Marketing",
+          "modalEditHeader": "Edit Marketing",
+          "buttonSave": "Save",
+          "buttonExpand": "Expand",
+          "buttonClose": "Close",
+          "labelGroup": "Group",
+          "labelAbreviature": "Shortname",
+          "labelDescription": "Description",
+          "labelStatus": "Status"
+        }
+      },
+      "viptypes": {
+        "headerID": "ID",
+        "headerAbbreviation": "Shortname",
+        "headerDescription": "Description",
+        "headerOrder": "Order",
+        "headerProperty": "Property",
+        "headerActions": "Actions",
+        "searchPlaceholder": "Search...",
+        "buttonNew": "New",
+        "modalInsertHeader": "Insert VIP Type",
+        "modalEditHeader": "Edit VIP Type",
+        "modalEditID": "ID: ",
+        "deleteSuccess": "VIP removed successfully!",
+        "deleteError": "Error removing VIP.",
+        "vipTypesheader": "Vip Types",
+        "modalEditDelete": "Delete",
+        "new": {
+          "modalInsertHeader": "Insert VIP Code",
+          "modalEditHeader": "Edit VIP Code",
+          "buttonSave": "Save",
+          "buttonExpand": "Expand",
+          "buttonClose": "Close",
+          "labelAbreviature": "Shortname",
+          "labelDescription": "Description",
+          "labelDetails": "Details",
+          "labelStatus": "Status"
+        }
+      },
+      "ageConfig": {
+        "headerID": "ID",
+        "headerName": "Name",
+        "headerDescription": "Description",
+        "searchPlaceholder": "Search...",
+        "buttonNew": "New",
+        "modalEditHeader": "Edit Age Configuration",
+        "modalEditID": "ID: ",
+        "ageConfigheader": "Age Configuration",
+        "new": {
+          "modalEditHeader": "Edit Age Configuration",
+          "buttonSave": "Save",
+          "buttonExpand": "Expand",
+          "buttonClose": "Close",
+          "labelDescription": "Description"
+        }
+      }
     }
+  }
 }

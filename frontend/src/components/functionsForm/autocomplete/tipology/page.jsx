@@ -27,9 +27,9 @@ export default function tipologyAutocomplete({ label, style, onChange}) {
                 label={label}
                 className="max-w-xs"
                 variant="underlined"
-                onChange={(value) => {
+                onSelectionChange={(value) => {
                     onChange(value);
-                    //console.log("Selected value: ", value);
+                    // console.log("Selected value: ", value);
                 }}
             >
                 {tipology.map((tipology) => (
