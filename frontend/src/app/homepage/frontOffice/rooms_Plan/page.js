@@ -17,28 +17,29 @@ import TravelGroupForm from "@/components/modal/frontOffice/clientForm/travelAge
 import GroupForm from "@/components/modal/frontOffice/clientForm/groups/page";
 import OthersForm from "@/components/modal/frontOffice/clientForm/others/page";
 
+import interact from 'interactjs';
+
 //imports de componentes
 import { FaCalendarAlt, FaRegTrashAlt, FaRegUserCircle, FaBed } from 'react-icons/fa';
 import { FaPlus } from "react-icons/fa6";
-import { LiaExpandSolid } from "react-icons/lia";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 
 import { MdOutlineZoomOut } from "react-icons/md";
 
-import { Popover, PopoverTrigger, PopoverContent, Button, Input } from "@nextui-org/react";
+import { Popover, PopoverTrigger, PopoverContent, Button } from "@nextui-org/react";
 
-import { expansion } from "@/components/functionsForm/expansion/page";
+// import { expansion } from "@/components/functionsForm/expansion/page";
 
 import { useTranslations } from 'next-intl';
 
-import { ImWrench } from "react-icons/im";
-import { GiBroom } from "react-icons/gi";
-import { MdOutlineTouchApp } from "react-icons/md";
-import { FaXmark, FaCheck } from "react-icons/fa6";
-import { CgSearchFound } from "react-icons/cg";
+// import { ImWrench } from "react-icons/im";
+// import { GiBroom } from "react-icons/gi";
+// import { MdOutlineTouchApp } from "react-icons/md";
+// import { FaXmark, FaCheck } from "react-icons/fa6";
+// import { CgSearchFound } from "react-icons/cg";
 
 import { FaCircleMinus, FaCircleXmark, FaCircleExclamation } from "react-icons/fa6";
-import { FaCircle, FaQuestionCircle,  FaCheckCircle} from "react-icons/fa";
+import { FaCircle, FaQuestionCircle, FaCheckCircle } from "react-icons/fa";
 
 // Configurando plugins
 dayjs.extend(isSameOrBefore);
@@ -49,10 +50,10 @@ export default function CalendarPage() {
   const [today, setToday] = useState(dayjs());
   const currentYear = dayjs().year();
   const currentMonth = dayjs().month();
-  const years = Array.from({ length: 10 }, (_, i) => currentYear - 5 + i);
+  // const years = Array.from({ length: 10 }, (_, i) => currentYear - 5 + i);
   const [weeks, setWeeks] = useState(generateMonth(today.month(), today.year()));
   const [showModal, setShowModal] = useState(false);
-  const [reservationRange, setReservationRange] = useState({ start: null, end: null });
+  // const [reservationRange, setReservationRange] = useState({ start: null, end: null });
 
   const [roomTypeState, setRoomTypeState] = useState([]);
   const [roomTypes, setRoomTypes] = useState([]);
@@ -60,14 +61,15 @@ export default function CalendarPage() {
 
   const [reservation, setReservation] = useState([]);
 
-  const [dragStart, setDragStart] = useState(null);
-  const [dragEnd, setDragEnd] = useState(null);
+  // const [dragStart, setDragStart] = useState(null);
+  // const [dragEnd, setDragEnd] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
 
   const [selectedYear, setSelectedYear] = useState(currentYear);
   const [selectedMonth, setSelectedMonth] = useState(currentMonth);
 
   const [currentWeekIndex, setCurrentWeekIndex] = useState(0);
+  console.log(currentWeekIndex);
   const [isSelecting, setIsSelecting] = useState(false);
 
   const [selectionInfo, setSelectionInfo] = useState({ roomID: null, dates: [] }); //seleção de uma linha
@@ -79,11 +81,12 @@ export default function CalendarPage() {
 
   const [startDate2, setStartDate2] = useState(null);
   const [endDate2, setEndDate2] = useState(null);
-
+console.log(endDate2);
   const [selectedDates, setSelectedDates] = useState([]);
 
 
   const [selectedRow, setSelectedRow] = useState(null);
+  console.log(selectedRow);
   const [selectedCells, setSelectedCells] = useState([]);
   const [cellsSelection, setCellsSelection] = useState([]);
 
@@ -91,12 +94,12 @@ export default function CalendarPage() {
 
   const [ctrlPressed, setCtrlPressed] = useState(false);
   const [selectedColumn, setSelectedColumn] = useState(null);
-
-  const [groupReservation, setRoomRevervation] = useState({}); // Estado para armazenar o número de quartos associados a cada tipo de quarto
+console.log(selectedColumn, setCtrlPressed);
+  // const [groupReservation, setRoomRevervation] = useState({}); // Estado para armazenar o número de quartos associados a cada tipo de quarto
 
   const [nights, setNights] = useState([]);
-
-  const { toggleExpand, setIsExpanded, isExpanded } = expansion();
+console.log(nights);
+  // const { toggleExpand, setIsExpanded, isExpanded } = expansion();
 
   //FILTRO DE BOTOES 
   const [showButton, setShowButton] = useState(false);
@@ -104,6 +107,7 @@ export default function CalendarPage() {
   const [selectedRoomType, setSelectedRoomType] = useState('');
   const [guestName, setGuestName] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  console.log(isLoading, setSelectedRoomType);
   const [dataFetched, setDataFetched] = useState(false);
   const [query, setQuery] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -111,10 +115,10 @@ export default function CalendarPage() {
   const [selectedGuestId, setSelectedGuestId] = useState('');
 
   const [isResizing, setIsResizing] = useState(false);
-  const [newEndDate, setNewEndDate] = useState(null);
-  const [resizedEndDate, setResizedEndDate] = useState(null);
+  // const [newEndDate, setNewEndDate] = useState(null);
+  // const [resizedEndDate, setResizedEndDate] = useState(null);
   const reservationRefs = useRef({});
-  const resizerRefs = useRef({});
+  // const resizerRefs = useRef({});
 
 
   const t = useTranslations('Index');
@@ -388,129 +392,153 @@ export default function CalendarPage() {
     }
   };
 
-
-  /** --- FUNÇÃO PARA AUMENTAR OU DIMINUIR RESERVA ---------------------------------------------------------------------------------------------*/
+  const getCellUnderCursor = (clientX, clientY) => {
+    // Temporariamente oculta todas as divs de reserva
+    for (const key in reservationRefs.current) {
+      if (reservationRefs.current[key]) {
+        reservationRefs.current[key].style.visibility = 'hidden';
+      }
+    }
+  
+    // Obtém todos os elementos na posição do cursor
+    const elements = document.elementsFromPoint(clientX, clientY);
+  
+    // Encontra a célula da tabela subjacente
+    let targetCell;
+    for (const element of elements) {
+      if (element.id.startsWith('cell-')) {
+        targetCell = element;
+        break;
+      }
+    }
+  
+    // Reexibe todas as divs de reserva
+    for (const key in reservationRefs.current) {
+      if (reservationRefs.current[key]) {
+        reservationRefs.current[key].style.visibility = 'visible';
+      }
+    }
+  
+    return targetCell;
+  };
+  
   const handleMouseDownRightResize = async (event, reservationID, date, checkOutDate) => {
-    event.stopPropagation(); // Previne o evento de arrastar
-    event.preventDefault(); // Previne o comportamento padrão do mouse down
-
+    event.stopPropagation();
+    event.preventDefault();
+  
     setIsResizing(true);
-
-    let x = event.clientX;
+  
     const resizeableEle = reservationRefs.current[reservationID];
     if (!resizeableEle) return;
-
-    const startDate = dayjs(date); // Data de início do redimensionamento
-    let localNewEndDate = dayjs(checkOutDate); // Data de término atual da reserva
-
-    const onMouseMoveRightResize = (event) => {
-      const dx = event.clientX - x;
-      const currentWidth = parseInt(window.getComputedStyle(resizeableEle).width, 10);
-      let newWidth;
-      let newEndDate;
-    
-      if (dx > 0) { // Resizing to the right
-        newWidth = currentWidth + dx;
-        const targetCell = document.elementFromPoint(event.clientX, event.clientY);
-        if (!targetCell || !targetCell.id.startsWith('cell-')) return;
-        const targetDay = parseInt(targetCell.id.replace('cell-', ''), 10);
-        if (isNaN(targetDay)) return;
-        newEndDate = startDate.clone().date(targetDay);
-      } else { // Resizing to the left
-        newWidth = currentWidth - Math.abs(dx);
-        const targetCell = document.elementFromPoint(event.clientX, event.clientY);
-        if (!targetCell || !targetCell.id.startsWith('cell-')) return;
-        const targetDay = parseInt(targetCell.id.replace('cell-', ''), 10);
-        if (isNaN(targetDay)) return;
-        newEndDate = startDate.clone().date(targetDay);
-      }
-    
-      // Não permite que a largura da reserva seja menor que 0
-      if (newWidth < 0) return;
-    
-      resizeableEle.style.width = `${newWidth}px`;
-      localNewEndDate = newEndDate;
-      x = event.clientX;
-    };
-
-    const onMouseUpRightResize = async () => {
-        document.removeEventListener('mousemove', onMouseMoveRightResize);
-        document.removeEventListener('mouseup', onMouseUpRightResize);
-        setIsResizing(false);
-
-        // Verifique se localNewEndDate não é undefined
-        if (localNewEndDate) {
-            console.log("Nova data de término:", localNewEndDate.format('DD-MM-YYYY'));
-
-            try {
-                // Enviar a nova data para a API usando PATCH
-                const response = await axios.patch(`/api/v1/frontOffice/reservations/roomsPlan/${reservationID}`, {
-                    data: {
-                        checkOutDate: localNewEndDate.format('YYYY-MM-DD'),
-                    },
-                });
-                console.log('Reserva atualizada:', response.data);
-                // Você pode adicionar lógica adicional aqui para atualizar o estado das reservas na sua aplicação
-            } catch (error) {
-                console.error('Erro ao atualizar reserva:', error);
+  
+    const startDate = dayjs(date);
+    let localNewEndDate = dayjs(checkOutDate);
+  
+    // Configuração do Interact.js para redimensionamento e arrasto
+    interact(resizeableEle)
+      .resizable({
+        edges: { right: true },
+        listeners: {
+          move(event) {
+            const newWidth = event.rect.width;
+            const targetCell = getCellUnderCursor(event.clientX, event.clientY);
+  
+            if (targetCell && targetCell.id.startsWith('cell-')) {
+              const targetDay = parseInt(targetCell.id.replace('cell-', ''), 10);
+              if (!isNaN(targetDay)) {
+                localNewEndDate = startDate.clone().date(targetDay);
+                console.log("Nova data de término (durante move):", localNewEndDate.format('DD-MM-YYYY'));
+              }
             }
-        } else {
-            console.error('Erro: localNewEndDate está undefined.');
-        }
-    };
+  
+            if (newWidth >= 0) {
+              resizeableEle.style.width = `${newWidth}px`;
+            }
+          },
+          end(event) {
+            // Atualiza apenas no final do redimensionamento
+            if (localNewEndDate) {
+              console.log("Nova data de término (finalizada):", localNewEndDate.format('DD-MM-YYYY'));
+              updateReservation(reservationID, localNewEndDate);
+            }
+            setIsResizing(false); // Finaliza estado de redimensionamento
+          },
+        },
+        modifiers: [
+          interact.modifiers.restrictSize({
+            min: { width: 0 },
+          }),
+        ],
+      })
+      .draggable({
+        listeners: {
+          start(event) {
+            handleDragStart(event, reservationID);
+          },
+          move: (event) => {
+            const dropDate = this.props.dropDate; // ou de onde você obtém a data de drop
+            const roomType = this.props.roomType;
+  
+            if (dropDate && roomType) {
+              handleDrop(event, dropDate, roomType);
+            } else {
+              console.warn('dropDate ou roomType não estão definidos.');
+            }
+          },
+          end(event) {
+            setIsResizing(false); // Atualiza o estado ao final do arrasto
+            console.log('Arrasto finalizado');
+          },
+        },
+      });
+  };
+  
+  // Função de atualização da reserva
+  const updateReservation = async (reservationID, newDate) => {
+    try {
+      const response = await axios.patch(`/api/v1/frontOffice/reservations/roomsPlan/${reservationID}`, {
+        data: {
+          checkOutDate: newDate.format('YYYY-MM-DD'),
+        },
+      });
+      console.log('Reserva atualizada:', response.data);
+      console.log(`Reserva atualizada para o dia: ${newDate.format('DD-MM-YYYY')}`);
+    } catch (error) {
+      console.error('Erro ao atualizar reserva:', error);
+    }
+  };
+  
+  
+  // Função para lidar com o início do arrasto
+  const handleDragStart = (e, reservationID) => {
+    e.dataTransfer.setData('reservationID', reservationID);
+    const reservationElement = e.target;
+    const rect = reservationElement.getBoundingClientRect();
+    const offsetX = e.clientX - rect.left;
+  
+    e.dataTransfer.setData('offsetX', offsetX);
+    e.dataTransfer.setData('width', reservationElement.offsetWidth);
+    e.target.style.opacity = 0.5; // Feedback visual
+  };
 
-    document.addEventListener('mousemove', onMouseMoveRightResize);
-    document.addEventListener('mouseup', onMouseUpRightResize);
-};
-
-
-const handleDragStart = (e, reservationID) => {
-  // Armazena o ID da reserva no objeto de dados do evento para acessar durante o drop
-  e.dataTransfer.setData('reservationID', reservationID);
-
-  // Armazena a posição inicial do cursor em relação à borda esquerda da div
-  const reservationElement = e.target;
-  const rect = reservationElement.getBoundingClientRect();
-  const offsetX = e.clientX - rect.left;
-
-  // Armazena esse deslocamento para ser utilizado no drop
-  e.dataTransfer.setData('offsetX', offsetX);
-
-  // Armazena a largura da div arrastada
-  e.dataTransfer.setData('width', reservationElement.offsetWidth);
-
-  // Opcional: se quiser dar algum feedback visual durante o drag, pode alterar o estilo do elemento
-  e.target.style.opacity = 0.5;
-};
-
-
+// Função para lidar com o drop
 const handleDrop = async (e, dropDate, roomType) => {
-  // Previne o comportamento padrão do navegador
   e.preventDefault();
-
-  // Obtém o ID da reserva que está sendo arrastada
   const reservationID = e.dataTransfer.getData('reservationID');
   const offsetX = parseFloat(e.dataTransfer.getData('offsetX'));
-  const width = parseFloat(e.dataTransfer.getData('width')); // você precisará passar a largura da div arrastada
+  const width = parseFloat(e.dataTransfer.getData('width'));
 
-  // Encontra a célula de destino
   const dropCell = e.target.closest('td');
   if (!dropCell) {
     console.warn('Célula de destino não encontrada.');
     return;
   }
 
-  // Obtém a posição da célula de destino
   const dropCellRect = dropCell.getBoundingClientRect();
-
-  // Calcula a posição da ponta esquerda da div em relação à célula de destino
   const leftPosition = e.clientX - dropCellRect.left - offsetX;
-
-  // Calcula a posição da ponta direita da div em relação à célula de destino
   const rightPosition = leftPosition + width;
 
-  // Encontra a célula que está sob a ponta esquerda da div
-  const cells = Array.from(dropCell.parentNode.children); // Convertendo para Array
+  const cells = Array.from(dropCell.parentNode.children);
   let targetCellCheckin;
   let targetCellCheckout;
 
@@ -560,7 +588,6 @@ const handleDrop = async (e, dropDate, roomType) => {
   }
 };
 
-
 const handleDragEnd = (e) => {
   // Opcional: restaura o estilo do elemento após o drag
   e.target.style.opacity = 1;
@@ -569,38 +596,38 @@ const handleDragEnd = (e) => {
 
 const renderReservations = (reservations, date, roomType) => {
   if (!reservations) {
-      console.warn('Não há reservas para renderizar.');
-      return [];
+    console.warn('Não há reservas para renderizar.');
+    return [];
   }
 
   const reservationsToRender = reservations.reduce((acc, reservation) => {
-      const checkInDate = dayjs(reservation.checkInDate);
-      const checkOutDate = dayjs(reservation.checkOutDate);
-      
-      const isSameRoom = String(reservation.roomNumber) === roomType.label;
-      
-      if (!isSameRoom) return acc;
+    const checkInDate = dayjs(reservation.checkInDate);
+    const checkOutDate = dayjs(reservation.checkOutDate);
 
-      const reservationStartMonth = checkInDate.month();
-      const reservationEndMonth = checkOutDate.month();
-      
-      const currentMonth = date.month();
+    const isSameRoom = String(reservation.roomNumber) === roomType.label;
 
-      if (reservationStartMonth === currentMonth && reservationEndMonth === currentMonth) {
-          acc.push(reservation);
-      } else if (reservationStartMonth === currentMonth) {
-          acc.push({
-              ...reservation,
-              checkOutDate: checkInDate.endOf('month').toISOString(),
-          });
-      } else if (reservationEndMonth === currentMonth) {
-          acc.push({
-              ...reservation,
-              checkInDate: checkOutDate.startOf('month').toISOString(),
-          });
-      }
+    if (!isSameRoom) return acc;
 
-      return acc;
+    const reservationStartMonth = checkInDate.month();
+    const reservationEndMonth = checkOutDate.month();
+
+    const currentMonth = date.month();
+
+    if (reservationStartMonth === currentMonth && reservationEndMonth === currentMonth) {
+      acc.push(reservation);
+    } else if (reservationStartMonth === currentMonth) {
+      acc.push({
+        ...reservation,
+        checkOutDate: checkInDate.endOf('month').toISOString(),
+      });
+    } else if (reservationEndMonth === currentMonth) {
+      acc.push({
+        ...reservation,
+        checkInDate: checkOutDate.startOf('month').toISOString(),
+      });
+    }
+
+    return acc;
   }, []);
 
   return reservationsToRender.map((reservation) => {
@@ -617,8 +644,8 @@ const renderReservations = (reservations, date, roomType) => {
     const endCell = document.getElementById(endCellId);
 
     if (!startCell || !endCell) {
-        console.warn(`Célula não encontrada: ${!startCell ? startCellId : endCellId}`);
-        return null;
+      console.warn(`Célula não encontrada: ${!startCell ? startCellId : endCellId}`);
+      return null;
     }
 
     const startCellRect = startCell.getBoundingClientRect();
@@ -628,39 +655,39 @@ const renderReservations = (reservations, date, roomType) => {
 
     let leftStartPosition;
     if (checkInDate.date() === 1) {
-        leftStartPosition = startCellRect.left + window.pageXOffset;
+      leftStartPosition = startCellRect.left + window.pageXOffset;
     } else {
-        leftStartPosition = startCellRect.left + window.pageXOffset + halfCellWidth;
+      leftStartPosition = startCellRect.left + window.pageXOffset + halfCellWidth;
     }
-    
+
     const leftEndPosition = endCellRect.left + window.pageXOffset + halfCellWidth;
 
     const reservationWidth = leftEndPosition - leftStartPosition;
 
     const style = {
-        position: 'absolute',
-        left: leftStartPosition,
-        width: reservationWidth,
-        marginTop: -20,
-        backgroundColor: 'red',
-        color: 'white',
-        padding: '1px',
-        borderRadius: '4px',
-        fontSize: '12px',
-        height: '40px',
-        cursor: 'move', // Indica que o elemento pode ser movido
+      position: 'absolute',
+      left: leftStartPosition,
+      width: reservationWidth,
+      marginTop: -20,
+      backgroundColor: 'red',
+      color: 'white',
+      padding: '1px',
+      borderRadius: '4px',
+      fontSize: '12px',
+      height: '40px',
+      cursor: 'move', // Indica que o elemento pode ser movido
     };
 
     const textContainerStyle = {
-        position: 'absolute',
-        left: 0,
-        top: 0,
-        bottom: 0,
-        width: 'calc(100% - 5px)', // Adjust width to accommodate resizer
-        display: 'flex',
-        flexDirection: 'column', // Ajustar para layout de coluna
-        alignItems: 'flex-start', // Alinhar texto à esquerda
-        paddingLeft: '5px', // Adjust padding as needed
+      position: 'absolute',
+      left: 0,
+      top: 0,
+      bottom: 0,
+      width: 'calc(100% - 5px)', // Adjust width to accommodate resizer
+      display: 'flex',
+      flexDirection: 'column', // Ajustar para layout de coluna
+      alignItems: 'flex-start', // Alinhar texto à esquerda
+      paddingLeft: '5px', // Adjust padding as needed
     };
 
     const guestFirstName = reservation.guestFirstName || 'Nome do hóspede não disponível';
@@ -668,15 +695,15 @@ const renderReservations = (reservations, date, roomType) => {
 
     let reservationStatusColor = 'yellow';
     if (reservation.reservationStatus === 1) {
-        reservationStatusColor = 'yellow';
+      reservationStatusColor = 'yellow';
     } else if (reservation.reservationStatus === 2) {
-        reservationStatusColor = 'green';
+      reservationStatusColor = 'green';
     } else if (reservation.reservationStatus === 3) {
-        reservationStatusColor = 'red';
+      reservationStatusColor = 'red';
     } else if (reservation.reservationStatus === 4) {
-        reservationStatusColor = 'gray';
+      reservationStatusColor = 'gray';
     } else if (reservation.reservationStatus === 5) {
-        reservationStatusColor = 'white';
+      reservationStatusColor = 'white';
     }
 
     const formattedCheckInDate = checkInDate.format('DD.MM');
@@ -684,418 +711,418 @@ const renderReservations = (reservations, date, roomType) => {
 
     return (
       <div
-          key={reservation.reservationID}
-          style={style}
-          className="absolute border border-black w-full h-full"
-          ref={(element) => (reservationRefs.current[reservation.reservationID] = element)}
-          draggable
-          onDragStart={(e) => handleDragStart(e, reservation.reservationID)}
+        key={reservation.reservationID}
+        style={style}
+        className="absolute border border-black w-full h-full"
+        ref={(element) => (reservationRefs.current[reservation.reservationID] = element)}
+        draggable
+        onDragStart={(e) => handleDragStart(e, reservation.reservationID)}
       >
-          <div style={{ background: reservationStatusColor }} className='border-1 border-black rounded-sm w-2 h-2 ml-1 mt-1'></div>
-          <div style={textContainerStyle} className='flex-col ml-3'>
-              <span>{`${guestSecondName}, ${guestFirstName}`}</span>
-              <span>{`${formattedCheckInDate} - ${formattedCheckOutDate}`}</span>
-          </div>
-          <div
-              onMouseDown={(e) => handleMouseDownRightResize(e, reservation.reservationID, reservation.checkOutDate, date)}
-              className="absolute bg-black cursor-ew-resize text-left"
-              style={{ right: 0, top: 0, bottom: 0, width: 5 }}
-          >
-              {/* Conteúdo do redimensionador */}
-          </div>
+        <div style={{ background: reservationStatusColor }} className='border-1 border-black rounded-sm w-2 h-2 ml-1 mt-1'></div>
+        <div style={textContainerStyle} className='flex-col ml-3'>
+          <span>{`${guestSecondName}, ${guestFirstName}`}</span>
+          <span>{`${formattedCheckInDate} - ${formattedCheckOutDate}`}</span>
+        </div>
+        <div
+          onMouseDown={(e) => handleMouseDownRightResize(e, reservation.reservationID, reservation.checkOutDate, date)}
+          className="absolute bg-black cursor-ew-resize text-left"
+          style={{ right: 0, top: 0, bottom: 0, width: 5 }}
+        >
+          {/* Conteúdo do redimensionador */}
+        </div>
       </div>
-  );
-});
+    );
+  });
 };
 
 
-  const updateAvailability = () => {
-    fetchData();
+const updateAvailability = () => {
+  fetchData();
+}
+
+
+/*-----FUNÇÃO PARA O FILTRO DO ANO E DOS MESES-------------------------------------------------------------------------------------------- */
+const handleYearChange = (action) => {
+  let newYear;
+  if (action === 'increment') {
+    newYear = selectedYear + 1;
+  } else if (action === 'decrement') {
+    newYear = selectedYear - 1;
   }
 
+  setSelectedYear(newYear);
 
-  /*-----FUNÇÃO PARA O FILTRO DO ANO E DOS MESES-------------------------------------------------------------------------------------------- */
-  const handleYearChange = (action) => {
-    let newYear;
-    if (action === 'increment') {
-      newYear = selectedYear + 1;
-    } else if (action === 'decrement') {
-      newYear = selectedYear - 1;
-    }
+  // Atualiza a data para o primeiro dia do novo ano e mês atual
+  const newToday = dayjs().year(newYear).month(selectedMonth).date(1);
+  setToday(newToday);
 
-    setSelectedYear(newYear);
+  // Regenera as semanas para o novo ano e mês
+  const newWeeks = generateMonth(newToday.month(), newToday.year());
+  setWeeks(newWeeks);
 
-    // Atualiza a data para o primeiro dia do novo ano e mês atual
-    const newToday = dayjs().year(newYear).month(selectedMonth).date(1);
-    setToday(newToday);
+  // Atualiza o índice da semana para a primeira semana do novo mês e ano
+  setCurrentWeekIndex(0);
 
-    // Regenera as semanas para o novo ano e mês
-    const newWeeks = generateMonth(newToday.month(), newToday.year());
-    setWeeks(newWeeks);
+  updateAvailability(); // Atualiza a disponibilidade
+};
 
-    // Atualiza o índice da semana para a primeira semana do novo mês e ano
-    setCurrentWeekIndex(0);
+const handleMonthChange = (month) => {
+  const newMonth = parseInt(month, 10);
+  setSelectedMonth(newMonth);
 
-    updateAvailability(); // Atualiza a disponibilidade
-  };
+  // Atualiza a data para o primeiro dia do novo mês e ano atual
+  const newToday = dayjs().year(selectedYear).month(newMonth).date(1);
+  setToday(newToday);
 
-  const handleMonthChange = (month) => {
-    const newMonth = parseInt(month, 10);
-    setSelectedMonth(newMonth);
+  // Regenera as semanas para o novo mês e ano
+  const newWeeks = generateMonth(newToday.month(), newToday.year());
+  setWeeks(newWeeks);
 
-    // Atualiza a data para o primeiro dia do novo mês e ano atual
-    const newToday = dayjs().year(selectedYear).month(newMonth).date(1);
-    setToday(newToday);
+  // Atualiza o índice da semana para a primeira semana do novo mês e ano
+  setCurrentWeekIndex(0);
 
-    // Regenera as semanas para o novo mês e ano
-    const newWeeks = generateMonth(newToday.month(), newToday.year());
-    setWeeks(newWeeks);
+  updateAvailability(); // Atualiza a disponibilidade
+  renderReservations(); // Atualiza a disponibilidade
 
-    // Atualiza o índice da semana para a primeira semana do novo mês e ano
-    setCurrentWeekIndex(0);
+};
 
-    updateAvailability(); // Atualiza a disponibilidade
-    renderReservations(); // Atualiza a disponibilidade
+// useEffect para atualizar os dados quando o mês ou o ano é alterado
+useEffect(() => {
+  const newToday = dayjs().year(selectedYear).month(selectedMonth).date(1);
+  setToday(newToday);
 
-  };
+  const newWeeks = generateMonth(newToday.month(), newToday.year());
+  setWeeks(newWeeks);
 
-  // useEffect para atualizar os dados quando o mês ou o ano é alterado
-  useEffect(() => {
-    const newToday = dayjs().year(selectedYear).month(selectedMonth).date(1);
-    setToday(newToday);
+  // Atualiza o índice da semana para a primeira semana do novo mês e ano
+  setCurrentWeekIndex(0);
 
-    const newWeeks = generateMonth(newToday.month(), newToday.year());
-    setWeeks(newWeeks);
-
-    // Atualiza o índice da semana para a primeira semana do novo mês e ano
-    setCurrentWeekIndex(0);
-
-    updateAvailability(); // Atualiza a disponibilidade
-  }, [selectedYear, selectedMonth]);  // Executa o efeito quando selectedYear ou selectedMonth mudar
+  updateAvailability(); // Atualiza a disponibilidade
+}, [selectedYear, selectedMonth]);  // Executa o efeito quando selectedYear ou selectedMonth mudar
 
 
-  /*-----FUNÇÃO PARA TROCAR VISAO DA TABELA DE MES PARA SEMANAL------------------------------------------------------------------------------------ */
-  const handleZoomOutClick = () => {
-    window.location.href = '/homepage/frontOffice/rooms_Plan/zoom_out';
-  }
+/*-----FUNÇÃO PARA TROCAR VISAO DA TABELA DE MES PARA SEMANAL------------------------------------------------------------------------------------ */
+const handleZoomOutClick = () => {
+  window.location.href = '/homepage/frontOffice/rooms_Plan/zoom_out';
+}
 
 
-  /*------FUNÇÕES PARAS SELECIONAR O NOME DO HOSPEDE NO MODAL LATERAL------------------------------------------------------------------------------ */
-  useEffect(() => {
-    const getData = async () => {
-      if (!dataFetched) {
-        setIsLoading(true);
-        try {
-          const res = await axios.get("/api/v1/frontOffice/clientForm/individuals");
-          const namesArray = res.data.response
-            .map(item => ({
-              id: item.guestProfileID,
-              secondName: item.secondName,
-              firstName: item.firstName
-            }))
-            .filter(item => item.secondName !== '' && item.firstName !== '');
-          setQuery(namesArray);
-          setDataFetched(true);
-        } catch (error) {
-          console.error("Erro ao encontrar as fichas de cliente:", error.message);
-        } finally {
-          setIsLoading(false);
-        }
+/*------FUNÇÕES PARAS SELECIONAR O NOME DO HOSPEDE NO MODAL LATERAL------------------------------------------------------------------------------ */
+useEffect(() => {
+  const getData = async () => {
+    if (!dataFetched) {
+      setIsLoading(true);
+      try {
+        const res = await axios.get("/api/v1/frontOffice/clientForm/individuals");
+        const namesArray = res.data.response
+          .map(item => ({
+            id: item.guestProfileID,
+            secondName: item.secondName,
+            firstName: item.firstName
+          }))
+          .filter(item => item.secondName !== '' && item.firstName !== '');
+        setQuery(namesArray);
+        setDataFetched(true);
+      } catch (error) {
+        console.error("Erro ao encontrar as fichas de cliente:", error.message);
+      } finally {
+        setIsLoading(false);
       }
     }
-    getData();
-  }, [dataFetched]);
+  }
+  getData();
+}, [dataFetched]);
 
-  const handleInputChange = (event) => {
-    setGuestName(event.target.value);
-    setSearchTerm(event.target.value);
-    setIsGuestNameValid(query.some(item => `${item.firstName} ${item.secondName}` === event.target.value));
-  };
+const handleInputChange = (event) => {
+  setGuestName(event.target.value);
+  setSearchTerm(event.target.value);
+  setIsGuestNameValid(query.some(item => `${item.firstName} ${item.secondName}` === event.target.value));
+};
 
-  const handleNameSelect = (selectedName, id) => {
-    setGuestName(selectedName);
-    setSelectedGuestId(id);
-    setSearchTerm('');
-    setIsGuestNameValid(filteredResults.some(item => `${item.firstName} ${item.secondName}` === selectedName));
-  };
+const handleNameSelect = (selectedName, id) => {
+  setGuestName(selectedName);
+  setSelectedGuestId(id);
+  setSearchTerm('');
+  setIsGuestNameValid(filteredResults.some(item => `${item.firstName} ${item.secondName}` === selectedName));
+};
 
-  const filteredResults = query.filter(item => {
-    const fullName = `${item.firstName} ${item.secondName}`.toLowerCase();
-    return fullName.includes(searchTerm.toLowerCase());
-  });
+const filteredResults = query.filter(item => {
+  const fullName = `${item.firstName} ${item.secondName}`.toLowerCase();
+  return fullName.includes(searchTerm.toLowerCase());
+});
 
-  return (
-    <div className='w-full' >
-      {showModal && (
-        <>
-          <div className='fixed top-0 right-0 bg-lightBlue h-screen w-[22%] z-10'>
-            <div className='mt-20 px-4 text-black bg-white border border-gray-300 rounded-lg mx-2'>
-              <div className='flex flex-row items-center justify-between flex-wrap'>
-                <FaRegUserCircle size={20} className={guestName.trim() === '' ? 'text-red-500' : 'text-black'} />
-                <InputFieldControlled
-                  type={"text"}
-                  id={"guestName"}
-                  name={"guestName"}
-                  label={t("frontOffice.plans.modals.guestName")}
-                  ariaLabel={"Guest Name"}
-                  style={"h-10 bg-transparent outline-none flex-grow "}
-                  value={guestName}
-                  onChange={handleInputChange}
-                />
-                <div className="flex-shrink-0">
-                  <FaPlus
-                    size={15}
-                    color='blue'
-                    className='cursor-pointer'
-                    onClick={() => setShowButton(!showButton)}
-                  />
-                </div>
-              </div>
-              {/**AUTOCOMPLETE FEITO POR MUAH - pesquisa através de API */}
-              {searchTerm && (
-                <ul>
-                  {filteredResults.map((item, index) => (
-                    <li key={item.id} onClick={() => handleNameSelect(item.firstName + ' ' + item.secondName, item.id)}>
-                      {item.firstName} {item.secondName}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-            {/* FILTROS PARA TIPOS DE GUEST FORMS */}
-            {showButton && (
-              <div className="flex flex-col justify-center items-center mt-2 gap-2 px-4">
-                <p className='text-xs text-gray-500'>{t("frontOffice.plans.modals.guestDetails")}</p>
-                <div className='flex flex-row gap-2'>
-                  <IndividualForm
-                    buttonName={t("frontOffice.frontOffice.individualCard")}
-                    buttonColor={"transparent"}
-                    buttonClass={"h-5 w-[6rem] px-1 rounded-2xl bg-gray-300 text-xs text-black border-2 border-gray-400 hover:bg-blue-600 hover:border-blue-600 hover:text-white"}
-                    formTypeModal={0}
-                  />
-                  <CompanyForm
-                    buttonName={t("frontOffice.frontOffice.businessCard")}
-                    buttonColor={"transparent"}
-                    buttonClass={"h-5 w-[6rem] px-1 rounded-2xl bg-gray-300 text-xs text-black border-2 border-gray-400 hover:bg-blue-600 hover:border-blue-600 hover:text-white"}
-                    formTypeModal={0}
-                  />
-                  <GroupForm
-                    buttonName={t("frontOffice.frontOffice.groupsCard")}
-                    buttonColor={"transparent"}
-                    buttonClass={"h-5 w-[6rem] px-1 rounded-2xl bg-gray-300 text-xs text-black border-2 border-gray-400 hover:bg-blue-600 hover:border-blue-600 hover:text-white"}
-                    formTypeModal={0}
-                  />
-                </div>
-                <div className='flex flex-row gap-2'>
-                  <TravelGroupForm
-                    buttonName={t("frontOffice.frontOffice.travelAgencyCard")}
-                    buttonColor={"transparent"}
-                    buttonClass={"h-5 w-[7rem] px-1 rounded-2xl bg-gray-300 text-xs text-black border-2 border-gray-400 hover:bg-blue-600 hover:border-blue-600 hover:text-white"}
-                    formTypeModal={0}
-                  />
-                  <OthersForm
-                    buttonName={t("frontOffice.frontOffice.othersCard")}
-                    buttonColor={"transparent"}
-                    buttonClass={"h-5 w-[6rem] px-1 rounded-2xl bg-gray-300 text-xs text-black border-2 border-gray-400 hover:bg-blue-600 hover:border-blue-600 hover:text-white"}
-                    formTypeModal={0}
-                  />
-                </div>
-              </div>
-            )}
-            <div className='mt-20' style={{ maxHeight: 'calc(100% - 8rem)', overflowY: 'auto' }}>
-              <p className='text-xs text-gray-500 px-4'>{t("frontOffice.plans.modals.reservationDetails")}</p>
-              {selectedDates.map((dateRange, index) => (
-                <div className={`bg-white border border-gray-300 text-sm px-4 py-1 rounded-lg mt-4 mx-2 ${index === selectedDates.length - 1 ? 'mb-10' : ''}`} key={index}>
-                  <div className='flex flex-row items-center justify-between border-b-3 border-gray py-2'>
-                    <div className='flex flex-row items-center gap-4'>
-                      <FaBed className='' size={25} color='gray' />
-                      <p className='text-ml'>{dateRange.roomName}</p>
-                    </div>
-                    <div>
-                      <FaRegTrashAlt className="cursor-pointer" size={15} color={'gray'} onClick={() => removeEvent(index)} />
-                    </div>
-                  </div>
-                  <div className='flex flex-row justify-around py-1'>
-                    <div className="flex flex-col gap-2">
-                      <label>{t("frontOffice.plans.modals.in")}</label>
-                      <input
-                        className='outline-none'
-                        type="date"
-                        value={dateRange.start}
-                        onChange={(e) => updateDateRange(index, 'start', e.target.value)}
-                      />
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <label>{t("frontOffice.plans.modals.out")}</label>
-                      <input
-                        className='outline-none'
-                        type="date"
-                        value={dateRange.end}
-                        onChange={(e) => updateDateRange(index, 'end', e.target.value)}
-                      />
-                    </div>
-                    <div className='flex flex-row justify-between items-center py-1'>
-                      <p className='text-sm px-3 text-center'>N: {calculateNights(dateRange.start, dateRange.end)}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className='absolute bottom-0 w-full flex justify-center gap-40 p-4 bg-lightBlue'>
-              <ReservationsForm
-                formTypeModal={0}
-                buttonName={t("frontOffice.plans.modals.reserve")}
-                //buttonIcon={<FiPlus size={15} />}
-                editIcon={<FaCalendarAlt size={25} color="white" />}
-                buttonColor={"primary"}
-                modalHeader={t("frontOffice.plans.modals.reservationHeader")}
-                startDate={`${startDate}`}
-                endDate={`${endDate}`}
-                tipology={`${tipology}`}
-                selectedDates={selectedDates}
-                selectedRoomType={selectedRoomType}
-                disabled={!isGuestNameValid}
-                guestName={guestName}
-                guestId={selectedGuestId}
+return (
+  <div className='w-full' >
+    {showModal && (
+      <>
+        <div className='fixed top-0 right-0 bg-lightBlue h-screen w-[22%] z-10'>
+          <div className='mt-20 px-4 text-black bg-white border border-gray-300 rounded-lg mx-2'>
+            <div className='flex flex-row items-center justify-between flex-wrap'>
+              <FaRegUserCircle size={20} className={guestName.trim() === '' ? 'text-red-500' : 'text-black'} />
+              <InputFieldControlled
+                type={"text"}
+                id={"guestName"}
+                name={"guestName"}
+                label={t("frontOffice.plans.modals.guestName")}
+                ariaLabel={"Guest Name"}
+                style={"h-10 bg-transparent outline-none flex-grow "}
+                value={guestName}
+                onChange={handleInputChange}
               />
-              <button
-                className="text-sm"
-                onClick={handleToggleModal}>{t("frontOffice.plans.modals.cancel")}</button>
+              <div className="flex-shrink-0">
+                <FaPlus
+                  size={15}
+                  color='blue'
+                  className='cursor-pointer'
+                  onClick={() => setShowButton(!showButton)}
+                />
+              </div>
             </div>
+            {/**AUTOCOMPLETE FEITO POR MUAH - pesquisa através de API */}
+            {searchTerm && (
+              <ul>
+                {filteredResults.map((item, index) => (
+                  <li key={item.id} onClick={() => handleNameSelect(item.firstName + ' ' + item.secondName, item.id)}>
+                    {item.firstName} {item.secondName}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
-        </>
-      )}
-      <div className={`bg-primary-600 ${showModal ? 'py-4' : 'py-2'}`}>
-        <div className='flex justify-between items-center'>
-          <p className='text-ml text-white px-4'><b>{t("frontOffice.roomsPlan.label")}</b></p>
-          <div className='flex items-center gap-5'>
-            <MdOutlineZoomOut size={20} color='white' className='cursor-pointer' onClick={handleZoomOutClick} />
-            {!showModal && (
-              <Popover placement="bottom" showArrow offset={10}>
-                <PopoverTrigger>
-                  <Button color="transparent" className="">
-                    <FaCalendarAlt
-                      color='white'
-                      size={15}
-                      className='cursor-pointer'
+          {/* FILTROS PARA TIPOS DE GUEST FORMS */}
+          {showButton && (
+            <div className="flex flex-col justify-center items-center mt-2 gap-2 px-4">
+              <p className='text-xs text-gray-500'>{t("frontOffice.plans.modals.guestDetails")}</p>
+              <div className='flex flex-row gap-2'>
+                <IndividualForm
+                  buttonName={t("frontOffice.frontOffice.individualCard")}
+                  buttonColor={"transparent"}
+                  buttonClass={"h-5 w-[6rem] px-1 rounded-2xl bg-gray-300 text-xs text-black border-2 border-gray-400 hover:bg-blue-600 hover:border-blue-600 hover:text-white"}
+                  formTypeModal={0}
+                />
+                <CompanyForm
+                  buttonName={t("frontOffice.frontOffice.businessCard")}
+                  buttonColor={"transparent"}
+                  buttonClass={"h-5 w-[6rem] px-1 rounded-2xl bg-gray-300 text-xs text-black border-2 border-gray-400 hover:bg-blue-600 hover:border-blue-600 hover:text-white"}
+                  formTypeModal={0}
+                />
+                <GroupForm
+                  buttonName={t("frontOffice.frontOffice.groupsCard")}
+                  buttonColor={"transparent"}
+                  buttonClass={"h-5 w-[6rem] px-1 rounded-2xl bg-gray-300 text-xs text-black border-2 border-gray-400 hover:bg-blue-600 hover:border-blue-600 hover:text-white"}
+                  formTypeModal={0}
+                />
+              </div>
+              <div className='flex flex-row gap-2'>
+                <TravelGroupForm
+                  buttonName={t("frontOffice.frontOffice.travelAgencyCard")}
+                  buttonColor={"transparent"}
+                  buttonClass={"h-5 w-[7rem] px-1 rounded-2xl bg-gray-300 text-xs text-black border-2 border-gray-400 hover:bg-blue-600 hover:border-blue-600 hover:text-white"}
+                  formTypeModal={0}
+                />
+                <OthersForm
+                  buttonName={t("frontOffice.frontOffice.othersCard")}
+                  buttonColor={"transparent"}
+                  buttonClass={"h-5 w-[6rem] px-1 rounded-2xl bg-gray-300 text-xs text-black border-2 border-gray-400 hover:bg-blue-600 hover:border-blue-600 hover:text-white"}
+                  formTypeModal={0}
+                />
+              </div>
+            </div>
+          )}
+          <div className='mt-20' style={{ maxHeight: 'calc(100% - 8rem)', overflowY: 'auto' }}>
+            <p className='text-xs text-gray-500 px-4'>{t("frontOffice.plans.modals.reservationDetails")}</p>
+            {selectedDates.map((dateRange, index) => (
+              <div className={`bg-white border border-gray-300 text-sm px-4 py-1 rounded-lg mt-4 mx-2 ${index === selectedDates.length - 1 ? 'mb-10' : ''}`} key={index}>
+                <div className='flex flex-row items-center justify-between border-b-3 border-gray py-2'>
+                  <div className='flex flex-row items-center gap-4'>
+                    <FaBed className='' size={25} color='gray' />
+                    <p className='text-ml'>{dateRange.roomName}</p>
+                  </div>
+                  <div>
+                    <FaRegTrashAlt className="cursor-pointer" size={15} color={'gray'} onClick={() => removeEvent(index)} />
+                  </div>
+                </div>
+                <div className='flex flex-row justify-around py-1'>
+                  <div className="flex flex-col gap-2">
+                    <label>{t("frontOffice.plans.modals.in")}</label>
+                    <input
+                      className='outline-none'
+                      type="date"
+                      value={dateRange.start}
+                      onChange={(e) => updateDateRange(index, 'start', e.target.value)}
                     />
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-[250px]">
-                  {(titleProps) => (
-                    <div className="px-1 py-2 w-full">
-                      <p className="text-small font-bold text-foreground" {...titleProps}>
-                        {t("frontOffice.plans.modals.filter")}
-                      </p>
-                      <div className="mt-2 flex flex-col justify-around">
-                        <div className="flex items-center justify-between">
-                          <span className='text-center font-bold'>{selectedYear}</span>
-                          <div className='flex flex-row gap-4'>
-                            <button onClick={() => handleYearChange('decrement')} className='p-2'>
-                              <IoIosArrowUp size={10} />
-                            </button>
-                            <button onClick={() => handleYearChange('increment')} className='p-2'>
-                              <IoIosArrowDown size={10} />
-                            </button>
-                          </div>
-                        </div>
-                        {/**EXIBIÇÃO DOS MESES EM 3 COLUNAS E 4 LINHAS */}
-                        <div className="mt-4 grid grid-cols-4 gap-2">
-                          {months.map((month, index) => (
-                            <button
-                              key={index}
-                              onClick={() => handleMonthChange(index)}
-                              className={`p-2 text-center rounded-full w-12 h-12 hover:bg-primary`}
-                            >
-                              {month}
-                            </button>
-                          ))}
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label>{t("frontOffice.plans.modals.out")}</label>
+                    <input
+                      className='outline-none'
+                      type="date"
+                      value={dateRange.end}
+                      onChange={(e) => updateDateRange(index, 'end', e.target.value)}
+                    />
+                  </div>
+                  <div className='flex flex-row justify-between items-center py-1'>
+                    <p className='text-sm px-3 text-center'>N: {calculateNights(dateRange.start, dateRange.end)}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className='absolute bottom-0 w-full flex justify-center gap-40 p-4 bg-lightBlue'>
+            <ReservationsForm
+              formTypeModal={0}
+              buttonName={t("frontOffice.plans.modals.reserve")}
+              //buttonIcon={<FiPlus size={15} />}
+              editIcon={<FaCalendarAlt size={25} color="white" />}
+              buttonColor={"primary"}
+              modalHeader={t("frontOffice.plans.modals.reservationHeader")}
+              startDate={`${startDate}`}
+              endDate={`${endDate}`}
+              tipology={`${tipology}`}
+              selectedDates={selectedDates}
+              selectedRoomType={selectedRoomType}
+              disabled={!isGuestNameValid}
+              guestName={guestName}
+              guestId={selectedGuestId}
+            />
+            <button
+              className="text-sm"
+              onClick={handleToggleModal}>{t("frontOffice.plans.modals.cancel")}</button>
+          </div>
+        </div>
+      </>
+    )}
+    <div className={`bg-primary-600 ${showModal ? 'py-4' : 'py-2'}`}>
+      <div className='flex justify-between items-center'>
+        <p className='text-ml text-white px-4'><b>{t("frontOffice.roomsPlan.label")}</b></p>
+        <div className='flex items-center gap-5'>
+          <MdOutlineZoomOut size={20} color='white' className='cursor-pointer' onClick={handleZoomOutClick} />
+          {!showModal && (
+            <Popover placement="bottom" showArrow offset={10}>
+              <PopoverTrigger>
+                <Button color="transparent" className="">
+                  <FaCalendarAlt
+                    color='white'
+                    size={15}
+                    className='cursor-pointer'
+                  />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-[250px]">
+                {(titleProps) => (
+                  <div className="px-1 py-2 w-full">
+                    <p className="text-small font-bold text-foreground" {...titleProps}>
+                      {t("frontOffice.plans.modals.filter")}
+                    </p>
+                    <div className="mt-2 flex flex-col justify-around">
+                      <div className="flex items-center justify-between">
+                        <span className='text-center font-bold'>{selectedYear}</span>
+                        <div className='flex flex-row gap-4'>
+                          <button onClick={() => handleYearChange('decrement')} className='p-2'>
+                            <IoIosArrowUp size={10} />
+                          </button>
+                          <button onClick={() => handleYearChange('increment')} className='p-2'>
+                            <IoIosArrowDown size={10} />
+                          </button>
                         </div>
                       </div>
+                      {/**EXIBIÇÃO DOS MESES EM 3 COLUNAS E 4 LINHAS */}
+                      <div className="mt-4 grid grid-cols-4 gap-2">
+                        {months.map((month, index) => (
+                          <button
+                            key={index}
+                            onClick={() => handleMonthChange(index)}
+                            className={`p-2 text-center rounded-full w-12 h-12 hover:bg-primary`}
+                          >
+                            {month}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                  )}
-                </PopoverContent>
-              </Popover>
-            )}
-            <GrFormPrevious className='w-5 h-5 cursor-pointer text-white' onClick={goToPreviousMonth} />
-            <p className='cursor-pointer text-white' onClick={goToCurrentMonth}>{t("frontOffice.plans.datatable.today")}</p>
-            <GrFormNext className='w-5 h-5 cursor-pointer text-white' onClick={goToNextMonth} />
-          </div>
+                  </div>
+                )}
+              </PopoverContent>
+            </Popover>
+          )}
+          <GrFormPrevious className='w-5 h-5 cursor-pointer text-white' onClick={goToPreviousMonth} />
+          <p className='cursor-pointer text-white' onClick={goToCurrentMonth}>{t("frontOffice.plans.datatable.today")}</p>
+          <GrFormNext className='w-5 h-5 cursor-pointer text-white' onClick={goToNextMonth} />
         </div>
       </div>
-      <table className='w-[100%] bg-tableCol'>
-        <thead>
-          <tr>
-            <th className='w-[15%] bg-tableCol text-left px-4'>{t("frontOffice.roomsPlan.label")}</th>
-            {weeks.days.map((day, index) => (
-              <td key={index} className={`h-14 border-tableCol border-l-3 border-r-3 border-b-2 ${day.date.day() === 0 || day.date.day() === 6 ? "bg-tableColWeekend" : "bg-lightBlueCol"} select-none ${day.date.isSame(today, 'day') ? "bg-primary bg-opacity-30" : ""} select-none`}>
-                <div className='flex flex-col justify-center text-center'>
-                  <span className="text-xs text-gray-400">{daysOfWeek[day.date.day()]}</span>
-                  <span className='text-sm font-bold'>{day.date.format('DD')}</span>
-                  <span className='text-xs text-gray-400'>{months[day.date.month()]}</span>
-                </div>
-              </td>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-  {roomTypeState.map((roomType, rowIndex) => (
-    <tr key={roomType.roomID} onClick={() => handleRowSelection(rowIndex)}>
-      <td className="text-xs w-full h-12 flex justify-between items-center px-4 border-b-2 bg-white">
-        <div className='flex flex-col justify-left'>
-          <span><b>{roomType.label}</b></span>
-          <span className='text-gray-500'>{getRoomTypeName(roomType.roomType)}</span>
-        </div>
-        <span>{getHousekeepingStatus(roomType.roomID)}</span>
-      </td>
-      {weeks.days.map((day, columnIndex) => {
-        const dayOfMonth = day.date.date(); // Obtém o dia do mês
-        const cellId = `cell-${dayOfMonth}`; // ID exclusivo para o dia do mês
-        const monthSelected = day.date.format('MM'); // Obtém o mês selecionado
-        const roomInfo = `${roomType.label} - ${getRoomTypeName(roomType.roomType)}`; // Informação do quarto
+    </div>
+    <table className='w-[100%] bg-tableCol'>
+      <thead>
+        <tr>
+          <th className='w-[15%] bg-tableCol text-left px-4'>{t("frontOffice.roomsPlan.label")}</th>
+          {weeks.days.map((day, index) => (
+            <td key={index} className={`h-14 border-tableCol border-l-3 border-r-3 border-b-2 ${day.date.day() === 0 || day.date.day() === 6 ? "bg-tableColWeekend" : "bg-lightBlueCol"} select-none ${day.date.isSame(today, 'day') ? "bg-primary bg-opacity-30" : ""} select-none`}>
+              <div className='flex flex-col justify-center text-center'>
+                <span className="text-xs text-gray-400">{daysOfWeek[day.date.day()]}</span>
+                <span className='text-sm font-bold'>{day.date.format('DD')}</span>
+                <span className='text-xs text-gray-400'>{months[day.date.month()]}</span>
+              </div>
+            </td>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {roomTypeState.map((roomType, rowIndex) => (
+          <tr key={roomType.roomID} onClick={() => handleRowSelection(rowIndex)}>
+            <td className="text-xs w-full h-12 flex justify-between items-center px-4 border-b-2 bg-white">
+              <div className='flex flex-col justify-left'>
+                <span><b>{roomType.label}</b></span>
+                <span className='text-gray-500'>{getRoomTypeName(roomType.roomType)}</span>
+              </div>
+              <span>{getHousekeepingStatus(roomType.roomID)}</span>
+            </td>
+            {weeks.days.map((day, columnIndex) => {
+              const dayOfMonth = day.date.date(); // Obtém o dia do mês
+              const cellId = `cell-${dayOfMonth}`; // ID exclusivo para o dia do mês
+              const monthSelected = day.date.format('MM'); // Obtém o mês selecionado
+              const roomInfo = `${roomType.label} - ${getRoomTypeName(roomType.roomType)}`; // Informação do quarto
 
-        return (
-          <td
-            key={cellId}
-            id={cellId}
-            title={`${cellId}.${monthSelected}\n#${roomInfo}`}
-            className={`text-center text-sm border-l-3 border-r-3 border-b-2 rounded-lg 
+              return (
+                <td
+                  key={cellId}
+                  id={cellId}
+                  title={`${cellId}.${monthSelected}\n#${roomInfo}`}
+                  className={`text-center text-sm border-l-3 border-r-3 border-b-2 rounded-lg 
               ${(day.date.day() === 0 || day.date.day() === 6) ? "bg-lightBlueCol" : (day.date.isSame(today, 'day') ? "bg-primary bg-opacity-30" : "bg-white")} 
               ${selectionInfo.roomID === roomType.roomID && selectionInfo.dates.includes(day.date.format('YYYY-MM-DD')) ? "border-3 border-blue-600 rounded-lg" : ""}
               ${finalSelectedCells.some(cell => cell.row === rowIndex && cell.column === columnIndex) ? "bg-sky-400" : ""}
               select-none`}
-            onMouseDown={() => {
-              setIsSelecting(true);
-              handleMouseDown(day.date, roomType.roomID, rowIndex, columnIndex);
-              setCellsSelection([...cellsSelection, { row: rowIndex, column: columnIndex, date: day.date }]);
-            }}
-            onMouseOver={() => {
-              if (isSelecting) {
-                handleMouseOver(day.date, rowIndex, columnIndex);
-                setCellsSelection([...cellsSelection, { row: rowIndex, column: columnIndex, date: day.date }]);
-              }
-            }}
-            onMouseUp={() => {
-              setIsSelecting(false);
-              handleMouseUp(day.date);
-            }}
-            // Novos eventos para drag and drop
-            onDragOver={(e) => e.preventDefault()}  // Permite o drop
-            onDrop={(e) => handleDrop(e, day.date, roomType)}  // Lida com o drop
-          >
-            {renderReservations(
-              reservation.filter((res) => String(res.roomNumber) === roomType.label),
-              day.date,
-              roomType
-            )}
-          </td>
-        );
-      })}
-    </tr>
-  ))}
-</tbody>
+                  onMouseDown={() => {
+                    setIsSelecting(true);
+                    handleMouseDown(day.date, roomType.roomID, rowIndex, columnIndex);
+                    setCellsSelection([...cellsSelection, { row: rowIndex, column: columnIndex, date: day.date }]);
+                  }}
+                  onMouseOver={() => {
+                    if (isSelecting) {
+                      handleMouseOver(day.date, rowIndex, columnIndex);
+                      setCellsSelection([...cellsSelection, { row: rowIndex, column: columnIndex, date: day.date }]);
+                    }
+                  }}
+                  onMouseUp={() => {
+                    setIsSelecting(false);
+                    handleMouseUp(day.date);
+                  }}
+                  // Novos eventos para drag and drop
+                  onDragOver={(e) => e.preventDefault()}  // Permite o drop
+                  onDrop={(e) => handleDrop(e, day.date, roomType)}  // Lida com o drop
+                >
+                  {renderReservations(
+                    reservation.filter((res) => String(res.roomNumber) === roomType.label),
+                    day.date,
+                    roomType
+                  )}
+                </td>
+              );
+            })}
+          </tr>
+        ))}
+      </tbody>
 
-      </table>
-    </div>
-  );
+    </table>
+  </div>
+);
 }
